@@ -334,7 +334,11 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ *Calcula el puntaje obtenido en el wordix
+ *@param int $intentosUsados
+ *@param bool $adivina
+ *@param string $palabraAdivinada
+ *@return int 
  */
 function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
 {
