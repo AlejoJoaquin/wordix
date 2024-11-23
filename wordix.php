@@ -348,7 +348,8 @@ function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada)
 
     $puntaje = 6 - $intentosUsados;
 
-    
+    $palabraAdivinada = strtoupper($palabraAdivinada);
+
 
     
 }
