@@ -342,10 +342,13 @@ function esIntentoGanado($estructuraPalabraIntento)
  */
 function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) 
 {
-
     if(!$adivina || $intentosUsados > 6){
         return 0;
     }
+
+    $puntaje = 6 - $intentosUsados;
+
+    
 
     
 }
