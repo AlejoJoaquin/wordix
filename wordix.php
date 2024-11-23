@@ -349,6 +349,9 @@ function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada)
     $puntaje = 6 - $intentosUsados;
 
     $palabraAdivinada = strtoupper($palabraAdivinada);
+    foreach(str_split($palabraAdivinada) as $letra){
+       
+    }
 
 
     
