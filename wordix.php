@@ -340,10 +340,9 @@ function esIntentoGanado($estructuraPalabraIntento)
  *@param string $palabraAdivinada
  *@return int 
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada)
 {
-
-    /* ****COMPLETAR***** cuerpo de la función*/
+    
     return 0;
 }
 
