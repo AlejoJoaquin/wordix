@@ -191,7 +191,9 @@ function solicitarJugador(){
  * @param array $coleccionPartidas
  */
 function mostrarPartidasEnOrden($coleccionPartidas){
-    
+    uasort($coleccionPartidas, function ($a, $b) {
+        $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
+    });
 }
 
 /**************************************/
