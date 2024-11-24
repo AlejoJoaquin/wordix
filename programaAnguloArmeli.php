@@ -197,7 +197,10 @@ function mostrarPartidasEnOrden($coleccionPartidas){
         if ($comparacionJugador === 0) {
             return strcmp($a['palabraWordix'], $b['palabraWordix']);
         }
+
+        return $comparacionJugador;
     });
+    print_r($coleccionPartidas);
 }
 
 /**************************************/
