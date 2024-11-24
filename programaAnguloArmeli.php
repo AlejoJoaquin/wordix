@@ -98,7 +98,16 @@ function mostrarPartida($numPartida, $coleccionPartidas){
     } else {
         echo "El numero que ingreso es invalido. Por favor, ingrese un número entre 1 y " . count($coleccionPartidas) . ".\n";
     }
+}
 
+/**
+ * Agregara la palabra que ingreso el usuario a la coleccion si es que no esta repetida
+ * @param array $coleccionPalabras
+ * @param string $nuevaPalabra
+ * @return array
+ */
+function agregarPalabra($coleccionPalabras, $nuevaPalabra){
+    
 }
 
 
