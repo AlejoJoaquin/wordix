@@ -109,6 +109,12 @@ function mostrarPartida($numPartida, $coleccionPartidas){
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     $nuevaPalabra = strtoupper($nuevaPalabra);
 
+    if (in_array($nuevaPalabra, $coleccionPalabras)){
+        echo "Esta palabra ya esta en la coleccion\n";
+    }else{
+        $coleccionPalabras[]= $nuevaPalabra;
+        echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
+    }
     
 }
 
