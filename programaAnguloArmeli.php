@@ -107,6 +107,8 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  * @return array
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
+    $nuevaPalabra = strtoupper($nuevaPalabra);
+
     
 }
 
