@@ -186,6 +186,14 @@ function solicitarJugador(){
      return strtolower($nombreJugador);
 }
 
+/**
+ * ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
+ * @param array $coleccionPartidas
+ */
+function mostrarPartidasEnOrden($coleccionPartidas){
+    
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
