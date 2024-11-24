@@ -15,6 +15,7 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+/*inciso 1*/
 /**
  * Obtiene una colección de palabras
  * @return array
@@ -30,7 +31,7 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
-
+/*inciso 2*/
 /**
  * Inicializara una coleccion de partidas con ejemplos de partidas y que retornara la coleccion de partidas
  * @return array
@@ -52,6 +53,7 @@ function cargarPartidas(){
     return $coleccionPartidas;
 }
 
+/*inciso 3*/
 /**
  * Le muestra al usuario el menu de opciones y le solicitara una opcion valida
  * 
@@ -77,9 +79,9 @@ function seleccionarOpcion(){
         }
     }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 5);
     return $opcion;
-
 }
 
+/*inciso 6*/
 /**
  * Dado un numero de partidas, mostrara al usuario en pantalla los datos de la partida
  * @param int $numPartida
@@ -100,6 +102,7 @@ function mostrarPartida($numPartida, $coleccionPartidas){
     }
 }
 
+/* inciso 7*/
 /**
  * Agregara la palabra que ingreso el usuario a la coleccion si es que no esta repetida
  * @param array $coleccionPalabras
@@ -118,6 +121,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     return $coleccionPalabras;
 }
 
+/*inciso 8*/
 /** 
  *Retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
  *@param array $coleccionPartidas
@@ -139,6 +143,7 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
 
 }
 
+/*inciso 9*/
 /**
  * Generara un resumen de las partidas de un jugador
  * @param array $coleccionPartidas
@@ -167,6 +172,7 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
     return $resumenPartidaJugador;
 }
 
+/*inciso 10*/
 /**
  * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
  * @return string
@@ -186,6 +192,7 @@ function solicitarJugador(){
      return strtolower($nombreJugador);
 }
 
+/*inciso 11*/
 /**
  * ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
  * @param array $coleccionPartidas
