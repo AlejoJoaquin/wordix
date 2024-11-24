@@ -152,7 +152,9 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
     ];
 
     foreach($coleccionPartidas as $partida){
-        
+        if ($partida['jugador'] == $nombreJugador){
+            
+        }
     }
 }
 
