@@ -127,7 +127,11 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
     //int $indice
     $indice = -1;
-    
+
+    foreach($coleccionPartidas as $key => $partida){
+        
+    }
+
 }
 
 /**************************************/
