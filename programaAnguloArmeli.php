@@ -163,8 +163,8 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
 
         $intentoKey = "intento" . $partida["intentos"];
         $resumenPartidaJugador[$intentoKey]++;
-
     }
+    return $resumenPartidaJugador;
 }
 
 
