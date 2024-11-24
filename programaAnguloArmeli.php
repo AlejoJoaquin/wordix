@@ -150,7 +150,10 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
     $resumenPartidaJugador = [
         'jugador' => $nombreJugador, 'partidas' => 0, 'victorias' => 0, 'intento1' => 0, 'intento2' => 0, 'intento3' => 0, 'intento4' => 0, 'intento5' => 0,'intento6' => 0 
     ];
-    
+
+    foreach($coleccionPartidas as $partida){
+        
+    }
 }
 
 
