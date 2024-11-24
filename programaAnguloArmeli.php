@@ -193,6 +193,10 @@ function solicitarJugador(){
 function mostrarPartidasEnOrden($coleccionPartidas){
     uasort($coleccionPartidas, function ($a, $b) {
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
+
+        if ($comparacionJugador === 0) {
+            return strcmp($a['palabraWordix'], $b['palabraWordix']);
+        }
     });
 }
 
