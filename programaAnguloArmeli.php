@@ -86,6 +86,9 @@ function seleccionarOpcion(){
  * @param array $coleccionPartidas
  */
 function mostrarPartida($numPartida, $coleccionPartidas){
+    //int $indice
+    $indice = $numPartida - 1;
+
     
 }
 
