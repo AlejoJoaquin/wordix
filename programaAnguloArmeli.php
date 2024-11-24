@@ -155,6 +155,11 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
         if ($partida['jugador'] == $nombreJugador){
             $resumenPartidaJugador['partidas']++;
             $resumenPartidaJugador['puntaje'] = $resumenPartidaJugador['puntaje'] + $partida['puntaje'];
+        
+            if($partida['puntaje'] > 0){
+                $resumenPartidaJugador['victorias']++;
+            }
+        
         }
     }
 }
