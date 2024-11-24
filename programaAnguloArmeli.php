@@ -52,6 +52,15 @@ function cargarPartidas(){
     return $coleccionPartidas;
 }
 
+/**
+ * Le muestra al usuario el menu de opciones y le solicitara una opcion valida
+ * 
+ * @return int 
+ */
+function seleccionarOpcion(){
+    
+}
+
 
 
 /**************************************/
