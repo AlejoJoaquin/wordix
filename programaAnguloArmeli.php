@@ -58,7 +58,26 @@ function cargarPartidas(){
  * @return int 
  */
 function seleccionarOpcion(){
+    do{
+        echo "Menu de opciones\n";
+        echo "1. Jugar al wordix con una palabra elegida\n";
+        echo "2. Jugar al wordix con una palabra aleatoria\n";
+        echo "3. Mostrar partida\n";
+        echo "4. Mostrar la primer partida ganada\n";
+        echo "5. Mostrar resumen de Jugador\n";
+        echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
+        echo "7. Agregar una palabra de 5 letras a Wordix\n";
+        echo "8. Salir del menu";
+        
+        $opcion = trim(fgets(STDIN));
     
+        if(!is_numeric($opcion) || $opcion < 1 || $opcion > 5){
+            echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu";
+
+        }
+    }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 5);
+    return $opcion;
+
 }
 
 
