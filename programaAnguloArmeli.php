@@ -139,6 +139,16 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
 
 }
 
+/**
+ * Generara un resumen de las partidas de un jugador
+ * @param array $coleccionPartidas
+ * @param string $nombreJugador
+ * @return array
+ */
+function generarResumenPartida($coleccionPartidas, $nombreJugador){
+    
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
