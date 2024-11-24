@@ -135,7 +135,7 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
         }
 
     }
-    
+    return $indice;
 
 }
 
