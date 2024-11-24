@@ -159,8 +159,10 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
             if($partida['puntaje'] > 0){
                 $resumenPartidaJugador['victorias']++;
             }
-        
         }
+
+        $intentoKey = "intento" . $partida["intentos"];
+
     }
 }
 
