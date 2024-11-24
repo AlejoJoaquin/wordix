@@ -147,8 +147,12 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
  */
 function generarResumenPartida($coleccionPartidas, $nombreJugador){
         // array $resumenPartidaJugador
-    $resumenPartidaJugador = [];
+    $resumenPartidaJugador = [
+        'jugador' => $nombreJugador, 'partidas' => 0, 'victorias' => 0, 'intento1' => 0, 'intento2' => 0, 'intento3' => 0, 'intento4' => 0, 'intento5' => 0,'intento6' => 0 
+    ];
+    
 }
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
