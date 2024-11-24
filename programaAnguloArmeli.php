@@ -128,9 +128,14 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
     //int $indice
     $indice = -1;
 
-    foreach($coleccionPartidas as $key => $partida){
-        
+    foreach($coleccionPartidas as $gano => $partida){
+        if ($partida['jugador'] == $nombreJugador && $partida['puntaje'] > 0){
+            $indice = $gano;
+            break;
+        }
+
     }
+    
 
 }
 
