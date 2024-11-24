@@ -80,6 +80,14 @@ function seleccionarOpcion(){
 
 }
 
+/**
+ * Dado un numero de partidas, mostrara al usuario en pantalla los datos de la partida
+ * @param int $numPartida
+ * @param array $coleccionPartidas
+ */
+function mostrarPartida($numPartida, $coleccionPartidas){
+    
+}
 
 
 /**************************************/
