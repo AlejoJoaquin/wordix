@@ -87,7 +87,16 @@ function seleccionarOpcion(){
  * @return int
  */
 function solicitarRangoEntre($min, $max){
+    //int $num
 
+    $num = trim(fgets(STDIN));
+
+    while(!is_numeric($num) || $num < $min || $num > $max ){
+        echo "Error al ingresar el numero: debe estar entre " . $min . " y " . $max . " el numero";
+        echo "ingrese otro numero que sea valido";
+        $num = trim(fgets(STDIN));
+    }
+    return $num;
 }
 
 
