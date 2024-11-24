@@ -146,7 +146,8 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
  * @return array
  */
 function generarResumenPartida($coleccionPartidas, $nombreJugador){
-    
+        // array $resumenPartidaJugador
+    $resumenPartidaJugador = [];
 }
 
 /**************************************/
