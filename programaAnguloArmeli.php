@@ -31,7 +31,13 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
-/* ****COMPLETAR***** */
+/**
+ * Inicializara una coleccion de partidas con ejemplos de partidas y que retornara la coleccion de partidas
+ * @return array
+ */
+function cargarPartidas(){
+
+}
 
 
 
