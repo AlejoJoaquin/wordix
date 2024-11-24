@@ -177,8 +177,8 @@ function solicitarJugador(){
     echo "ingrese un nombre de un jugador";
     $nombreJugador = trim(fgets(STDIN));
     
-    if ($nombreJugador == "" || !ctype_alpha($nombreJugador[0])){
-        
+    if (!ctype_alpha($nombreJugador[0])){
+        echo "Error. debe ingresar un nombre que empieze con una letra";
     }
 
 }
