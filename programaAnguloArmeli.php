@@ -89,7 +89,16 @@ function mostrarPartida($numPartida, $coleccionPartidas){
     //int $indice
     $indice = $numPartida - 1;
 
-    
+    if ($indice >= 0 && $indice < count($coleccionPartidas)) {
+        $partida = $coleccionPartidas[$indice];
+        echo "Palabra Wordix: " . $partida['palabraWordix'] . "\n";
+        echo "Jugador: " . $partida['jugador'] . "\n";
+        echo "Puntaje: " . $partida['puntaje'] . "\n";
+        echo "Intentos: " . $partida['intentos'] . "\n";
+    } else {
+        echo "El numero que ingreso es invalido. Por favor, ingrese un número entre 1 y " . count($coleccionPartidas) . ".\n";
+    }
+
 }
 
 
