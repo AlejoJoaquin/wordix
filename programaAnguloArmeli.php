@@ -118,6 +118,17 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     return $coleccionPalabras;
 }
 
+/** 
+ *Retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
+ *@param array $coleccionPartidas
+ *@param string $nombreJugador
+ *@return int
+*/
+function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
+    //int $indice
+    $indice = -1;
+    
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
