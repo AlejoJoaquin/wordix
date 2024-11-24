@@ -80,6 +80,16 @@ function seleccionarOpcion(){
 
 }
 
+/**
+ * Se le solicitara al usuario que ingrese un numero que estara dentro de un rango y que se validara
+ * @param int $min
+ * @param int $max
+ * @return int
+ */
+function solicitarRangoEntre($min, $max){
+
+}
+
 
 
 /**************************************/
