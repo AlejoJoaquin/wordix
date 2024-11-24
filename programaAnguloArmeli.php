@@ -115,7 +115,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
         $coleccionPalabras[]= $nuevaPalabra;
         echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
     }
-    
+    return $coleccionPalabras;
 }
 
 
