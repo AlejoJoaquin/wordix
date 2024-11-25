@@ -225,8 +225,6 @@ $indicesUtilizadas = [];
 
 do {
 
-$opcion = seleccionarOpcion();
-
     switch ($opcion) {
         case 1: 
             //Jugar al wordix con una palabra elegida
@@ -254,9 +252,12 @@ $opcion = seleccionarOpcion();
                 
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
-    
+                
+                echo "¿Queres volver a jugar?(si/no): ";
+                $decision = trim(fgets(STDIN));
             }
-            }while(true);
+
+            } while ($decision == "si");
     
             break;
         case 2: 
