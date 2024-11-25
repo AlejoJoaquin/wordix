@@ -303,12 +303,7 @@ do {
 
             if($primeraPartidaGanada != -1){
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
-                echo "Primera partida ganada por " . $nombreJugador . ":\n";
-                echo "Palabra Wordix: " . $partidaGanada['palabraWordix'] . "\n";
-                echo "Intentos: " . $partidaGanada['intentos'] . "\n";
-                echo "Puntaje: " . $partidaGanada['puntaje'] . "\n";
-            } else {
-                echo "No se pudo encontrar una partida que haya sido ganada por " . $nombreJugador . "\n";
+                echo ""
             }
 
 
