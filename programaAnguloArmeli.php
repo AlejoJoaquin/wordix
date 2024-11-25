@@ -237,7 +237,7 @@ do {
             $palabrasUtilizadas = [];
 
             do{
-                echo "Por favor, seleccione una palabra del listado a continuacion\n";
+                echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
                 foreach ($coleccionPalabras as $index => $palabra) {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
                 }
@@ -246,7 +246,7 @@ do {
                 if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
                     echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
                 }
-                
+
             }while(1);
 
             break;
