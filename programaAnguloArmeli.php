@@ -232,7 +232,7 @@ do {
             $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
 
-            $indicesUtilizadss = [];
+            $indicesUtilizadas = [];
 
             do{
                 echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
@@ -255,7 +255,7 @@ do {
                 print_r($partida);
 
 
-            }while(true)
+            }while(true);
 
             break;
         case 2: 
