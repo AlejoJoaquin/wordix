@@ -301,7 +301,8 @@ do {
 
             if($primeraPartidaGanada != -1){
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
-                echo "";
+                echo "\n********** Primera Partida Ganada **********\n";
+                
             }
 
 
