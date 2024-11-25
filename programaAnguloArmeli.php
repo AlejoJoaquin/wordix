@@ -226,41 +226,35 @@ $indicesUtilizadas = [];
 do {
     switch ($opcion) {
         case 1: 
-               // Jugar al Wordix con una palabra elegida
-               $coleccionPalabras = cargarColeccionPalabras();
+            //Jugar al wordix con una palabra elegida
+            $coleccionPalabras = cargarColeccionPalabras();
+            $nombreJugador = solicitarJugador();
+    
+            $indicesUtilizadss = [];
+    
+            do{
+                echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
+                foreach ($coleccionPalabras as $index => $palabra) {
+                    echo ($index + 1) . ". " . $palabra . "\n"; // 
+                }
+                $eleccion = trim(fgets(STDIN));
+    
+                if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
+                    echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
+                } else {
+                     if (in_array($eleccion, $indicesUtilizadas)) {
+                         echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+                   } else {
+                    $indicesUtilizadas[] = $eleccion;
+                    $palabraElegida = $coleccionPalabras[$eleccion - 1];
+                };
                 
-               $nombreJugador = solicitarJugador(); // Solicitar nombre del jugador
-
-               $indicesUtilizadas = []; // Inicializamos un array para guardar los índices de palabras ya utilizadas.
-
-               echo "Bienvenido al juego, " . $nombreJugador . "!\n"; // Confirmar el nombre del jugador
-               
-               do {
-                   echo "Por favor, seleccione el numero de la palabra del listado a continuación:\n";
-                   foreach ($coleccionPalabras as $index => $palabra) {
-                       echo ($index + 1) . ". " . $palabra . "\n"; // Mostrar las palabras disponibles
-                   }
-                   $eleccion = trim(fgets(STDIN));
-
-                   if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
-                       echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
-                       continue; // Volver a pedir la opción si la elección es inválida
-                   }
-
-                   if (in_array($eleccion, $indicesUtilizadas)) {
-                       echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
-                       continue; // Volver a pedir la opción si la palabra ya fue utilizada
-                   }
-
-                   $indicesUtilizadas[] = $eleccion;
-                   $palabraElegida = $coleccionPalabras[$eleccion - 1];
-
-                   // Llamada a jugarWordix para jugar la partida
-                   $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-                   print_r($partida);
-                   break; // Salir del bucle y terminar el case 1 después de jugar
-
-               } while (true);
+                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+                print_r($partida);
+    
+            }
+            }while(true);
+    
             break;
         case 2: 
             $jugador = solicitarJugador();
@@ -295,6 +289,7 @@ do {
                 $indice = $numPartida - 1;
             } while ($indice < 0 || $indice >= count($coleccionPartidas));
             break;
+
         case 4:
             $nombreJugador = solicitarJugador();
             $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
@@ -309,8 +304,6 @@ do {
             } else {
                 echo "El jugador " . $nombreJugador . " no gano ninguna partida";
             }
-
-
             break;
         case 5:
 
