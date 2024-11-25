@@ -70,7 +70,7 @@ function seleccionarOpcion(){
         $opcion = trim(fgets(STDIN));
     
         if (!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
-            echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu";
+            echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu\n";
         }
 
     } while (!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
