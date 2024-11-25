@@ -253,7 +253,8 @@ do {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
                 };
-
+                
+                $partida = jugarWordix($palabraElegida, $nombreJugador);
 
 
 
