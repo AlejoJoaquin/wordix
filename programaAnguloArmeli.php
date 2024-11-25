@@ -236,6 +236,7 @@ do {
         case 1: 
             //Jugar al wordix con una palabra elegida
             $nombreJugador = solicitarJugador();
+            $coleccionPalabras = cargarColeccionPalabras();
 
             break;
         case 2: 
