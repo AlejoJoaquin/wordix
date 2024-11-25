@@ -255,7 +255,7 @@ do {
                 };
                 
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-
+                print_r($partida);
 
 
             }while(true)
