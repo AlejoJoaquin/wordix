@@ -234,7 +234,7 @@ do {
 
             $indicesUtilizadas = [];
 
-            do{
+            
                 echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
                 foreach ($coleccionPalabras as $index => $palabra) {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
@@ -249,16 +249,14 @@ do {
                    } else {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
-
-                    $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-                     print_r($partida);
                 };
+                
+                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+                print_r($partida);
                 
                 
 
             }
-            }while(true);
-
             break;
         case 2: 
             $coleccionPalabras = cargarColeccionPalabras();
