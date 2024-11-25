@@ -73,11 +73,11 @@ function seleccionarOpcion(){
         
         $opcion = trim(fgets(STDIN));
     
-        if(!is_numeric($opcion) || $opcion < 1 || $opcion > 5){
+        if(!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
             echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu";
 
         }
-    }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 5);
+    }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
     return $opcion;
 }
 
@@ -218,19 +218,17 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 
 
 //Inicialización de variables:
-
+$opcion = seleccionarOpcion();
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
 
 
-/*
 do {
-    $opcion = ...;
 
     
     switch ($opcion) {
@@ -246,8 +244,22 @@ do {
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
+        case 8:
+            echo "saliendo del programa";
+            break;
         
-            //...
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
+
