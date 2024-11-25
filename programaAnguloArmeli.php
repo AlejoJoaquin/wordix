@@ -251,6 +251,7 @@ do {
                          echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
                    } else {
                     $indicesUtilizadas[] = $eleccion;
+                    $palabraElegida = $coleccionPalabras[$eleccion - 1];
                 };
 
 
