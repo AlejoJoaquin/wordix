@@ -223,14 +223,13 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 //Proceso:
 
 $partida = jugarWordix("MELON", strtolower("MaJo"));
-//print_r($partida);
+print_r($partida);
 //imprimirResultado($partida);
 
 
 
-/*
 do {
-    $opcion = ...;
+    $opcion = seleccionarOpcion();
 
     
     switch ($opcion) {
@@ -246,8 +245,22 @@ do {
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
 
             break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
+        case 8:
+            echo "saliendo del programa";
+            break;
         
-            //...
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
+
