@@ -212,7 +212,8 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 
 //Declaración de variables:
 //int $opcion
-
+//int $eleccion
+//
 
 //Inicialización de variables:
 $opcion = seleccionarOpcion();
