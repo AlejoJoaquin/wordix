@@ -306,6 +306,8 @@ do {
                 echo "Jugador " . $nombreJugador;
                 echo "Puntaje " . $partidaGanada['puntaje'] . " puntos";
                 echo "Inento: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos";
+            } else {
+                echo "El jugador " . $nombreJugador . " no gano ninguna partida";
             }
 
 
