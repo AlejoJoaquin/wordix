@@ -246,12 +246,14 @@ do {
                 if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
                     echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
                 } else {
-                    $palabraElegida = $coleccionPalabras[$eleccion - 1];
-                }
+                     if (in_array($eleccion, $indicesUtilizadas)) {
+                         echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+                   } else {
+                    $indicesUtilizadas[] = $eleccion;
+                };
 
-                if(in_array($palabraElegida, $palabrasUtilizadas)){
-                    echo ""
-                }
+
+
 
             }while(1);
 
