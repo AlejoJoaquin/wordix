@@ -73,11 +73,11 @@ function seleccionarOpcion(){
         
         $opcion = trim(fgets(STDIN));
     
-        if(!is_numeric($opcion) || $opcion < 1 || $opcion > 5){
+        if(!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
             echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu";
 
         }
-    }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 5);
+    }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
     return $opcion;
 }
 
