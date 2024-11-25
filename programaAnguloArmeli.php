@@ -250,11 +250,12 @@ do {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
                 };
+                
+                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+                print_r($partida);
 
 
-
-
-            }while(1);
+            }while(true)
 
             break;
         case 2: 
