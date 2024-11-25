@@ -1,8 +1,6 @@
 <?php
 include_once("wordix.php");
 
-
-
 /**************************************/
 /***** DATOS DE LOS INTEGRANTES *******/
 /**************************************/
@@ -10,15 +8,13 @@ include_once("wordix.php");
 /* Angulo Alejo - FAI-5288 - Tecnicatura en Desarrollo Web - alejojoaquin011@gmail.com - Usuario: AnguloJoaquin */
 /* Armeli Enzo  - FAI-4038 - Tecnicatura en Desarrollo Web - enzoarmeli@outlook.com - Usuario: enzoarmeli */
 
-
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/*inciso 1*/
 /**
  * Obtiene una colección de palabras
- * @return array
+ * @return array $coleccionPalabras
  */
 function cargarColeccionPalabras()
 {
@@ -31,10 +27,10 @@ function cargarColeccionPalabras()
 
     return ($coleccionPalabras);
 }
-/*inciso 2*/
+
 /**
  * Inicializara una coleccion de partidas con ejemplos de partidas y que retornara la coleccion de partidas
- * @return array
+ * @return array $coleccionPartidas
  */
 function cargarPartidas(){
     
@@ -50,18 +46,17 @@ function cargarPartidas(){
         ["palabraWordix" => "SALSA", "jugador" => "Antonela", "intentos" => 0, "puntaje" => 0],
         ["palabraWordix" => "RANAS", "jugador" => "Agustin", "intentos" => 3, "puntaje" => 15],
     ];
+
     return $coleccionPartidas;
 }
 
-/*inciso 3*/
 /**
- * Le muestra al usuario el menu de opciones y le solicitara una opcion valida
- * 
- * @return int 
+ * MODULO que muestra al usuario el menu de opciones y le solicitara una opcion valida
+ * @return int $opcion
  */
 function seleccionarOpcion(){
-    do{
-        echo "Menu de opciones\n";
+    do {
+        echo "********** Menu de opciones, seleccione una opcion del 1 al 8 **********\n";
         echo "1. Jugar al wordix con una palabra elegida\n";
         echo "2. Jugar al wordix con una palabra aleatoria\n";
         echo "3. Mostrar partida\n";
@@ -73,11 +68,12 @@ function seleccionarOpcion(){
         
         $opcion = trim(fgets(STDIN));
     
-        if(!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
+        if (!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
             echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu";
-
         }
-    }while(!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
+
+    } while (!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
+    
     return $opcion;
 }
 
