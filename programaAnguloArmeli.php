@@ -302,7 +302,7 @@ do {
 
             if($primeraPartidaGanada != -1){
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
-                echo ""
+                echo "";
             }
 
 
