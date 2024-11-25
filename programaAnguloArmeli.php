@@ -238,6 +238,9 @@ do {
             $nombreJugador = solicitarJugador();
             $coleccionPalabras = cargarColeccionPalabras();
 
+            $palabrasUtilizadas = [];
+            
+
             break;
         case 2: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
