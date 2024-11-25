@@ -114,7 +114,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
         $coleccionPalabras[]= $nuevaPalabra;
         echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
     }
-
+    
     return $coleccionPalabras;
 }
 
@@ -168,29 +168,32 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador) {
     return $resumenPartidaJugador;
 }
 
+/*inciso 10*/
 /**
- * MODULO que le solicita al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
+ * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
  * @return string
  */
-function solicitarJugador() {
-    do {
-        echo "ingrese un nombre de un jugador";
-        $nombreJugador = trim(fgets(STDIN));
+function solicitarJugador(){
     
-        if (!ctype_alpha($nombreJugador[0])){
-            echo "Error. debe ingresar un nombre que empieze con una letra";
-        }
+    do{
+    echo "ingrese un nombre de un jugador";
+    $nombreJugador = trim(fgets(STDIN));
+    
+      if (!ctype_alpha($nombreJugador[0])){
+        echo "Error. debe ingresar un nombre que empieze con una letra";
+      }
 
-    } while(!ctype_alpha($nombreJugador[0]));
+    }while(!ctype_alpha($nombreJugador[0]));
 
      return strtolower($nombreJugador);
 }
 
+/*inciso 11*/
 /**
- * MODULO que ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
+ * ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
  * @param array $coleccionPartidas
  */
-function mostrarPartidasEnOrden($coleccionPartidas) {
+function mostrarPartidasEnOrden($coleccionPartidas){
     uasort($coleccionPartidas, function ($a, $b) {
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
 
@@ -231,7 +234,7 @@ do {
             $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
 
-            $palabrasUtilizadas = [];
+            $indicesUtilizadss = [];
 
             do{
                 echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
@@ -244,6 +247,10 @@ do {
                     echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
                 } else {
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
+                }
+
+                if(in_array($palabraElegida, $palabrasUtilizadas)){
+                    echo ""
                 }
 
             }while(1);
