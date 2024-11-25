@@ -26,8 +26,6 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-
-// VERIFICAR CON MI COMPAÑERO - inciso 5
 /**
  * MODULO que leera un numero y le mostrara al usuario que debe ingresar un numero entre un numero minimo y uno maximo
  * @param int $min
@@ -124,7 +122,6 @@ function escribirSegunEstado($texto, $estado)
     }
 }
 
-// VERIFICAR CON MI COMPAÑERO
 /**
  * MODULO que escribe un mensaje de bienvenida
  * @param string $usuario
@@ -155,7 +152,6 @@ function esPalabra($cadena)
     return $esLetra;
 }
 
-// VERIFICAR CON MI COMPAÑERO - inciso 4
 /**
  * MODULO que verifica que todos los caracteres de una palabra sean letras.
  * @param string $cadena
