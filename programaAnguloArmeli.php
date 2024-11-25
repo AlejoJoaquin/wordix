@@ -226,6 +226,14 @@ $indicesUtilizadas = [];
 do {
     switch ($opcion) {
         case 1: 
+    // Jugar al wordix con una palabra elegida
+    $coleccionPalabras = cargarColeccionPalabras();
+    $nombreJugador = solicitarJugador(); // Aquí se llama la función para solicitar el nombre del jugador
+
+    $indicesUtilizadas = []; // Inicializamos un array para guardar los índices de palabras ya utilizadas.
+
+    echo "Bienvenido al juego, " . $nombreJugador . "!\n"; // Confirmar el nombre del jugador
+
     do {
         echo "Por favor, seleccione el numero de la palabra del listado a continuacion:\n";
         foreach ($coleccionPalabras as $index => $palabra) {
@@ -233,18 +241,19 @@ do {
         }
         $eleccion = trim(fgets(STDIN));
 
+        // Validamos que la elección esté dentro del rango permitido
         if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
             echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
-            continue; // Volver al menú si la opción es inválida
+            continue; // Volver a pedir la opción si la elección es inválida
         }
 
-        // Verificar si la palabra ya fue utilizada
+        // Verificamos si la palabra ya fue utilizada
         if (in_array($eleccion, $indicesUtilizadas)) {
             echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
-            continue; // Volver al menú si la palabra ya fue utilizada
+            continue; // Volver a pedir la opción si la palabra ya fue utilizada
         }
 
-        // Si la opción es válida y la palabra no fue usada, se guarda el índice
+        // Si la opción es válida y la palabra no fue utilizada, la guardamos
         $indicesUtilizadas[] = $eleccion;
         $palabraElegida = $coleccionPalabras[$eleccion - 1];
 
@@ -253,7 +262,7 @@ do {
         print_r($partida);
         break; // Salir del bucle y terminar el case 1 después de jugar
 
-    } while (true);
+    } while (true); // El ciclo sigue hasta que se haga una elección válida
             break;
         case 2: 
             $jugador = solicitarJugador();
