@@ -289,6 +289,13 @@ do {
             } while ($indice < 0 || $indice >= count($coleccionPartidas));
             break;
         case 4:
+            $nombreJugador = solicitarJugador();
+            $primeraPartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
+
+            if($primeraPartidaGanada != -1){
+                
+            }
+
 
             break;
         case 5:
