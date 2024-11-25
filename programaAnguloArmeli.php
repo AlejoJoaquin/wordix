@@ -255,7 +255,16 @@ do {
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            do {
+                // Solicitar número de partida al usuario
+                echo "Ingrese el número de partida: ";
+                $numPartida = intval(trim(fgets(STDIN)));
+                
+                mostrarPartida($numPartida, $coleccionPartidas);
+    
+                // Validar si existe la partida
+                $indice = $numPartida - 1;
+            } while ($indice < 0 || $indice >= count($coleccionPartidas));
 
             break;
         case 4:
