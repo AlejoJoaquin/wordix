@@ -113,6 +113,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
         $coleccionPalabras[]= $nuevaPalabra;
         echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
     }
+    
     return $coleccionPalabras;
 }
 
@@ -132,30 +133,28 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
             break;
         }
     }
-    
-    return $indice;
 
+    return $indice;
 }
 
-/*inciso 9*/
 /**
- * Generara un resumen de las partidas de un jugador
+ * MODULO que genera un resumen de las partidas de un jugador
  * @param array $coleccionPartidas
  * @param string $nombreJugador
- * @return array
+ * @return array 
  */
-function generarResumenPartida($coleccionPartidas, $nombreJugador){
-        // array $resumenPartidaJugador
+function generarResumenPartida($coleccionPartidas, $nombreJugador) {
+    // array $resumenPartidaJugador
     $resumenPartidaJugador = [
         'jugador' => $nombreJugador, 'partidas' => 0, 'victorias' => 0, 'intento1' => 0, 'intento2' => 0, 'intento3' => 0, 'intento4' => 0, 'intento5' => 0,'intento6' => 0 
     ];
 
-    foreach($coleccionPartidas as $partida){
-        if ($partida['jugador'] == $nombreJugador){
+    foreach($coleccionPartidas as $partida) {
+        if ($partida['jugador'] == $nombreJugador) {
             $resumenPartidaJugador['partidas']++;
             $resumenPartidaJugador['puntaje'] = $resumenPartidaJugador['puntaje'] + $partida['puntaje'];
         
-            if($partida['puntaje'] > 0){
+            if ($partida['puntaje'] > 0) {
                 $resumenPartidaJugador['victorias']++;
             }
         }
@@ -163,6 +162,7 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador){
         $intentoKey = "intento" . $partida["intentos"];
         $resumenPartidaJugador[$intentoKey]++;
     }
+
     return $resumenPartidaJugador;
 }
 
