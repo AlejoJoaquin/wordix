@@ -291,7 +291,10 @@ do {
             $nombreJugador = solicitarJugador();
             $primeraPartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
 
-            
+            if($primeraPartidaGanada != -1){
+                
+            }
+
 
             break;
         case 5:
