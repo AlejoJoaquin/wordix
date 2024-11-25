@@ -83,7 +83,7 @@ function seleccionarOpcion(){
  * @param int $numPartida
  * @param array $coleccionPartidas
  */
-function mostrarPartida($numPartida, $coleccionPartidas){
+function mostrarPartida($numPartida, $coleccionPartidas) {
     //int $indice
     $indice = $numPartida - 1;
 
@@ -98,9 +98,8 @@ function mostrarPartida($numPartida, $coleccionPartidas){
     }
 }
 
-/* inciso 7*/
 /**
- * Agregara la palabra que ingreso el usuario a la coleccion si es que no esta repetida
+ * MODULO que agrega una palabra a la coleccion de palabras 
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra
  * @return array
