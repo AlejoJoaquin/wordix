@@ -222,8 +222,8 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 
 //Proceso:
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
-print_r($partida);
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
+//print_r($partida);
 //imprimirResultado($partida);
 
 
