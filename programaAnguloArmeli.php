@@ -286,7 +286,6 @@ do {
                 // Validar si existe la partida
                 $indice = $numPartida - 1;
             } while ($indice < 0 || $indice >= count($coleccionPartidas));
-
             break;
         case 4:
             $nombreJugador = solicitarJugador();
