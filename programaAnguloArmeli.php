@@ -224,6 +224,9 @@ $indicesUtilizadas = [];
 //imprimirResultado($partida);
 
 do {
+
+$opcion = seleccionarOpcion();
+
     switch ($opcion) {
         case 1: 
                // Jugar al Wordix con una palabra elegida
@@ -304,8 +307,6 @@ do {
                 echo "\n********** Primera Partida Ganada **********\n";
                 
             }
-
-
             break;
         case 5:
 
