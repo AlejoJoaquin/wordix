@@ -254,11 +254,11 @@ do {
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
                 };
                 
-                $partida = jugarWordix($palabraElegida, $nombreJugador);
+                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
 
 
 
-            }while(1);
+            }while(true)
 
             break;
         case 2: 
