@@ -306,6 +306,8 @@ do {
                 echo "Palabra Wordix: " . $partidaGanada['palabraWordix'] . "\n";
                 echo "Intentos: " . $partidaGanada['intentos'] . "\n";
                 echo "Puntaje: " . $partidaGanada['puntaje'] . "\n";
+            } else {
+                echo "No se pudo encontrar una partida que haya sido ganada por " . $nombreJugador . "\n";
             }
 
 
