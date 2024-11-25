@@ -221,11 +221,7 @@ $opcion = seleccionarOpcion();
 //print_r($partida);
 //imprimirResultado($partida);
 
-
-
 do {
-
-    
     switch ($opcion) {
         case 1: 
             //Jugar al wordix con una palabra elegida
@@ -255,7 +251,7 @@ do {
                 print_r($partida);
 
 
-            }while(true)
+            } while(true)
 
             break;
         case 2: 
@@ -317,8 +313,7 @@ do {
             break;
         case 8:
             echo "saliendo del programa";
-            break;
-        
+            break; 
     }
-} while ($opcion != 8);
 
+} while ($opcion != 8);
