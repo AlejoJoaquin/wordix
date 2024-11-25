@@ -299,10 +299,14 @@ do {
             break;
         case 4:
             $nombreJugador = solicitarJugador();
-            $primeraPartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
+            $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
 
             if($primeraPartidaGanada != -1){
-                
+                $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
+                echo "Primera partida ganada por " . $nombreJugador . ":\n";
+                echo "Palabra Wordix: " . $partidaGanada['palabraWordix'] . "\n";
+                echo "Intentos: " . $partidaGanada['intentos'] . "\n";
+                echo "Puntaje: " . $partidaGanada['puntaje'] . "\n";
             }
 
 
