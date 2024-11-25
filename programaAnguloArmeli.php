@@ -218,7 +218,7 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 
 
 //Inicialización de variables:
-
+$opcion = seleccionarOpcion();
 
 //Proceso:
 
@@ -229,7 +229,6 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 
 
 do {
-    $opcion = seleccionarOpcion();
 
     
     switch ($opcion) {
