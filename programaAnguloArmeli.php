@@ -211,6 +211,8 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 //int $opcion
 //int $eleccion
 //
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas = cargarPartidas();
 
 //Inicialización de variables:
 $opcion = seleccionarOpcion();
@@ -257,7 +259,31 @@ do {
 
             break;
         case 2: 
- 
+             // Solicitar nombre del jugador
+        $jugador = solicitarJugador();
+
+        // Verificar si la palabra ya fue jugada
+        $palabrasJugadas = array_column($coleccionPartidas, "palabraWordix");
+        do {
+            // Elegir una palabra aleatoria
+            $palabraSeleccionada = $coleccionPalabras[array_rand($coleccionPalabras)];
+        } while (in_array($palabraSeleccionada, $palabrasJugadas));
+
+        echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
+
+        // Simulación de la partida (solo un ejemplo)
+        $intentos = 5; // Definir un número de intentos, por ejemplo
+        $puntaje = rand(0, 25); // Generar un puntaje aleatorio entre 0 y 25
+
+        // Guardar los datos de la partida
+        $coleccionPartidas[] = [
+            "palabraWordix" => $palabraSeleccionada,
+            "jugador" => $jugador,
+            "intentos" => $intentos,
+            "puntaje" => $puntaje
+        ];
+
+        echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
             break;
         case 3: 
             do {
