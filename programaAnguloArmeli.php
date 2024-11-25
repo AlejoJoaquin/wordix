@@ -246,6 +246,11 @@ do {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
                 }
                 $eleccion = trim(fgets(STDIN));
+
+                if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
+                    echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
+                }
+                
             }while(1);
 
             break;
