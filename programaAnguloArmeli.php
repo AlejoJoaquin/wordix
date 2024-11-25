@@ -230,7 +230,19 @@ do {
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            //Jugar al wordix con una palabra elegida
+            $coleccionPalabras = cargarColeccionPalabras();
+            $nombreJugador = solicitarJugador();
+
+            $palabrasUtilizadas = [];
+
+            do{
+                echo "Por favor, seleccione una palabra del listado a continuacion\n";
+                foreach ($coleccionPalabras as $index => $palabra) {
+                    echo ($index + 1) . ". " . $palabra . "\n"; // 
+                }
+                $eleccion = trim(fgets(STDIN));
+            }while(1);
 
             break;
         case 2: 
