@@ -113,7 +113,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
         $coleccionPalabras[]= $nuevaPalabra;
         echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
     }
-    
+
     return $coleccionPalabras;
 }
 
@@ -166,22 +166,20 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador) {
     return $resumenPartidaJugador;
 }
 
-/*inciso 10*/
 /**
- * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
+ * MODULO que le solicita al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
  * @return string
  */
-function solicitarJugador(){
+function solicitarJugador() {
+    do {
+        echo "ingrese un nombre de un jugador";
+        $nombreJugador = trim(fgets(STDIN));
     
-    do{
-    echo "ingrese un nombre de un jugador";
-    $nombreJugador = trim(fgets(STDIN));
-    
-      if (!ctype_alpha($nombreJugador[0])){
-        echo "Error. debe ingresar un nombre que empieze con una letra";
-      }
+        if (!ctype_alpha($nombreJugador[0])){
+            echo "Error. debe ingresar un nombre que empieze con una letra";
+        }
 
-    }while(!ctype_alpha($nombreJugador[0]));
+    } while(!ctype_alpha($nombreJugador[0]));
 
      return strtolower($nombreJugador);
 }
