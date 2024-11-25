@@ -65,7 +65,7 @@ function seleccionarOpcion(){
         echo "5. Mostrar resumen de Jugador\n";
         echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
         echo "7. Agregar una palabra de 5 letras a Wordix\n";
-        echo "8. Salir del menu";
+        echo "8. Salir del menu\n";
         
         $opcion = trim(fgets(STDIN));
     
@@ -216,7 +216,7 @@ $coleccionPartidas = cargarPartidas();
 
 //Inicialización de variables:
 $opcion = seleccionarOpcion();
-
+$indicesUtilizadas = [];
 //Proceso:
 
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
@@ -230,7 +230,7 @@ do {
             $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
 
-            $indicesUtilizadas = [];
+            
 
             
                 echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
@@ -251,8 +251,6 @@ do {
                 
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
-                
-                
 
             }
             break;
