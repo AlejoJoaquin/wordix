@@ -83,7 +83,7 @@ function seleccionarOpcion(){
  * @param int $numPartida
  * @param array $coleccionPartidas
  */
-function mostrarPartida($numPartida, $coleccionPartidas) {
+function mostrarPartida($numPartida, $coleccionPartidas){
     //int $indice
     $indice = $numPartida - 1;
 
@@ -98,31 +98,33 @@ function mostrarPartida($numPartida, $coleccionPartidas) {
     }
 }
 
+/* inciso 7*/
 /**
- * MODULO que agrega una palabra a la coleccion de palabras 
+ * Agregara la palabra que ingreso el usuario a la coleccion si es que no esta repetida
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra
  * @return array
  */
-function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
+function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     $nuevaPalabra = strtoupper($nuevaPalabra);
 
     if (in_array($nuevaPalabra, $coleccionPalabras)){
         echo "Esta palabra ya esta en la coleccion\n";
-    } else {
+    }else{
         $coleccionPalabras[]= $nuevaPalabra;
         echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
     }
     return $coleccionPalabras;
 }
 
+/*inciso 8*/
 /** 
- *MODULO que retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
+ *Retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
  *@param array $coleccionPartidas
  *@param string $nombreJugador
- *@return int $indice
+ *@return int
 */
-function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
+function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
     //int $indice
     $indice = -1;
 
@@ -131,8 +133,8 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
             $indice = $gano;
             break;
         }
+
     }
-    
     return $indice;
 
 }
@@ -243,6 +245,8 @@ do {
 
                 if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
                     echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
+                } else {
+                    $palabraElegida = $coleccionPalabras[$eleccion - 1];
                 }
 
             }while(1);
