@@ -254,7 +254,7 @@ do {
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
                 
-                echo "¿Queres volver a jugar?(si/no): ";
+                echo"¿Queres volver a jugar?(si/no): ";
                 $decision = trim(fgets(STDIN));
             }
 
