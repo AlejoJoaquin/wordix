@@ -249,12 +249,14 @@ do {
                    } else {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
+
+                    $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+                     print_r($partida);
                 };
                 
-                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-                print_r($partida);
+                
 
-
+            }
             }while(true);
 
             break;
