@@ -255,31 +255,25 @@ do {
             }
             break;
         case 2: 
-             // Solicitar nombre del jugador
-        $jugador = solicitarJugador();
+            $jugador = solicitarJugador();
 
-        // Verificar si la palabra ya fue jugada
-        $palabrasJugadas = array_column($coleccionPartidas, "palabraWordix");
-        do {
-            // Elegir una palabra aleatoria
+            $palabrasJugadas = array_column($coleccionPartidas, "palabraWordix");
+                do {
             $palabraSeleccionada = $coleccionPalabras[array_rand($coleccionPalabras)];
-        } while (in_array($palabraSeleccionada, $palabrasJugadas));
+                } while (in_array($palabraSeleccionada, $palabrasJugadas));
 
-        echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
+            echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
 
-        // Simulación de la partida (solo un ejemplo)
-        $intentos = 5; // Definir un número de intentos, por ejemplo
-        $puntaje = rand(0, 25); // Generar un puntaje aleatorio entre 0 y 25
+            $puntaje = obtenerPuntajeWordix($intentos, $adivina, $palabraAdivinada);
 
-        // Guardar los datos de la partida
-        $coleccionPartidas[] = [
+            $coleccionPartidas[] = [
             "palabraWordix" => $palabraSeleccionada,
             "jugador" => $jugador,
             "intentos" => $intentos,
             "puntaje" => $puntaje
-        ];
+            ];
 
-        echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
+            echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
             break;
         case 3: 
             do {
