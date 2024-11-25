@@ -27,14 +27,13 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 
-/*inciso 5*/
+// VERIFICAR CON MI COMPAÑERO - inciso 5
 /**
- *El modulo leera un numero y le mostrara al usuario que debe ingresar un numero entre un numero minimo y uno maximo
- *retornando el numero que el usuario haya ingresado
- *@param int $min
- *@param int $max
- *@return int
- */
+ * MODULO que leera un numero y le mostrara al usuario que debe ingresar un numero entre un numero minimo y uno maximo
+ * @param int $min
+ * @param int $max
+ * @return int $numero
+*/
 function solicitarNumeroEntre($min, $max)
 {
     //int $numero
@@ -125,9 +124,11 @@ function escribirSegunEstado($texto, $estado)
     }
 }
 
+// VERIFICAR CON MI COMPAÑERO
 /**
- *Le muestra al usuario el mensaje de bienvenida
- */
+ * MODULO que escribe un mensaje de bienvenida
+ * @param string $usuario
+*/
 function escribirMensajeBienvenida($usuario)
 {
     echo "***************************************************\n";
@@ -154,11 +155,11 @@ function esPalabra($cadena)
     return $esLetra;
 }
 
-/*inciso 4*/
+// VERIFICAR CON MI COMPAÑERO - inciso 4
 /**
- *Se le solicitara al usuario que ingrese una palabra de 5 letras, si no es de 5 letras se le mostrara otro mensaje diciendo que debe ingresar una palabra de 5 letras
- *retornara la palabra que haya ingresado el usuario
- *@return string
+ * MODULO que verifica que todos los caracteres de una palabra sean letras.
+ * @param string $cadena
+ * @return boolean $esLetra
  */
 function leerPalabra5Letras()
 {
@@ -336,34 +337,37 @@ function esIntentoGanado($estructuraPalabraIntento)
     return $ganado;
 }
 
+// VERIFICAR CON MI COMPAÑERO
 /**
- *Calcula el puntaje obtenido en el wordix
- *@param int $intentosUsados
- *@param bool $adivina
- *@param string $palabraAdivinada
- *@return int 
+ * Según la cantidad de intentos realizados, devuelve el correspondiente puntaje
+ * @param int $intentos
+ * @param string $cadenaPalabra
+ * @return int 
  */
-function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) 
-{
-    if(!$adivina || $intentosUsados > 6){
-        return 0;
+function obtenerPuntajeWordix($intentos, $cadenaPalabra) {
+    $puntaje = 0;
+
+    if ($intentos != 0) {
+        // Calcular el puntaje base según los intentos
+        $puntaje = 7 - $intentos;
+
+        // Iterar sobre cada letra de la palabra
+        foreach (str_split($cadenaPalabra) as $letra) {
+            $letraEnNumASCII = ord($letra);
+            if ($letraEnNumASCII == 78 || ($letraEnNumASCII >= 80 && $letraEnNumASCII <= 84) || ($letraEnNumASCII >= 86 && $letraEnNumASCII <= 90)) {
+                // Letra posterior a M y distinta a las vocales
+                $puntaje += 3;
+            } elseif (in_array($letraEnNumASCII, [65, 69, 73, 79, 85])) {
+                // Vocal
+                $puntaje += 1;
+            } else {
+                // Letra anterior a M inclusive y distinta a las vocales
+                $puntaje += 2;
+            }
+        }
     }
 
-    $puntaje = 6 - $intentosUsados;
-
-    $palabraAdivinada = strtoupper($palabraAdivinada);
-    foreach(str_split($palabraAdivinada) as $letra){
-       if(in_array($letra, ['A', 'E', 'I'. 'O', 'U'])){
-        $puntaje = $puntaje + 1;
-       }elseif($letra <= 'M'){
-        $puntaje = $puntaje + 2;
-       }else{
-        $puntaje = $puntaje + 3;
-       }
-    }
-
-
-    
+    return $puntaje;
 }
 
 /**
