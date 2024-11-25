@@ -211,6 +211,8 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 //int $opcion
 //int $eleccion
 //
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas = cargarPartidas();
 
 //Inicialización de variables:
 $opcion = seleccionarOpcion();
@@ -221,11 +223,7 @@ $opcion = seleccionarOpcion();
 //print_r($partida);
 //imprimirResultado($partida);
 
-
-
 do {
-
-    
     switch ($opcion) {
         case 1: 
             //Jugar al wordix con una palabra elegida
@@ -259,36 +257,31 @@ do {
             }
             break;
         case 2: 
-            $coleccionPalabras = cargarColeccionPalabras();
-            $coleccionPartidas = cargarPartidas();
+             // Solicitar nombre del jugador
+        $jugador = solicitarJugador();
 
-        echo "Iniciando el juego...\n";
-        $nombreJugador = solicitarJugador();
+        // Verificar si la palabra ya fue jugada
+        $palabrasJugadas = array_column($coleccionPartidas, "palabraWordix");
+        do {
+            // Elegir una palabra aleatoria
+            $palabraSeleccionada = $coleccionPalabras[array_rand($coleccionPalabras)];
+        } while (in_array($palabraSeleccionada, $palabrasJugadas));
 
-        $palabraAleatoria = seleccionarPalabraAleatoria($nombreJugador, $coleccionPalabras, $coleccionPartidas);
+        echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
 
-        if ($palabraAleatoria === null) {
-            echo "No hay palabras disponibles para este jugador.\n";
-        } else {
-        $resultadoPartida = jugarPartida($palabraAleatoria);
+        // Simulación de la partida (solo un ejemplo)
+        $intentos = 5; // Definir un número de intentos, por ejemplo
+        $puntaje = rand(0, 25); // Generar un puntaje aleatorio entre 0 y 25
 
-        // Guardar la nueva partida en la colección
+        // Guardar los datos de la partida
         $coleccionPartidas[] = [
-        "palabraWordix" => $palabraAleatoria,
-        "jugador" => $nombreJugador,
-        "intentos" => $resultadoPartida["intentos"],
-        "puntaje" => $resultadoPartida["puntaje"],
+            "palabraWordix" => $palabraSeleccionada,
+            "jugador" => $jugador,
+            "intentos" => $intentos,
+            "puntaje" => $puntaje
         ];
 
-        // Mostrar resultados
-        echo "*********************************************************************\n";
-        echo "Palabra Wordix: $palabraAleatoria\n";
-        echo "Jugador: $nombreJugador\n";
-        echo "Puntaje: " . $resultadoPartida["puntaje"] . " puntos\n";
-        echo "Intentos: " . $resultadoPartida["resultado"] . "\n";
-        echo "*********************************************************************\n";
-        }
-
+        echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
             break;
         case 3: 
             do {
@@ -317,8 +310,7 @@ do {
             break;
         case 8:
             echo "saliendo del programa";
-            break;
-        
+            break; 
     }
-} while ($opcion != 8);
 
+} while ($opcion != 8);
