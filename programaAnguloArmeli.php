@@ -186,12 +186,11 @@ function solicitarJugador() {
      return strtolower($nombreJugador);
 }
 
-/*inciso 11*/
 /**
- * ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
+ * MODULO que ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
  * @param array $coleccionPartidas
  */
-function mostrarPartidasEnOrden($coleccionPartidas){
+function mostrarPartidasEnOrden($coleccionPartidas) {
     uasort($coleccionPartidas, function ($a, $b) {
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
 
