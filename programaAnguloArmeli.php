@@ -52,6 +52,7 @@ function cargarPartidas(){
 
 /**
  * MODULO que muestra al usuario el menu de opciones y le solicitara una opcion valida
+ * @param string $usuario
  * @return int $opcion
  */
 function seleccionarOpcion(){
@@ -73,13 +74,12 @@ function seleccionarOpcion(){
         }
 
     } while (!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
-    
+
     return $opcion;
 }
 
-/*inciso 6*/
 /**
- * Dado un numero de partidas, mostrara al usuario en pantalla los datos de la partida
+ * MODULO que dado un numero de partidas, mostrara al usuario en pantalla los datos de la partida
  * @param int $numPartida
  * @param array $coleccionPartidas
  */
