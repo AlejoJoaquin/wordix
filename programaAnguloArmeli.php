@@ -104,26 +104,25 @@ function mostrarPartida($numPartida, $coleccionPartidas) {
  * @param string $nuevaPalabra
  * @return array
  */
-function agregarPalabra($coleccionPalabras, $nuevaPalabra){
+function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
     $nuevaPalabra = strtoupper($nuevaPalabra);
 
     if (in_array($nuevaPalabra, $coleccionPalabras)){
         echo "Esta palabra ya esta en la coleccion\n";
-    }else{
+    } else {
         $coleccionPalabras[]= $nuevaPalabra;
         echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
     }
     return $coleccionPalabras;
 }
 
-/*inciso 8*/
 /** 
- *Retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
+ *MODULO que retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
  *@param array $coleccionPartidas
  *@param string $nombreJugador
- *@return int
+ *@return int $indice
 */
-function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
+function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
     //int $indice
     $indice = -1;
 
@@ -132,8 +131,8 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
             $indice = $gano;
             break;
         }
-
     }
+    
     return $indice;
 
 }
