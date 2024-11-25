@@ -234,7 +234,8 @@ do {
     
     switch ($opcion) {
         case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+            //Jugar al wordix con una palabra elegida
+            $nombreJugador = solicitarJugador();
 
             break;
         case 2: 
