@@ -98,7 +98,6 @@ function mostrarPartida($numPartida, $coleccionPartidas){
     }
 }
 
-/* inciso 7*/
 /**
  * Agregara la palabra que ingreso el usuario a la coleccion si es que no esta repetida
  * @param array $coleccionPalabras
@@ -168,7 +167,6 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador) {
     return $resumenPartidaJugador;
 }
 
-/*inciso 10*/
 /**
  * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
  * @return string
@@ -188,7 +186,6 @@ function solicitarJugador(){
      return strtolower($nombreJugador);
 }
 
-/*inciso 11*/
 /**
  * ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
  * @param array $coleccionPartidas
@@ -261,7 +258,35 @@ do {
 
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            $coleccionPalabras = cargarColeccionPalabras();
+            $coleccionPartidas = cargarPartidas();
+
+        echo "Iniciando el juego...\n";
+        $nombreJugador = solicitarJugador();
+
+        $palabraAleatoria = seleccionarPalabraAleatoria($nombreJugador, $coleccionPalabras, $coleccionPartidas);
+
+        if ($palabraAleatoria === null) {
+            echo "No hay palabras disponibles para este jugador.\n";
+        } else {
+        $resultadoPartida = jugarPartida($palabraAleatoria);
+
+        // Guardar la nueva partida en la colección
+        $coleccionPartidas[] = [
+        "palabraWordix" => $palabraAleatoria,
+        "jugador" => $nombreJugador,
+        "intentos" => $resultadoPartida["intentos"],
+        "puntaje" => $resultadoPartida["puntaje"],
+        ];
+
+        // Mostrar resultados
+        echo "*********************************************************************\n";
+        echo "Palabra Wordix: $palabraAleatoria\n";
+        echo "Jugador: $nombreJugador\n";
+        echo "Puntaje: " . $resultadoPartida["puntaje"] . " puntos\n";
+        echo "Intentos: " . $resultadoPartida["resultado"] . "\n";
+        echo "*********************************************************************\n";
+        }
 
             break;
         case 3: 
