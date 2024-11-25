@@ -228,7 +228,7 @@ do {
             $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
 
-            $indicesUtilizadss = [];
+            $indicesUtilizadas = [];
 
             do{
                 echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
@@ -245,46 +245,19 @@ do {
                    } else {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
+
+                    $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+                     print_r($partida);
                 };
                 
-                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-                print_r($partida);
+                
 
-
-            } while(true)
+            }
+            }while(true);
 
             break;
         case 2: 
-            $coleccionPalabras = cargarColeccionPalabras();
-            $coleccionPartidas = cargarPartidas();
-
-        echo "Iniciando el juego...\n";
-        $nombreJugador = solicitarJugador();
-
-        $palabraAleatoria = seleccionarPalabraAleatoria($nombreJugador, $coleccionPalabras, $coleccionPartidas);
-
-        if ($palabraAleatoria === null) {
-            echo "No hay palabras disponibles para este jugador.\n";
-        } else {
-        $resultadoPartida = jugarPartida($palabraAleatoria);
-
-        // Guardar la nueva partida en la colección
-        $coleccionPartidas[] = [
-        "palabraWordix" => $palabraAleatoria,
-        "jugador" => $nombreJugador,
-        "intentos" => $resultadoPartida["intentos"],
-        "puntaje" => $resultadoPartida["puntaje"],
-        ];
-
-        // Mostrar resultados
-        echo "*********************************************************************\n";
-        echo "Palabra Wordix: $palabraAleatoria\n";
-        echo "Jugador: $nombreJugador\n";
-        echo "Puntaje: " . $resultadoPartida["puntaje"] . " puntos\n";
-        echo "Intentos: " . $resultadoPartida["resultado"] . "\n";
-        echo "*********************************************************************\n";
-        }
-
+ 
             break;
         case 3: 
             do {
