@@ -289,6 +289,8 @@ do {
             break;
         case 4:
             $nombreJugador = solicitarJugador();
+            $primeraPartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
+
             
 
             break;
