@@ -237,7 +237,7 @@ do {
             $indicesUtilizadss = [];
     
             
-                echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
+                echo "Ingrese por favor el numero de la palabra\n";
                 foreach ($coleccionPalabras as $index => $palabra) {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
                 }
