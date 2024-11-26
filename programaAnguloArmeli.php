@@ -308,6 +308,47 @@ do {
             break;
         case 5:
 
+            function mostrarEstadisticasJugador($nombreJugador, $partidas)
+            {
+                $totalPartidas = 0;
+                $puntajeTotal = 0;
+                $victorias = 0;
+                $adivinadas = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+            
+                foreach ($partidas as $partida) {
+                    if (strtolower($partida["jugador"]) === strtolower($nombreJugador)) {
+                        $totalPartidas++;
+                        $puntajeTotal += $partida["puntaje"];
+                        if ($partida["intentos"] > 0) {
+                            $adivinadas[$partida["intentos"]]++;
+                            $victorias++;
+                        }
+                    }
+                }
+            
+                $porcentajeVictorias = ($totalPartidas > 0) ? round(($victorias / $totalPartidas) * 100) : 0;
+            
+                // Mostrar resultados
+                echo "******\n";
+                echo "Jugador: " . ucfirst($nombreJugador) . "\n";
+                echo "Partidas: " . $totalPartidas . "\n";
+                echo "Puntaje total: " . $puntajeTotal . "\n";
+                echo "Porcentaje victorias: " . $porcentajeVictorias . "%\n";
+                echo "Adivinadas:\n";
+                foreach ($adivinadas as $intento => $cantidad) {
+                    echo "\tintento $intento: $cantidad\n";
+                }
+                echo "******\n";
+            }
+            
+            // Programa principal
+            $partidas = cargarPartidas();
+            
+            echo "Ingrese el nombre del jugador: ";
+            $nombreJugador = trim(fgets(STDIN));
+            
+            mostrarEstadisticasJugador($nombreJugador, $partidas);
+            
             break;
         case 6:
 
