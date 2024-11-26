@@ -314,6 +314,7 @@ do {
             break;
         case 7:
             
+            
             break;
         case 8:
             echo "saliendo del programa";
