@@ -237,13 +237,10 @@ do {
             $indicesUtilizadss = [];
              
             do{
-                echo "Ingrese por favor el numero de la palabra\n";
-                foreach ($coleccionPalabras as $index => $palabra) {
-                    echo ($index + 1) . ". " . $palabra . "\n"; // 
-                }
+                echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
                 $eleccion = trim(fgets(STDIN));
     
-                if ($eleccion < 1 || $eleccion > count($coleccionPalabras)) {
+                if (!is_numeric($eleccion) || $eleccion < 1 || $eleccion > count($coleccionPalabras)) {
                     echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
                 } else {
                      if (in_array($eleccion, $indicesUtilizadas)) {
@@ -256,7 +253,7 @@ do {
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
 
-             }while(x);
+             }while(in_array($eleccion, $indicesUtilizados));
             
             break;
         case 2: 
@@ -310,47 +307,6 @@ do {
             break;
         case 5:
 
-            function mostrarEstadisticasJugador($nombreJugador, $partidas)
-            {
-                $totalPartidas = 0;
-                $puntajeTotal = 0;
-                $victorias = 0;
-                $adivinadas = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
-            
-                foreach ($partidas as $partida) {
-                    if (strtolower($partida["jugador"]) === strtolower($nombreJugador)) {
-                        $totalPartidas++;
-                        $puntajeTotal += $partida["puntaje"];
-                        if ($partida["intentos"] > 0) {
-                            $adivinadas[$partida["intentos"]]++;
-                            $victorias++;
-                        }
-                    }
-                }
-            
-                $porcentajeVictorias = ($totalPartidas > 0) ? round(($victorias / $totalPartidas) * 100) : 0;
-            
-                // Mostrar resultados
-                echo "******\n";
-                echo "Jugador: " . ucfirst($nombreJugador) . "\n";
-                echo "Partidas: " . $totalPartidas . "\n";
-                echo "Puntaje total: " . $puntajeTotal . "\n";
-                echo "Porcentaje victorias: " . $porcentajeVictorias . "%\n";
-                echo "Adivinadas:\n";
-                foreach ($adivinadas as $intento => $cantidad) {
-                    echo "\tintento $intento: $cantidad\n";
-                }
-                echo "******\n";
-            }
-            
-            // Programa principal
-            $partidas = cargarPartidas();
-            
-            echo "Ingrese el nombre del jugador: ";
-            $nombreJugador = trim(fgets(STDIN));
-            
-            mostrarEstadisticasJugador($nombreJugador, $partidas);
-            
             break;
         case 6:
 
