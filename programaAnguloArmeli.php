@@ -255,7 +255,6 @@ do {
                 }
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
-            
             break;
         case 2: 
             $jugador = solicitarJugador();
