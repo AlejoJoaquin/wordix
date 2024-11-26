@@ -11,6 +11,27 @@ include_once("wordix.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+function ordenarPartidas($partidas)
+{
+    uasort($partidas, function ($a, $b) {
+        // Ordenar por jugador alfabéticamente
+        $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
+        if ($comparacionJugador === 0) {
+            // Si los jugadores son iguales, ordenar por palabra
+            return strcmp($a['palabraWordix'], $b['palabraWordix']);
+        }
+        return $comparacionJugador;
+    });
+
+    return $partidas;
+}
+
+// Programa principal
+$partidas = cargarPartidas();
+$partidasOrdenadas = ordenarPartidas($partidas);
+
+// Mostrar las partidas ordenadas
+print_r($partidasOrdenadas);
 
 /**
  * Obtiene una colección de palabras
@@ -309,29 +330,7 @@ do {
 
             break;
         case 6:
-
-            function ordenarPartidas($partidas)
-            {
-                uasort($partidas, function ($a, $b) {
-                    // Ordenar por jugador alfabéticamente
-                    $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
-                    if ($comparacionJugador === 0) {
-                        // Si los jugadores son iguales, ordenar por palabra
-                        return strcmp($a['palabraWordix'], $b['palabraWordix']);
-                    }
-                    return $comparacionJugador;
-                });
-            
-                return $partidas;
-            }
-            
-            // Programa principal
-            $partidas = cargarPartidas();
-            $partidasOrdenadas = ordenarPartidas($partidas);
-            
-            // Mostrar las partidas ordenadas
-            print_r($partidasOrdenadas);
-            
+            ordenarPartidas($partidas);           
             break;
         case 7:
              $nuevaPalabra = leerPalabra5Letras();
