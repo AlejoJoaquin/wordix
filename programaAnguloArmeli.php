@@ -236,7 +236,7 @@ do {
     
             $indicesUtilizadss = [];
              
-            do{
+            while(true){
                 echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
                 $eleccion = trim(fgets(STDIN));
     
@@ -252,9 +252,7 @@ do {
                 }
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
-
-             }while(x);
-            
+                  }
             break;
         case 2: 
             $jugador = solicitarJugador();
