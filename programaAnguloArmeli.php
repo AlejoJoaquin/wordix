@@ -316,8 +316,7 @@ do {
             
             break;
         case 8:
-            echo "saliendo del programa";
-            escribirMensajeBienvenida($usuario);
+            echo "hola mundo";
             break; 
     }
 
