@@ -43,13 +43,6 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     echo "******\n";
 }
 
-// Programa principal
-$partidas = cargarPartidas();
-$partidasOrdenadas = ordenarPartidas($partidas);
-
-// Mostrar las partidas ordenadas
-print_r($partidasOrdenadas);
-
 /**
  * Obtiene una colección de palabras
  * @return array $coleccionPalabras
