@@ -235,8 +235,8 @@ do {
             $nombreJugador = solicitarJugador();
     
             $indicesUtilizadss = [];
-    
-            
+             
+            do{
                 echo "Ingrese por favor el numero de la palabra\n";
                 foreach ($coleccionPalabras as $index => $palabra) {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
@@ -255,6 +255,9 @@ do {
                 }
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
+
+             }while(x);
+            
             break;
         case 2: 
             $jugador = solicitarJugador();
