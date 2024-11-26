@@ -174,7 +174,7 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador) {
 function solicitarJugador(){
     
     do{
-    echo "ingrese un nombre de un jugador";
+    echo "ingrese un nombre de un jugador: ";
     $nombreJugador = trim(fgets(STDIN));
     
       if (!ctype_alpha($nombreJugador[0])){
