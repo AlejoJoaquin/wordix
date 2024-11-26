@@ -313,7 +313,7 @@ do {
 
             break;
         case 7:
-            
+             $palabra5letras = leerPalabra5Letras();
             
             break;
         case 8:
