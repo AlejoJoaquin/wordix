@@ -174,7 +174,7 @@ function generarResumenPartida($coleccionPartidas, $nombreJugador) {
 function solicitarJugador(){
     
     do{
-    echo "ingrese un nombre de un jugador";
+    echo "ingrese un nombre de un jugador: ";
     $nombreJugador = trim(fgets(STDIN));
     
       if (!ctype_alpha($nombreJugador[0])){
@@ -237,7 +237,7 @@ do {
             $indicesUtilizadss = [];
     
             
-                echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
+                echo "Ingrese por favor el numero de la palabra\n";
                 foreach ($coleccionPalabras as $index => $palabra) {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
                 }
@@ -255,7 +255,6 @@ do {
                 }
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
-            
             break;
         case 2: 
             $jugador = solicitarJugador();
