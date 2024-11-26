@@ -317,8 +317,7 @@ do {
              $coleccionPalabras = agregarPalabra($coleccionPalabras, $nuevaPalabra);
             break;
         case 8:
-            echo "saliendo del programa";
-            escribirMensajeBienvenida($usuario);
+            echo "hola mundo";
             break; 
     }
 
