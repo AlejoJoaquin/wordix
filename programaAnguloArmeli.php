@@ -313,8 +313,8 @@ do {
 
             break;
         case 7:
-             $palabra5letras = leerPalabra5Letras();
-            
+             $nuevaPalabra = leerPalabra5Letras();
+             $coleccionPalabras = agregarPalabra($coleccionPalabras, $nuevaPalabra);
             break;
         case 8:
             echo "saliendo del programa";
