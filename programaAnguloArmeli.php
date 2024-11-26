@@ -55,7 +55,6 @@ function cargarColeccionPalabras()
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "MOTOS", "COLOR", "ACTOR", "AGUDO", "MUNDO",
     ];
-
     return ($coleccionPalabras);
 }
 
