@@ -70,7 +70,7 @@ function seleccionarOpcion(){
         $opcion = trim(fgets(STDIN));
     
         if (!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
-            echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu";
+            echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu\n";
         }
 
     } while (!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
@@ -215,7 +215,7 @@ $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
 
 //Inicialización de variables:
-$opcion = seleccionarOpcion();
+
 $indicesUtilizadas = [];
 $partidas = cargarPartidas();
 //Proceso:
@@ -226,6 +226,8 @@ $partidas = cargarPartidas();
 
 do {
 
+    $opcion = seleccionarOpcion();
+
     switch ($opcion) {
         case 1: 
             //Jugar al wordix con una palabra elegida
@@ -234,7 +236,7 @@ do {
     
             $indicesUtilizadss = [];
     
-            do{
+            
                 echo "Por favor, seleccione el numero de la palabra del listado a continuacion\n";
                 foreach ($coleccionPalabras as $index => $palabra) {
                     echo ($index + 1) . ". " . $palabra . "\n"; // 
@@ -249,17 +251,11 @@ do {
                    } else {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
-                };
-                
+                   };
+                }
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
-                
-                echo"¿Queres volver a jugar?(si/no): ";
-                $decision = trim(fgets(STDIN));
-            }
-
-            } while ($decision == "si");
-    
+            
             break;
         case 2: 
             $jugador = solicitarJugador();
