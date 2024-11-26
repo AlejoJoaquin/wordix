@@ -26,6 +26,7 @@ function ordenarPartidas($partidas)
     return $partidas;
 }
 
+
 // Programa principal
 $partidas = cargarPartidas();
 $partidasOrdenadas = ordenarPartidas($partidas);
