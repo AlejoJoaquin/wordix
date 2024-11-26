@@ -253,7 +253,7 @@ do {
                 $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
                 print_r($partida);
 
-             }while(in_array($eleccion, $indicesUtilizados));
+             }while(x);
             
             break;
         case 2: 
