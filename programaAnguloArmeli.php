@@ -12,6 +12,13 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+// Programa principal
+$partidas = cargarPartidas();
+$partidasOrdenadas = ordenarPartidas($partidas);
+
+// Mostrar las partidas ordenadas
+print_r($partidasOrdenadas);
+
 /**
  * Obtiene una colección de palabras
  * @return array $coleccionPalabras
@@ -248,10 +255,10 @@ do {
                    } else {
                     $indicesUtilizadas[] = $eleccion;
                     $palabraElegida = $coleccionPalabras[$eleccion - 1];
+                    $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+                    print_r($partida);
                    };
                 }
-                $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-                print_r($partida);
                   
             break;
         case 2: 
@@ -360,13 +367,6 @@ do {
             
                 return $partidas;
             }
-            
-            // Programa principal
-            $partidas = cargarPartidas();
-            $partidasOrdenadas = ordenarPartidas($partidas);
-            
-            // Mostrar las partidas ordenadas
-            print_r($partidasOrdenadas);
             break;
         case 7:
              $nuevaPalabra = leerPalabra5Letras();
