@@ -263,7 +263,9 @@ do {
             //Jugar al wordix con una palabra elegida
             $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
-            $indicesUtilizadas = [];
+           if (!isset($indicesUtilizadas)) {
+           $indicesUtilizadas = []; 
+           }
              
           do{  
             echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
