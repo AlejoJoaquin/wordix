@@ -265,21 +265,18 @@ do {
             $nombreJugador = solicitarJugador();
             $indicesUtilizadas = [];
              
-          while(true){  
+          do{  
             echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
-            $eleccion = trim(fgets(STDIN));
+            $eleccion = solicitarNumeroEntre(1, count($coleccionPalabras));
              
-                if (!is_numeric($eleccion) || $eleccion < 1 || $eleccion > count($coleccionPalabras)) {
-                    echo "Opción inválida. Debe elegir un número entre 1 y " . count($coleccionPalabras) . ".\n";
-                } 
                 if (in_array($eleccion, $indicesUtilizadas)) {
                     echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
                 }
+            } while(in_array($eleccion, $indicesUtilizadas));
             $indicesUtilizadas[] = $eleccion;
             $palabraElegida = $coleccionPalabras[$eleccion - 1];
             $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
             print_r($partida);
-          }
         break;
         case 2: 
             $jugador = solicitarJugador();
@@ -365,3 +362,5 @@ do {
     }
 
 } while ($opcion != 8);
+
+?>
