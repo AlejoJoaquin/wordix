@@ -268,9 +268,9 @@ do {
             $partidaJugador = []; 
            }
 
-           if (!isset($indicesUtilizadas)) {
-           $indicesUtilizadas = []; 
-           }
+           if (!isset($partidasPorJugador[$nombreJugador])) {
+            $partidasPorJugador[$nombreJugador] = [];
+        }
              
           do{  
             echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
