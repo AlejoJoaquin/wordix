@@ -263,6 +263,11 @@ do {
             //Jugar al wordix con una palabra elegida
             $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
+
+           if (!isset($partidaJugador)) {
+            $partidaJugador = []; 
+           }
+
            if (!isset($indicesUtilizadas)) {
            $indicesUtilizadas = []; 
            }
