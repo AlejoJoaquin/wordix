@@ -367,7 +367,7 @@ do {
              $coleccionPalabras = agregarPalabra($coleccionPalabras, $nuevaPalabra);
             break;
         case 8:
-            echo "hola mundo";
+            echo "Saliendo del Programa...";
             break; 
     }
 
