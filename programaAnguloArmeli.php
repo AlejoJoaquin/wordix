@@ -135,8 +135,8 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  * @return array
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
-   do {
-        $nuevaPalabra = leerPalabra5Letras(); 
+   
+    do {
 
         if (in_array($nuevaPalabra, $coleccionPalabras)) {
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
@@ -146,6 +146,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
             break; 
         }
     } while (true);
+    return $coleccionPalabras;
 }
 
 /*inciso 8*/
@@ -272,6 +273,7 @@ do {
            if (!isset($partidasPorJugador[$nombreJugador])) {
             $partidasPorJugador[$nombreJugador] = [];
         }
+        
              
           do{  
             echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
