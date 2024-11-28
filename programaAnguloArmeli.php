@@ -135,16 +135,17 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  * @return array
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
-    $nuevaPalabra = strtoupper($nuevaPalabra);
+   do {
+        $nuevaPalabra = leerPalabra5Letras(); 
 
-    if (in_array($nuevaPalabra, $coleccionPalabras)){
-        echo "Esta palabra ya esta en la coleccion\n";
-    }else{
-        $coleccionPalabras[]= $nuevaPalabra;
-        echo "La nueva palabra " . $nuevaPalabra . " fue agregad\n";
-    }
-    
-    return $coleccionPalabras;
+        if (in_array($nuevaPalabra, $coleccionPalabras)) {
+            echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
+        } else {
+            $coleccionPalabras[] = $nuevaPalabra;
+            echo "La nueva palabra '" . $nuevaPalabra . "' fue agregada exitosamente.\n";
+            break; 
+        }
+    } while (true);
 }
 
 /*inciso 8*/
