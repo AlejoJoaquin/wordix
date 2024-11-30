@@ -137,7 +137,8 @@ function mostrarPartida($numPartida, $coleccionPartidas){
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
    
     do {
-
+        $existe = false;
+        
         if (in_array($nuevaPalabra, $coleccionPalabras)) {
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
         } else {
