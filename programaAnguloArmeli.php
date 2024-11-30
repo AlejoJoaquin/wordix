@@ -138,8 +138,8 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
    
     do {
         $existe = false;
-        
-        if (in_array($nuevaPalabra, $coleccionPalabras)) {
+
+        if ($existe) {
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
         } else {
             $coleccionPalabras[] = $nuevaPalabra;
