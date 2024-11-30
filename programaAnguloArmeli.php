@@ -158,7 +158,6 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     return $coleccionPalabras;
 }
 
-/*inciso 8*/
 /** 
  *Retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
  *@param array $coleccionPartidas
@@ -169,12 +168,11 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
     //int $indice
     $indice = -1;
 
-    foreach($coleccionPartidas as $gano => $partida){
-        if ($partida['jugador'] == $nombreJugador && $partida['puntaje'] > 0){
-            $indice = $gano;
-            break;
+    for ($i = 0; $i < count($coleccionPartidas); $i++) {
+        if ($coleccionPartidas[$i]['jugador'] == $nombreJugador && $coleccionPartidas[$i]['puntaje'] > 0) {
+            $indice = $i;
+            break; 
         }
-
     }
     return $indice;
 }
