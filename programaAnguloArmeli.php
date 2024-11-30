@@ -139,6 +139,13 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     do {
         $existe = false;
 
+        foreach ($coleccionPalabras as $palabra) {
+            if ($palabra === $nuevaPalabra) {
+                $existe = true;
+                break;
+            }
+        }
+
         if ($existe) {
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
         } else {
