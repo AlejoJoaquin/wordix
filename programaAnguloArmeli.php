@@ -148,6 +148,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
 
         if ($existe) {
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
+            $nuevaPalabra = strtoupper(trim(fgets(STDIN)));
         } else {
             $coleccionPalabras[] = $nuevaPalabra;
             echo "La nueva palabra '" . $nuevaPalabra . "' fue agregada exitosamente.\n";
