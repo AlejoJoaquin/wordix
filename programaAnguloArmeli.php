@@ -139,8 +139,8 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     do {
         $existe = false;
 
-        foreach ($coleccionPalabras as $palabra) {
-            if ($palabra === $nuevaPalabra) {
+        for ($i = 0; $i < count($coleccionPalabras); $i++) {
+            if ($coleccionPalabras[$i] === $nuevaPalabra) {
                 $existe = true;
                 break;
             }
