@@ -55,7 +55,7 @@ function cargarColeccionPalabras()
         "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
         "MOTOS", "COLOR", "ACTOR", "AGUDO", "MUNDO",
     ];
-    return ($coleccionPalabras);
+    return $coleccionPalabras;
 }
 
 /**
@@ -136,10 +136,11 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
    
+    $cantPlabras = count($coleccionPalabras);
     do {
         $existe = false;
 
-        for ($i = 0; $i < count($coleccionPalabras); $i++) {
+        for ($i = 0; $i < $cantPlabras; $i++) {
             if ($coleccionPalabras[$i] === $nuevaPalabra) {
                 $existe = true;
                 break;
@@ -270,8 +271,8 @@ do {
     switch ($opcion) {
         case 1: 
             //Jugar al wordix con una palabra elegida
-            $coleccionPalabras = cargarColeccionPalabras();
             $nombreJugador = solicitarJugador();
+            $cantPlabras = count($coleccionPalabras);
 
            if (!isset($partidaJugador)) {
             $partidaJugador = []; 
@@ -279,12 +280,14 @@ do {
 
            if (!isset($partidasPorJugador[$nombreJugador])) {
             $partidasPorJugador[$nombreJugador] = [];
+
+            
         }
-        
-             
+                   
+              
           do{  
-            echo "Ingrese por favor el numero de la palabra (1 a " . count($coleccionPalabras) . "): "; 
-            $eleccion = solicitarNumeroEntre(1, count($coleccionPalabras));
+            echo "Ingrese por favor el numero de la palabra (1 a " . $cantPlabras . "): "; 
+            $eleccion = solicitarNumeroEntre(1, $cantPlabras);
              
                 if (in_array($eleccion, $partidasPorJugador[$nombreJugador])) {
                     echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
