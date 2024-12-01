@@ -185,34 +185,6 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
     return $indice;
 }
 
-/**
- * MODULO que genera un resumen de las partidas de un jugador
- * @param array $coleccionPartidas
- * @param string $nombreJugador
- * @return array 
- */
-function generarResumenPartida($coleccionPartidas, $nombreJugador) {
-    // array $resumenPartidaJugador
-    $resumenPartidaJugador = [
-        'jugador' => $nombreJugador, 'partidas' => 0, 'victorias' => 0, 'intento1' => 0, 'intento2' => 0, 'intento3' => 0, 'intento4' => 0, 'intento5' => 0,'intento6' => 0 
-    ];
-
-    foreach($coleccionPartidas as $partida) {
-        if ($partida['jugador'] == $nombreJugador) {
-            $resumenPartidaJugador['partidas']++;
-            $resumenPartidaJugador['puntaje'] = $resumenPartidaJugador['puntaje'] + $partida['puntaje'];
-        
-            if ($partida['puntaje'] > 0) {
-                $resumenPartidaJugador['victorias']++;
-            }
-        }
-
-        $intentoKey = "intento" . $partida["intentos"];
-        $resumenPartidaJugador[$intentoKey]++;
-    }
-
-    return $resumenPartidaJugador;
-}
 
 /**
  * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
