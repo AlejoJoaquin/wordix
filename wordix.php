@@ -351,7 +351,7 @@ function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) {
 
     for ($i = 0; $i < $numCaracteres; $i++) {
         $letra = $palabraAdivinada[$i];
-        if (in_array($letra, ['A', 'E', 'I', 'O', 'U'])) {
+        if ($letra == 'A' || $letra === 'E' || $letra === 'I' || $letra === 'O' || $letra === 'U') {
             $puntaje = $puntaje + 1;
         } elseif ($letra <= 'M') {
             $puntaje = $puntaje + 2;
