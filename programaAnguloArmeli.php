@@ -25,12 +25,12 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     $adivinadas = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
 
     $cantidadPartidas = count($partidas);
-    foreach ($partidas as $partida) {
-        if (strtolower($partida["jugador"]) === strtolower($nombreJugador)) {
+    for ($i = 0; $i < $cantidadPartidas; $i++) {
+        if (strtolower($partidas[$i]["jugador"]) === strtolower($nombreJugador)) {
             $totalPartidas++;
-            $puntajeTotal += $partida["puntaje"];
-            if ($partida["intentos"] > 0) {
-                $adivinadas[$partida["intentos"]]++;
+            $puntajeTotal += $partidas[$i]["puntaje"];
+            if ($partidas[$i]["intentos"] > 0) {
+                $adivinadas[$partidas[$i]["intentos"]]++;
                 $victorias++;
             }
         }
