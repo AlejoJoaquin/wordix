@@ -11,6 +11,12 @@ include_once("wordix.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+
+/**
+ * Muestra estadísticas de un jugador basado en las partidas jugadas.
+ * @param string $nombreJugador Nombre del jugador
+ * @param array $partidas Colección de partidas
+ */
 function mostrarEstadisticasJugador($nombreJugador, $partidas)
 {
     $totalPartidas = 0;
