@@ -287,10 +287,8 @@ do {
         case 2: 
             $jugador = solicitarJugador();
 
-            $palabrasJugadas = array_column($coleccionPartidas, "palabraWordix");
-                do {
-            $palabraSeleccionada = $coleccionPalabras[array_rand($coleccionPalabras)];
-                } while (in_array($palabraSeleccionada, $palabrasJugadas));
+            $palabrasJugadas = [];
+            $cantidadPartidas = count($coleccionPartidas);
 
             echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
 
