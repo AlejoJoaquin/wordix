@@ -301,7 +301,10 @@ do {
 
                 $palabraElegida = false;
                 for ($j = 0; $j < count($palabrasJugadas); $j++){
-                    
+                    if ($palabrasJugadas[$j] === $palabraSeleccionada) {
+                        $palabrasJugada = true;
+                        break;
+                    }
                 }
             }
 
