@@ -258,15 +258,14 @@ do {
            }
 
            if (!isset($partidasPorJugador[$nombreJugador])) {
-            $partidasPorJugador[$nombreJugador] = [];
-
-            
+            $partidasPorJugador[$nombreJugador] = [];    
         }
-                   
-              
-          do{  
+        
+        do{  
             echo "Ingrese por favor el numero de la palabra (1 a " . $cantPlabras . "): "; 
             $eleccion = solicitarNumeroEntre(1, $cantPlabras);
+
+            $palabraUtilizada = false;
              
                 if (in_array($eleccion, $partidasPorJugador[$nombreJugador])) {
                     echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
