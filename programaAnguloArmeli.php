@@ -290,6 +290,10 @@ do {
             $palabrasJugadas = [];
             $cantidadPartidas = count($coleccionPartidas);
 
+            for ($i = 0; $i < $cantidadPartidas; $i++) {
+                $palabrasJugadas[] = $coleccionPartidas[$i]["palabraWordix"];
+            }
+
             echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
 
             $puntaje = obtenerPuntajeWordix($intentos, $adivina, $palabraAdivinada);
