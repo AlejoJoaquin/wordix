@@ -289,6 +289,8 @@ do {
             $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
             $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
 
+            $palabraJugada = false;
+
         
         case 3: 
             do {
