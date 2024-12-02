@@ -293,6 +293,9 @@ do {
                 $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
     
                 $palabraJugada = false;
+                for ($i = 0; $i < count($coleccionPartidas); $i++){
+                    
+                }
             }
 
         
