@@ -301,6 +301,15 @@ do {
                 }
             }
 
+            $coleccionPartidas[] = [
+                "palabraWordix" => $palabraSeleccionada,
+                "jugador" => $jugador,
+                "intentos" => $intentos,
+                "puntaje" => $puntaje
+            ];
+
+            echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
+            break;
         
         case 3: 
             do {
