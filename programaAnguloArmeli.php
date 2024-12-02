@@ -76,7 +76,7 @@ function cargarPartidas(){
         ["palabraWordix" => "NUBES", "jugador" => "Marcos", "intentos" => 1, "puntaje" => 16],
         ["palabraWordix" => "JUGAR", "jugador" => "Enzo", "intentos" => 2, "puntaje" => 20],
         ["palabraWordix" => "RAMAS", "jugador" => "Lucas", "intentos" => 5, "puntaje" => 5],
-        ["palabraWordix" => "CAMPO", "jugador" => "Nahue", "intentos" => 3, "puntaje" => 15],
+        ["palabraWordix" => "CAMPO", "jugador" => "Nahuel", "intentos" => 3, "puntaje" => 15],
         ["palabraWordix" => "PLUMA", "jugador" => "Federico", "intentos" => 3, "puntaje" => 13],
         ["palabraWordix" => "PERROS", "jugador" => "Juan", "intentos" => 1, "puntaje" => 25],
         ["palabraWordix" => "HUEVO", "jugador" => "Juliana", "intentos" => 3, "puntaje" => 12],
@@ -286,42 +286,9 @@ do {
         break;
         case 2: 
             $jugador = solicitarJugador();
+            $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
 
-            $palabrasJugadas = [];
-            $cantidadPartidas = count($coleccionPartidas);
-             for ($i = 0; $i < $cantidadPartidas; $i++) {
-                $palabrasJugadas[] = $coleccionPartidas[$i]["palabraWordix"];
-            }
-
-            $palabraJugada = true;
-
-            while($palabraJugada){
-                $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
-                $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
-
-                $palabraElegida = false;
-                for ($j = 0; $j < count($palabrasJugadas); $j++){
-                    if ($palabrasJugadas[$j] === $palabraSeleccionada) {
-                        $palabrasJugada = true;
-                        break;
-                    }
-                }
-            }
-
-
-            echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
-
-            $puntaje = obtenerPuntajeWordix($intentos, $adivina, $palabraAdivinada);
-
-            $coleccionPartidas[] = [
-            "palabraWordix" => $palabraSeleccionada,
-            "jugador" => $jugador,
-            "intentos" => $intentos,
-            "puntaje" => $puntaje
-            ];
-
-            echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
-            break;
+        
         case 3: 
             do {
                 // Solicitar número de partida al usuario
