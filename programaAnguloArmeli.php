@@ -289,10 +289,12 @@ do {
 
             $palabrasJugadas = [];
             $cantidadPartidas = count($coleccionPartidas);
-
-            for ($i = 0; $i < $cantidadPartidas; $i++) {
+             for ($i = 0; $i < $cantidadPartidas; $i++) {
                 $palabrasJugadas[] = $coleccionPartidas[$i]["palabraWordix"];
             }
+
+            $palabraJugada = true;
+
 
             echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
 
@@ -336,7 +338,6 @@ do {
             }
             break;
         case 5:                  
-            // Programa principal
             $partidas = cargarPartidas();
             
             echo "Ingrese el nombre del jugador: ";
