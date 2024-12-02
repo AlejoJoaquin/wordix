@@ -294,7 +294,11 @@ do {
     
                 $palabraJugada = false;
                 for ($i = 0; $i < count($coleccionPartidas); $i++){
+                    if (strtolower($coleccionPartidas[$i]["jugador"]) === strtolower($jugador) && $coleccionPartidas[$i]["palabraWordix"] === $palabraSeleccionada){
+                        
+                    }
                     
+
                 }
             }
 
