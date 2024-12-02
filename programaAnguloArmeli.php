@@ -274,6 +274,10 @@ do {
                     break;
                 }
               }
+
+              if ($indiceUtilizado) {
+                 echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+                }
             } while(in_array($eleccion, $partidasPorJugador[$nombreJugador]));
             $partidasPorJugador[$nombreJugador][] = $eleccion;
             $palabraElegida = $coleccionPalabras[$eleccion - 1];
