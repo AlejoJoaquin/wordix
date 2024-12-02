@@ -286,10 +286,14 @@ do {
         break;
         case 2: 
             $jugador = solicitarJugador();
-            $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
-            $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
+            $palabraJugada = true;
 
-            $palabraJugada = false;
+            while($palabraJugada){
+                $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
+                $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
+    
+                $palabraJugada = false;
+            }
 
         
         case 3: 
