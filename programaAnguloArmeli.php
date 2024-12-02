@@ -266,6 +266,7 @@ do {
             $eleccion = solicitarNumeroEntre(1, $cantPlabras);
 
             $indiceUtilizado = false;
+            $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
              
                 if (in_array($eleccion, $partidasPorJugador[$nombreJugador])) {
                     echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
