@@ -268,10 +268,12 @@ do {
             $indiceUtilizado = false;
             $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
              
+             for ($i = 0; $i < $cantidadPartidas; $i++){            
                 if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
                     $indiceUtilizado = true; 
                     break;
                 }
+              }
             } while(in_array($eleccion, $partidasPorJugador[$nombreJugador]));
             $partidasPorJugador[$nombreJugador][] = $eleccion;
             $palabraElegida = $coleccionPalabras[$eleccion - 1];
