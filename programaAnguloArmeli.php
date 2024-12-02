@@ -268,7 +268,7 @@ do {
             $indiceUtilizado = false;
             $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
              
-                if (in_array($eleccion, $partidasPorJugador[$nombreJugador])) {
+                if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
                     echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
                 }
             } while(in_array($eleccion, $partidasPorJugador[$nombreJugador]));
