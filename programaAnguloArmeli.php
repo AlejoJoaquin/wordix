@@ -287,6 +287,7 @@ do {
         case 2: 
             $jugador = solicitarJugador();
             $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
+            $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
 
         
         case 3: 
