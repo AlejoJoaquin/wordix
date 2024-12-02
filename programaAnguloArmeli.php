@@ -295,6 +295,10 @@ do {
 
             $palabraJugada = true;
 
+            while($palabraJugada){
+                
+            }
+
 
             echo "La palabra seleccionada para jugar es: $palabraSeleccionada\n";
 
