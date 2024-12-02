@@ -296,7 +296,7 @@ do {
             $palabraJugada = true;
 
             while($palabraJugada){
-                
+                $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
             }
 
 
