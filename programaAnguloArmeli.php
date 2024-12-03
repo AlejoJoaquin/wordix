@@ -234,11 +234,11 @@ function mostrarPartidasEnOrden($coleccionPartidas){
 /** 
  *Muestra un listado de partidas ordenadas por jugador y por palabra.
  *
- *   @param array $partida 
+ *@param array $coleccionPartidas 
 */
-function ordenarPartidas($partidas)
+function ordenarPartidas($coleccionPartidas)
 {
-    uasort($partidas, function ($a, $b) {
+    uasort($coleccionPartidas, function ($a, $b) {
         // Ordenar por jugador alfabéticamente
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
         if ($comparacionJugador === 0) {
@@ -248,7 +248,7 @@ function ordenarPartidas($partidas)
         return $comparacionJugador;
     });
 
-    return $partidas;
+    print_r($coleccionPartidas);     
 }
 
 /**************************************/
@@ -387,7 +387,7 @@ do {
             mostrarEstadisticasJugador($nombreJugador, $partidas);            
             break;
         case 6:
-            ordenarPartidas($partidas);
+            ordenarPartidas($coleccionPartidas);
             break;
         case 7:
              $nuevaPalabra = leerPalabra5Letras();
