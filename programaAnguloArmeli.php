@@ -384,8 +384,6 @@ do {
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = trim(fgets(STDIN));
             
-            mostrarEstadisticasJugador($nombreJugador, $partidas);            
-            break;
         case 6:
             ordenarPartidas($coleccionPartidas);
             break;
