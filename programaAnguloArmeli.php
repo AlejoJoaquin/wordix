@@ -177,7 +177,7 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
     $indice = -1;
 
     for ($i = 0; $i < count($coleccionPartidas); $i++) {
-        if ($coleccionPartidas[$i]['jugador'] == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
+        if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
             $indice = $i;
             break; 
         }
