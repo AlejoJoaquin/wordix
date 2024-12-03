@@ -341,10 +341,10 @@ do {
             if($indicePartidaGanada != -1){
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
                 echo "********** Primera Partida Ganada **********\n";
-                echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'];
-                echo "Jugador " . $nombreJugador;
-                echo "Puntaje " . $partidaGanada['puntaje'] . " puntos";
-                echo "Inento: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos";
+                echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'] . "\n";
+                echo "Jugador " . $nombreJugador . "\n";
+                echo "Puntaje " . $partidaGanada['puntaje'] . " puntos \n";
+                echo "Inento: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos\n";
             } else {
                 echo "El jugador " . $nombreJugador . " no gano ninguna partida";
             }
