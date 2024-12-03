@@ -49,6 +49,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     echo "Jugador: " . ucfirst($nombreJugador) . "\n";
     echo "Partidas: " . $totalPartidas . "\n";
     echo "Puntaje total: " . $puntajeTotal . "\n";
+    echo "Victorias: " . $victorias . "\n";
     echo "Porcentaje victorias: " . round($porcentajeVictorias) . "%\n";
     echo "Adivinadas:\n";
     for ($j = 1; $j <= count($adivinadas); $j++) {
