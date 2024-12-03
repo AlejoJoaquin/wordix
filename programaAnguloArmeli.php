@@ -31,11 +31,11 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
         if (strtolower($partidas[$i]["jugador"]) === strtolower($nombreJugador)) {
             $totalPartidas++;
             $puntajeTotal += $partidas[$i]["puntaje"];
-            if ($partidas[$i]["intentos"] > 0) {
-                $adivinadas[$partidas[$i]["intentos"]]++;
+            if ($partidas[$i]["puntaje"] > 0) {
                 $victorias++;
-                if ($partidas[$i]["intentos"] <= 6) { 
-                    $adivinadas[$partidas[$i]["intentos"]]++;
+                $intentos = $partidas[$i]["intentos"];
+                if ($intentos <= 6) {
+                    $adivinadas[$intentos]++;
                 }
             }
         }
@@ -55,7 +55,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     for ($j = 1; $j <= count($adivinadas); $j++) {
         echo "    Intento $j: " . $adivinadas[$j] . "\n";
     }
-    echo "*******************\n";
+    echo "********************\n";
 }
 
 /**
