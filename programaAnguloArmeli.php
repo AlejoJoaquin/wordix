@@ -49,7 +49,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     echo "Jugador: " . ucfirst($nombreJugador) . "\n";
     echo "Partidas: " . $totalPartidas . "\n";
     echo "Puntaje total: " . $puntajeTotal . "\n";
-    echo "Porcentaje victorias: " . $porcentajeVictorias . "%\n";
+    echo "Porcentaje victorias: " . round($porcentajeVictorias) . "%\n";
     echo "Adivinadas:\n";
     foreach ($adivinadas as $intento => $cantidad) {
         echo "\tintento $intento: $cantidad\n";
