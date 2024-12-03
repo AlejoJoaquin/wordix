@@ -64,6 +64,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
  */
 function cargarColeccionPalabras()
 {
+    //inicializamos el arreglo que contendra las palabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -78,7 +79,7 @@ function cargarColeccionPalabras()
  * @return array $coleccionPartidas
  */
 function cargarPartidas(){
-    
+    //inicializamos el array que contendra las partidas 
     $coleccionPartidas = [
         ["palabraWordix" => "BEBER", "jugador" => "Lautaro", "intentos" => 5, "puntaje" => 14],
         ["palabraWordix" => "NUBES", "jugador" => "Marcos", "intentos" => 1, "puntaje" => 16],
@@ -88,10 +89,9 @@ function cargarPartidas(){
         ["palabraWordix" => "PLUMA", "jugador" => "Federico", "intentos" => 3, "puntaje" => 13],
         ["palabraWordix" => "PERROS", "jugador" => "Juan", "intentos" => 1, "puntaje" => 25],
         ["palabraWordix" => "HUEVO", "jugador" => "Juliana", "intentos" => 3, "puntaje" => 12],
-        ["palabraWordix" => "SALSA", "jugador" => "Antonela", "intentos" => 0, "puntaje" => 0],
+        ["palabraWordix" => "SALSA", "jugador" => "Enzo", "intentos" => 0, "puntaje" => 0],
         ["palabraWordix" => "RANAS", "jugador" => "Agustin", "intentos" => 3, "puntaje" => 15],
     ];
-
     return $coleccionPartidas;
 }
 
@@ -101,7 +101,9 @@ function cargarPartidas(){
  * @return int $opcion
  */
 function seleccionarOpcion(){
+    //int $opcion
     do {
+        //este es el menu de ususario que se le mostrara al usuario
         echo "********** Menu de opciones, seleccione una opcion del 1 al 8 **********\n";
         echo "1. Jugar al wordix con una palabra elegida\n";
         echo "2. Jugar al wordix con una palabra aleatoria\n";
@@ -112,14 +114,16 @@ function seleccionarOpcion(){
         echo "7. Agregar una palabra de 5 letras a Wordix\n";
         echo "8. Salir del menu\n";
         
+        //leera la opcion ingresada por el usuario
         $opcion = trim(fgets(STDIN));
-    
+        //se verifica si la opcion que fue ingresada es un numero y si esta en el rango requerido
         if (!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
+            //se le mostrara este mensaje al usuario si la opcion ingresada no es valida
             echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu\n";
         }
-
+     //se le pedira al usuario que ingrese una opcion hasta que sea valida
     } while (!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
-
+    //devuelve la opcion seleccionada por el ususario
     return $opcion;
 }
 
@@ -130,15 +134,22 @@ function seleccionarOpcion(){
  */
 function mostrarPartida($numPartida, $coleccionPartidas){
     //int $indice
+    //array $partida
+    //calcula el indice correspondiente al numero de partida ingresado
     $indice = $numPartida - 1;
 
+    //verifica si el indice esta dentro del rango valido
     if ($indice >= 0 && $indice < count($coleccionPartidas)) {
+        //se obtiene la partida correspondiente al indice calculado
         $partida = $coleccionPartidas[$indice];
+
+        //muestra el mensaje por pantalla al usuario
         echo "Palabra Wordix: " . $partida['palabraWordix'] . "\n";
         echo "Jugador: " . $partida['jugador'] . "\n";
         echo "Puntaje: " . $partida['puntaje'] . "\n";
         echo "Intentos: " . $partida['intentos'] . "\n";
     } else {
+        //este mensaje se le mostrara al usuario si el indice es invalido
         echo "El numero que ingreso es invalido. Por favor, ingrese un número entre 1 y " . count($coleccionPartidas) . ".\n";
     }
 }
@@ -150,26 +161,33 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  * @return array
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra){
-   
-    $cantPlabras = count($coleccionPalabras);
+    //int $cantPalabras
+    //boolean $existe
+    //obtenemos la cantidad de palabras
+    $cantPalabras = count($coleccionPalabras);
     do {
+        //inicializamos una variable que indicara si la palabra ya existe
         $existe = false;
-
-        for ($i = 0; $i < $cantPlabras; $i++) {
+        //recorremos la coleccion de palabras para verificar si la nueva palabra ya existe
+        for ($i = 0; $i < $cantPalabras; $i++) {
             if ($coleccionPalabras[$i] === $nuevaPalabra) {
+                //si la palabra existe, se cumple la condicion y se sale del bucle
                 $existe = true;
                 break;
             }
         }
-
+        //si la palabra ya esta en la coleccion se le solicitara que agregue 
         if ($existe) {
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
+            //leera la nueva palabra que ingrese el usuario y la convertira a mayusculas
             $nuevaPalabra = strtoupper(trim(fgets(STDIN)));
         } else {
+            //si la palabra no existe en la coleccion, se agrega la nueva palabra
             $coleccionPalabras[] = $nuevaPalabra;
             echo "La nueva palabra '" . $nuevaPalabra . "' fue agregada exitosamente.\n";
             break; 
         }
+        //continuara solicitandole al usuario hasta que agregue una palabra nueva
     } while (true);
     return $coleccionPalabras;
 }
