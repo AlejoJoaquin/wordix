@@ -24,8 +24,11 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     $victorias = 0;
     $adivinadas = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
 
+    $i = 0;
     $cantidadPartidas = count($partidas);
-    for ($i = 0; $i < $cantidadPartidas; $i++) {
+
+
+    while($i < $cantidadPartidas) {
         if (strtolower($partidas[$i]["jugador"]) === strtolower($nombreJugador)) {
             $totalPartidas++;
             $puntajeTotal += $partidas[$i]["puntaje"];
