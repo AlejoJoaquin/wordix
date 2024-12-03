@@ -45,7 +45,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
 
     $porcentajeVictorias = ($totalPartidas > 0) ? round(($victorias / $totalPartidas) * 100) : 0;
     // Mostrar resultados
-    echo "******\n";
+    echo "*******************\n";
     echo "Jugador: " . ucfirst($nombreJugador) . "\n";
     echo "Partidas: " . $totalPartidas . "\n";
     echo "Puntaje total: " . $puntajeTotal . "\n";
@@ -55,7 +55,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     for ($j = 1; $j <= count($adivinadas); $j++) {
         echo "    Intento $j: " . $adivinadas[$j] . "\n";
     }
-    echo "******\n";
+    echo "*******************\n";
 }
 
 /**
