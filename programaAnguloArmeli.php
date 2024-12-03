@@ -316,6 +316,9 @@ do {
             ];
 
             echo "Partida guardada: Jugador: ". $jugador . "\n"; 
+            echo "Palabra: " . $palabraSeleccionada . "\n"; 
+            echo "Intentos: " . $intentos . "\n"; 
+            echo "Puntaje: " . $puntaje . "\n";
             break;
         
         case 3: 
