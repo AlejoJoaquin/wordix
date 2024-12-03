@@ -303,6 +303,8 @@ do {
                 }
             }
 
+            $partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
+
             $coleccionPartidas[] = [
                 "palabraWordix" => $palabraSeleccionada,
                 "jugador" => $jugador,
