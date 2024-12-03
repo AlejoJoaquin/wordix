@@ -51,8 +51,8 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     echo "Puntaje total: " . $puntajeTotal . "\n";
     echo "Porcentaje victorias: " . round($porcentajeVictorias) . "%\n";
     echo "Adivinadas:\n";
-    foreach ($adivinadas as $intento => $cantidad) {
-        echo "\tintento $intento: $cantidad\n";
+    for ($j = 1; $j <= count($adivinadas); $j++) {
+        echo "    Intento $j: " . $adivinadas[$j] . "\n";
     }
     echo "******\n";
 }
