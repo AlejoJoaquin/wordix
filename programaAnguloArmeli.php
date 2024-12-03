@@ -315,7 +315,7 @@ do {
                 "puntaje" => $partida["puntaje"]
             ];
 
-            echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
+            echo "Partida guardada: Jugador: ". $jugador . "\n"; 
             break;
         
         case 3: 
