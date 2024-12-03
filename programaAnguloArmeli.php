@@ -338,7 +338,7 @@ do {
             $nombreJugador = solicitarJugador();
             $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
 
-            if($primeraPartidaGanada != -1){
+            if($indicePartidaGanada != -1){
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
                 echo "********** Primera Partida Ganada **********\n";
                 echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'];
