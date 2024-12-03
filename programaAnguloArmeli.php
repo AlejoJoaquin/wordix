@@ -34,6 +34,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
             if ($partidas[$i]["puntaje"] > 0) {
                 $victorias++;
                 $intentos = $partidas[$i]["intentos"];
+                
                 if ($intentos <= 6) {
                     $adivinadas[$intentos]++;
                 }
