@@ -286,6 +286,8 @@ do {
         break;
         case 2: 
             $jugador = solicitarJugador();
+
+            $cantidadPartidas = count($coleccionPartidas);
             $palabraJugada = true;
 
             while($palabraJugada){
@@ -330,7 +332,7 @@ do {
 
             if($primeraPartidaGanada != -1){
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
-                echo "\n********** Primera Partida Ganada **********\n";
+                echo "********** Primera Partida Ganada **********\n";
                 echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'];
                 echo "Jugador " . $nombreJugador;
                 echo "Puntaje " . $partidaGanada['puntaje'] . " puntos";
