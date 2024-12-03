@@ -27,7 +27,6 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
     $i = 0;
     $cantidadPartidas = count($partidas);
 
-
     while($i < $cantidadPartidas) {
         if (strtolower($partidas[$i]["jugador"]) === strtolower($nombreJugador)) {
             $totalPartidas++;
@@ -35,8 +34,12 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
             if ($partidas[$i]["intentos"] > 0) {
                 $adivinadas[$partidas[$i]["intentos"]]++;
                 $victorias++;
+                if ($partidas[$i]["intentos"] <= 6) { 
+                    $adivinadas[$partidas[$i]["intentos"]]++;
+                }
             }
         }
+
     }
 
     $porcentajeVictorias = ($totalPartidas > 0) ? round(($victorias / $totalPartidas) * 100) : 0;
