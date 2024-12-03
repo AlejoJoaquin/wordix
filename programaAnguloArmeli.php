@@ -387,7 +387,7 @@ do {
             mostrarEstadisticasJugador($nombreJugador, $partidas);            
             break;
         case 6:
-           
+            ordenarPartidas($partidas);
             break;
         case 7:
              $nuevaPalabra = leerPalabra5Letras();
