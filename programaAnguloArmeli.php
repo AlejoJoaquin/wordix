@@ -230,6 +230,12 @@ function mostrarPartidasEnOrden($coleccionPartidas){
     print_r($coleccionPartidas);
 }
 
+
+/** 
+ *Muestra un listado de partidas ordenadas por jugador y por palabra.
+ *
+ *   @param array $partida 
+*/
 function ordenarPartidas($partidas)
 {
     uasort($partidas, function ($a, $b) {
