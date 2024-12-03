@@ -306,10 +306,10 @@ do {
             $partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
 
             $coleccionPartidas[] = [
-                "palabraWordix" => $palabraSeleccionada,
-                "jugador" => $jugador,
-                "intentos" => $intentos,
-                "puntaje" => $puntaje
+                "palabraWordix" => $partida["palabraWordix"],
+                "jugador" => $partida["jugador"],
+                "intentos" => $partida["intentos"],
+                "puntaje" => $partida["puntaje"]
             ];
 
             echo "Partida guardada: Jugador: $jugador, Palabra: $palabraSeleccionada, Intentos: $intentos, Puntaje: $puntaje\n";
