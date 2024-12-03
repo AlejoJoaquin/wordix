@@ -39,6 +39,7 @@ function mostrarEstadisticasJugador($nombreJugador, $partidas)
                 }
             }
         }
+        $i++;
 
     }
 
