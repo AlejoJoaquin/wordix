@@ -231,44 +231,31 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
  * @return string
  */
 function solicitarJugador(){
+    //string $nombreJugador
     
     do{
     echo "ingrese un nombre de un jugador: ";
     $nombreJugador = trim(fgets(STDIN));
     
+    //verificamos si el primer caracter del nombre del jugador es una letra
       if (!ctype_alpha($nombreJugador[0])){
-        echo "Error. debe ingresar un nombre que empieze con una letra";
+        //si no es un caracter, mostrara este mensaje a continuacion
+        echo "Error. debe ingresar un nombre que empieze con una letra\n";
       }
-
+     //se estara repitiendo hasta que ingrese un nombre valido
     }while(!ctype_alpha($nombreJugador[0]));
-
+     //retorna el nombre en minusculas
      return strtolower($nombreJugador);
 }
 
-/**
- * ordena y muestra la coleccion de partidas por nombre de jugador y por palabra
- * @param array $coleccionPartidas
- */
-function mostrarPartidasEnOrden($coleccionPartidas){
-    uasort($coleccionPartidas, function ($a, $b) {
-        $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
-
-        if ($comparacionJugador === 0) {
-            return strcmp($a['palabraWordix'], $b['palabraWordix']);
-        }
-
-        return $comparacionJugador;
-    });
-    print_r($coleccionPartidas);
-}
 
 /** 
  *Muestra un listado de partidas ordenadas por jugador y por palabra.
  *
  *@param array $coleccionPartidas 
 */
-function ordenarPartidas($coleccionPartidas)
-{
+function ordenarPartidas($coleccionPartidas){
+    //ordenamos la coleccion de partidas
     uasort($coleccionPartidas, function ($a, $b) {
         // Ordenar por jugador alfabéticamente
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
@@ -276,8 +263,10 @@ function ordenarPartidas($coleccionPartidas)
             // Si los jugadores son iguales, ordenar por palabra
             return strcmp($a['palabraWordix'], $b['palabraWordix']);
         }
+        //retorna el resultado de la comparacion de los jugadores
         return $comparacionJugador;
     });
+
 
     print_r($coleccionPartidas);     
 }
