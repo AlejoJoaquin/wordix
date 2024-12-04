@@ -306,6 +306,7 @@ do {
 
     switch ($opcion) {
         case 1: 
+<<<<<<< HEAD
 
         // Solicitar el nombre del jugador
         $nombreJugador = solicitarJugador();
@@ -343,6 +344,45 @@ do {
             
             echo "Partida terminada. El jugador " . $partida['jugador'] . " jugó con la palabra " . $partida['palabraWordix'] . " y obtuvo " . $partida['puntaje'] . " puntos.\n";
         }
+=======
+            
+            $nombreJugador = solicitarJugador();
+            $cantPalabras = count($coleccionPalabras);
+    
+            if (!isset($partidasPorJugador[$nombreJugador])) {
+                $partidasPorJugador[$nombreJugador] = [];
+            }
+    
+            do {
+                echo "Ingrese por favor el número de la palabra (1 a " . $cantPalabras . "): ";
+                $eleccion = solicitarNumeroEntre(1, $cantPalabras);
+    
+                $indiceUtilizado = false;
+                $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
+    
+                for ($i = 0; $i < $cantidadPartidas; $i++) {
+                    if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
+                        $indiceUtilizado = true;
+                        break;
+                    }
+                }
+    
+                if ($indiceUtilizado) {
+                    echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+                }
+            } while ($indiceUtilizado);
+    
+            $partidasPorJugador[$nombreJugador][] = $eleccion;
+            $palabraElegida = $coleccionPalabras[$eleccion - 1];
+            $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+    
+            // Mostrar la partida jugada
+            echo "Partida guardada: Jugador: " . $nombreJugador . "\n";
+            echo "Palabra: " . $palabraElegida . "\n";
+            echo "Intentos: " . $partida["intentos"] . "\n";
+            echo "Puntaje: " . $partida["puntaje"] . "\n";
+    
+>>>>>>> cfc81eff5df378b71d6748e9d678a98eb1241515
         break;
         case 2: 
             $jugador = solicitarJugador();
