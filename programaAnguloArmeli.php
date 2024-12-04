@@ -306,40 +306,42 @@ do {
 
     switch ($opcion) {
         case 1: 
-            //Jugar al wordix con una palabra elegida
-            $nombreJugador = solicitarJugador();
-            $cantPlabras = count($coleccionPalabras);
+        // Jugar al Wordix con una palabra elegida
+        $nombreJugador = solicitarJugador();
+        $cantPlabras = count($coleccionPalabras);
 
-           if (!isset($partidaJugador)) {
-            $partidaJugador = []; 
-           }
-
-           if (!isset($partidasPorJugador[$nombreJugador])) {
-            $partidasPorJugador[$nombreJugador] = [];    
+        if (!isset($partidasPorJugador[$nombreJugador])) {
+            $partidasPorJugador[$nombreJugador] = [];
         }
-        
-        do{  
-            echo "Ingrese por favor el numero de la palabra (1 a " . $cantPlabras . "): "; 
+
+        do {
+            echo "Ingrese por favor el número de la palabra (1 a " . $cantPlabras . "): ";
             $eleccion = solicitarNumeroEntre(1, $cantPlabras);
 
             $indiceUtilizado = false;
             $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
-             
-             for ($i = 0; $i < $cantidadPartidas; $i++){            
+
+            for ($i = 0; $i < $cantidadPartidas; $i++) {
                 if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
-                    $indiceUtilizado = true; 
+                    $indiceUtilizado = true;
                     break;
                 }
-              }
+            }
 
-              if ($indiceUtilizado) {
-                 echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
-                }
-            } while($indiceUtilizado);
-            $partidasPorJugador[$nombreJugador][] = $eleccion;
-            $palabraElegida = $coleccionPalabras[$eleccion - 1];
-            $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-            print_r($partida);
+            if ($indiceUtilizado) {
+                echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+            }
+        } while ($indiceUtilizado);
+
+        $partidasPorJugador[$nombreJugador][] = $eleccion;
+        $palabraElegida = $coleccionPalabras[$eleccion - 1];
+        $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+
+        // Mostrar la partida jugada
+        echo "Partida guardada: Jugador: " . $nombreJugador . "\n";
+        echo "Palabra: " . $palabraElegida . "\n";
+        echo "Intentos: " . $partida["intentos"] . "\n";
+        echo "Puntaje: " . $partida["puntaje"] . "\n";
         break;
         case 2: 
             $jugador = solicitarJugador();
@@ -377,7 +379,6 @@ do {
             echo "Intentos: " . $intentos . "\n"; 
             echo "Puntaje: " . $puntaje . "\n";
             break;
-        
         case 3: 
             do {
                 // Solicitar número de partida al usuario
