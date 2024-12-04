@@ -278,12 +278,14 @@ function ordenarPartidas($coleccionPartidas){
 //Declaración de variables:
 //int $opcion
 //int $eleccion
-//
-$coleccionPalabras = cargarColeccionPalabras();
-$coleccionPartidas = cargarPartidas();
+//array $partidaJugador
+//array $coleccionPalabras
+//array $PartidasPorJugador
+
 
 //Inicialización de variables:
-
+$coleccionPalabras = cargarColeccionPalabras();
+$coleccionPartidas = cargarPartidas();
 $indicesUtilizadas = [];
 $partidas = cargarPartidas();
 //Proceso:
