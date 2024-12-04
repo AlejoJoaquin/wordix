@@ -210,14 +210,19 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
 */
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
     //int $indice
+    //inicializamos el indice en -1, que indica que no se ha encontrado ninguna partida ganada
     $indice = -1;
 
+    //recorremos sobre cada partida
     for ($i = 0; $i < count($coleccionPartidas); $i++) {
+        //comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
         if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
+            //se el jugador gano una partida, se guarda el indice y se sale del bucle
             $indice = $i;
             break; 
         }
     }
+    //retorna el indice si encontro una partida ganada, si no retornara en -1
     return $indice;
 }
 
@@ -307,42 +312,41 @@ do {
     switch ($opcion) {
         case 1: 
             
-        // Solicitar el nombre del jugador
-        $nombreJugador = solicitarJugador();
-        
-        // Cargar las partidas previas
-        $partidas = cargarPartidas();
-        
-        // Cargar las palabras disponibles
-        $coleccionPalabras = cargarColeccionPalabras();
-        
-        // Solicitar un número de palabra al jugador
-        echo "Elige un número de palabra (1 a " . count($coleccionPalabras) . "): ";
-        $numeroPalabra = solicitarNumeroEntre(1, count($coleccionPalabras));  // Validamos que el número esté dentro del rango
-        
-        // Verificar que el número de palabra no haya sido utilizado
-        $palabraSeleccionada = $coleccionPalabras[$numeroPalabra - 1];  // Restamos 1 porque el arreglo comienza desde 0
-        $palabraUsada = false;
-        
-        foreach ($partidas as $partida) {
-            if ($partida['palabraWordix'] === $palabraSeleccionada && $partida['jugador'] === $nombreJugador) {
-                $palabraUsada = true;
-                break;
+            $nombreJugador = solicitarJugador();
+            $cantPalabras = count($coleccionPalabras);
+    
+            if (!isset($partidasPorJugador[$nombreJugador])) {
+                $partidasPorJugador[$nombreJugador] = [];
             }
-        }
-        
-        // Si la palabra ya fue usada, pedir otra
-        if ($palabraUsada) {
-            echo "La palabra ya fue utilizada por ti. Elige otro número.\n";
-        } else {
-            // Si la palabra no ha sido utilizada, jugar
-            $partida = jugarWordix($palabraSeleccionada, $nombreJugador);
-            
-            // Cargar la nueva partida en el arreglo de partidas
-            array_push($partidas, $partida);
-            
-            echo "Partida terminada. El jugador " . $partida['jugador'] . " jugó con la palabra " . $partida['palabraWordix'] . " y obtuvo " . $partida['puntaje'] . " puntos.\n";
-        }
+    
+            do {
+                echo "Ingrese por favor el número de la palabra (1 a " . $cantPalabras . "): ";
+                $eleccion = solicitarNumeroEntre(1, $cantPalabras);
+    
+                $indiceUtilizado = false;
+                $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
+    
+                for ($i = 0; $i < $cantidadPartidas; $i++) {
+                    if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
+                        $indiceUtilizado = true;
+                        break;
+                    }
+                }
+    
+                if ($indiceUtilizado) {
+                    echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+                }
+            } while ($indiceUtilizado);
+    
+            $partidasPorJugador[$nombreJugador][] = $eleccion;
+            $palabraElegida = $coleccionPalabras[$eleccion - 1];
+            $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+    
+            // Mostrar la partida jugada
+            echo "Partida guardada: Jugador: " . $nombreJugador . "\n";
+            echo "Palabra: " . $palabraElegida . "\n";
+            echo "Intentos: " . $partida["intentos"] . "\n";
+            echo "Puntaje: " . $partida["puntaje"] . "\n";
     
         break;
         case 2: 
