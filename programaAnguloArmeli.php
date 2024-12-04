@@ -402,19 +402,21 @@ do {
                 // Solicitar número de partida al usuario
                 echo "Ingrese el número de partida: ";
                 $numPartida = intval(trim(fgets(STDIN)));
-                
+                //mostrara los datos correspondiente al numero ingresado
                 mostrarPartida($numPartida, $coleccionPartidas);
     
                 // Validar si existe la partida
-                $indice = $numPartida - 1;
-            } while ($indice < 0 || $indice >= count($coleccionPartidas));
+                $indice = $numPartida - 1;//ajusta el numero de partida para que coincida con l indice d arreglo
+            } while ($indice < 0 || $indice >= count($coleccionPartidas));//se repetira si el numero esta fura de rango
             break;
 
         case 4:
-            $nombreJugador = solicitarJugador();
-            $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
-
+            $nombreJugador = solicitarJugador();//se le solicita el nombre al usuario 
+            $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);//obtenemos el indice de la partida ganada
+            //verifica si el jugador ha ganado al menos una ártida
             if($indicePartidaGanada != -1){
+                //si se encontro una partida ganada, se obtiene la informacion de esa partida
+                //muestra los datos de la partida ganada
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
                 echo "********** Primera Partida Ganada **********\n";
                 echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'] . "\n";
@@ -422,14 +424,15 @@ do {
                 echo "Puntaje " . $partidaGanada['puntaje'] . " puntos \n";
                 echo "Inento: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos\n";
             } else {
-                echo "El jugador " . $nombreJugador . " no gano ninguna partida";
+                //se le mostrata este mensaje al usuario si el jugador no gano ninguna partida
+                echo "El jugador " . $nombreJugador . " no gano ninguna partida\n";
             }
             break;
         case 5:                  
-            $jugador = solicitarJugador();
-            
+            $jugador = solicitarJugador();//se solicita el nombre del jugador 
+            // Se obtienen las estadísticas del jugador a partir de su nombre y la colección de partidas
             $estadisticas = obtenerEstadisticasJugador($jugador, $coleccionPartidas);
-
+            //muestra las estadiscticas del jugador
             mostrarEstadisticasJugador($estadisticas);
             break;
         case 6:
