@@ -342,6 +342,12 @@ do {
            $partidasPorJugador[$nombreJugador][] = $eleccion;
            $palabraElegida = $coleccionPalabras[$eleccion - 1];
            $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+           $coleccionPartidas[] = [
+            "palabraWordix" => $partida["palabraWordix"],
+            "jugador" => $partida["jugador"],
+            "intentos" => $partida["intentos"],
+            "puntaje" => $partida["puntaje"]
+        ];
            print_r($partida);
         break;
         case 2: 
