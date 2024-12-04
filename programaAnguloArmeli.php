@@ -278,6 +278,10 @@ function ordenarPartidas($coleccionPartidas){
 //Declaración de variables:
 //int $opcion
 //int $eleccion
+//int $indice
+//string $nombreJugador
+//string $palabraElegida
+//array $estadisticas
 //array $partidaJugador
 //array $coleccionPalabras
 //array $PartidasPorJugador
