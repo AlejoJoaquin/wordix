@@ -210,14 +210,19 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
 */
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
     //int $indice
+    //inicializamos el indice en -1, que indica que no se ha encontrado ninguna partida ganada
     $indice = -1;
 
+    //recorremos sobre cada partida
     for ($i = 0; $i < count($coleccionPartidas); $i++) {
+        //comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
         if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
+            //se el jugador gano una partida, se guarda el indice y se sale del bucle
             $indice = $i;
             break; 
         }
     }
+    //retorna el indice si encontro una partida ganada, si no retornara en -1
     return $indice;
 }
 
@@ -304,6 +309,45 @@ do {
 
     $opcion = seleccionarOpcion();
 
+    switch ($opcion) {
+        case 1: 
+            
+            $nombreJugador = solicitarJugador();
+            $cantPalabras = count($coleccionPalabras);
+    
+            if (!isset($partidasPorJugador[$nombreJugador])) {
+                $partidasPorJugador[$nombreJugador] = [];
+            }
+    
+            do {
+                echo "Ingrese por favor el número de la palabra (1 a " . $cantPalabras . "): ";
+                $eleccion = solicitarNumeroEntre(1, $cantPalabras);
+    
+                $indiceUtilizado = false;
+                $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
+    
+                for ($i = 0; $i < $cantidadPartidas; $i++) {
+                    if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
+                        $indiceUtilizado = true;
+                        break;
+                    }
+                }
+    
+                if ($indiceUtilizado) {
+                    echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+                }
+            } while ($indiceUtilizado);
+    
+            $partidasPorJugador[$nombreJugador][] = $eleccion;
+            $palabraElegida = $coleccionPalabras[$eleccion - 1];
+            $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+    
+            // Mostrar la partida jugada
+            echo "Partida guardada: Jugador: " . $nombreJugador . "\n";
+            echo "Palabra: " . $palabraElegida . "\n";
+            echo "Intentos: " . $partida["intentos"] . "\n";
+            echo "Puntaje: " . $partida["puntaje"] . "\n";
+    
 switch ($opcion) {
     case 1:
         $nombreJugador = solicitarJugador(); // Solicitar el nombre del jugador
@@ -436,6 +480,7 @@ switch ($opcion) {
             echo "Saliendo del Programa...";
             break; 
     }
+ }
 
 } while ($opcion != 8);
 
