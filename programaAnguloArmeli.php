@@ -346,7 +346,6 @@ do {
         break;
         case 2: 
             $jugador = solicitarJugador();
-
             $cantidadPartidas = count($coleccionPartidas);
             $palabraJugada = true;
 
@@ -379,6 +378,7 @@ do {
             echo "Palabra: " . $palabraSeleccionada . "\n"; 
             echo "Intentos: " . $intentos . "\n"; 
             echo "Puntaje: " . $puntaje . "\n";
+            
             break;
         case 3: 
             do {
@@ -409,10 +409,10 @@ do {
             }
             break;
         case 5:                  
-            echo "Ingrese el nombre del jugador: ";
-            $nombreJugador = trim(fgets(STDIN));
+            $jugador = solicitarJugador();
             
-            $estadisticas = obtenerEstadisticasJugador($nombreJugador, cargarPartidas());
+            $estadisticas = obtenerEstadisticasJugador($jugador, $coleccionPartidas);
+
             mostrarEstadisticasJugador($estadisticas);
             break;
         case 6:
