@@ -17,45 +17,54 @@ include_once("wordix.php");
  * @param string $nombreJugador Nombre del jugador
  * @param array $partidas Colección de partidas
  */
-function mostrarEstadisticasJugador($nombreJugador, $partidas)
+// Función para calcular estadísticas
+function obtenerEstadisticasJugador($nombreJugador, $partidas)
 {
-    $totalPartidas = 0;
-    $puntajeTotal = 0;
-    $victorias = 0;
-    $adivinadas = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0];
+    $estadisticas = [
+        "nombre" => ucfirst($nombreJugador),
+        "partidas" => 0,
+        "puntajeTotal" => 0,
+        "victorias" => 0,
+        "adivinadas" => [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0],
+        "porcentajeVictorias" => 0
+    ];
 
-    $i = 0;
-    $cantidadPartidas = count($partidas);
-
-    while($i < $cantidadPartidas) {
-        if (strtolower($partidas[$i]["jugador"]) === strtolower($nombreJugador)) {
-            $totalPartidas++;
-            $puntajeTotal += $partidas[$i]["puntaje"];
-            if ($partidas[$i]["puntaje"] > 0) {
-                $victorias++;
-                $intentos = $partidas[$i]["intentos"];
-                
-                if ($intentos <= 6) {
-                    $adivinadas[$intentos]++;
+    foreach ($partidas as $partida) {
+        if (strtolower($partida["jugador"]) === strtolower($nombreJugador)) {
+            $estadisticas["partidas"]++;
+            $estadisticas["puntajeTotal"] += $partida["puntaje"];
+            
+            if ($partida["puntaje"] > 0) {
+                $estadisticas["victorias"]++;
+                $intentos = $partida["intentos"];
+                if ($intentos <= 5) {
+                    $estadisticas["adivinadas"][$intentos]++;
                 }
             }
         }
-        $i++;
-
     }
 
-    $porcentajeVictorias = ($totalPartidas > 0) ? round(($victorias / $totalPartidas) * 100) : 0;
-    // Mostrar resultados
+    if ($estadisticas["partidas"] > 0) {
+        $estadisticas["porcentajeVictorias"] = round(($estadisticas["victorias"] / $estadisticas["partidas"]) * 100);
+    }
+
+    return $estadisticas;
+}
+
+// Función para mostrar las estadísticas
+function mostrarEstadisticasJugador($estadisticas)
+{
     echo "*******************\n";
-    echo "Jugador: " . ucfirst($nombreJugador) . "\n";
-    echo "Partidas: " . $totalPartidas . "\n";
-    echo "Puntaje total: " . $puntajeTotal . "\n";
-    echo "Victorias: " . $victorias . "\n";
-    echo "Porcentaje victorias: " . round($porcentajeVictorias) . "%\n";
+    echo "Jugador: " . $estadisticas["nombre"] . "\n";
+    echo "Partidas: " . $estadisticas["partidas"] . "\n";
+    echo "Puntaje total: " . $estadisticas["puntajeTotal"] . "\n";
+    echo "Porcentaje victorias: " . $estadisticas["porcentajeVictorias"] . "%\n";
     echo "Adivinadas:\n";
-    for ($j = 1; $j <= count($adivinadas); $j++) {
-        echo "    Intento $j: " . $adivinadas[$j] . "\n";
+
+    foreach ($estadisticas["adivinadas"] as $intento => $cantidad) {
+        echo "    Intento $intento: $cantidad\n";
     }
+
     echo "********************\n";
 }
 
@@ -398,11 +407,11 @@ do {
             }
             break;
         case 5:                  
-            $partidas = cargarPartidas();
-            
             echo "Ingrese el nombre del jugador: ";
             $nombreJugador = trim(fgets(STDIN));
             
+            $estadisticas = obtenerEstadisticasJugador($nombreJugador, cargarPartidas());
+            mostrarEstadisticasJugador($estadisticas);
         case 6:
             ordenarPartidas($coleccionPartidas);
             break;
