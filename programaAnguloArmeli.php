@@ -412,6 +412,7 @@ do {
             
             $estadisticas = obtenerEstadisticasJugador($nombreJugador, cargarPartidas());
             mostrarEstadisticasJugador($estadisticas);
+            break;
         case 6:
             ordenarPartidas($coleccionPartidas);
             break;
