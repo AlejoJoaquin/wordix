@@ -281,6 +281,7 @@ function ordenarPartidas($coleccionPartidas){
 //array $partidaJugador
 //array $coleccionPalabras
 //array $PartidasPorJugador
+//array $coleccionPartidas
 
 
 //Inicialización de variables:
