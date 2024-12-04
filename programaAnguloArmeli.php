@@ -470,6 +470,7 @@ switch ($opcion) {
             echo "Saliendo del Programa...";
             break; 
     }
+ }
 
 } while ($opcion != 8);
 
