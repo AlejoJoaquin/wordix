@@ -308,15 +308,15 @@ do {
         case 1: 
             
             $nombreJugador = solicitarJugador();
-            $cantPlabras = count($coleccionPalabras);
+            $cantPalabras = count($coleccionPalabras);
     
             if (!isset($partidasPorJugador[$nombreJugador])) {
                 $partidasPorJugador[$nombreJugador] = [];
             }
     
             do {
-                echo "Ingrese por favor el número de la palabra (1 a " . $cantPlabras . "): ";
-                $eleccion = solicitarNumeroEntre(1, $cantPlabras);
+                echo "Ingrese por favor el número de la palabra (1 a " . $cantPalabras . "): ";
+                $eleccion = solicitarNumeroEntre(1, $cantPalabras);
     
                 $indiceUtilizado = false;
                 $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
