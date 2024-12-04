@@ -306,45 +306,6 @@ do {
 
     switch ($opcion) {
         case 1: 
-<<<<<<< HEAD
-
-        // Solicitar el nombre del jugador
-        $nombreJugador = solicitarJugador();
-        
-        // Cargar las partidas previas
-        $partidas = cargarPartidas();
-        
-        // Cargar las palabras disponibles
-        $coleccionPalabras = cargarColeccionPalabras();
-        
-        // Solicitar un número de palabra al jugador
-        echo "Elige un número de palabra (1 a " . count($coleccionPalabras) . "): ";
-        $numeroPalabra = solicitarNumeroEntre(1, count($coleccionPalabras));  // Validamos que el número esté dentro del rango
-        
-        // Verificar que el número de palabra no haya sido utilizado
-        $palabraSeleccionada = $coleccionPalabras[$numeroPalabra - 1];  // Restamos 1 porque el arreglo comienza desde 0
-        $palabraUsada = false;
-        
-        foreach ($partidas as $partida) {
-            if ($partida['palabraWordix'] === $palabraSeleccionada && $partida['jugador'] === $nombreJugador) {
-                $palabraUsada = true;
-                break;
-            }
-        }
-        
-        // Si la palabra ya fue usada, pedir otra
-        if ($palabraUsada) {
-            echo "La palabra ya fue utilizada por ti. Elige otro número.\n";
-        } else {
-            // Si la palabra no ha sido utilizada, jugar
-            $partida = jugarWordix($palabraSeleccionada, $nombreJugador);
-            
-            // Cargar la nueva partida en el arreglo de partidas
-            array_push($partidas, $partida);
-            
-            echo "Partida terminada. El jugador " . $partida['jugador'] . " jugó con la palabra " . $partida['palabraWordix'] . " y obtuvo " . $partida['puntaje'] . " puntos.\n";
-        }
-=======
             
             $nombreJugador = solicitarJugador();
             $cantPalabras = count($coleccionPalabras);
@@ -382,7 +343,6 @@ do {
             echo "Intentos: " . $partida["intentos"] . "\n";
             echo "Puntaje: " . $partida["puntaje"] . "\n";
     
->>>>>>> cfc81eff5df378b71d6748e9d678a98eb1241515
         break;
         case 2: 
             $jugador = solicitarJugador();
