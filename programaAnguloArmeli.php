@@ -304,9 +304,8 @@ do {
 
     $opcion = seleccionarOpcion();
 
-    switch ($opcion) {
-        case 1: 
-            
+switch ($opcion) {
+    case 1:
         // Solicitar el nombre del jugador
         $nombreJugador = solicitarJugador();
         
@@ -338,12 +337,12 @@ do {
             // Si la palabra no ha sido utilizada, jugar
             $partida = jugarWordix($palabraSeleccionada, $nombreJugador);
             
-            // Cargar la nueva partida en el arreglo de partidas
-            array_push($partidas, $partida);
+            // Agregar la nueva partida manualmente al array de partidas
+            $partidas[] = $partida;  // Agregamos la partida al final del array
             
+            // Mostrar los resultados de la partida
             echo "Partida terminada. El jugador " . $partida['jugador'] . " jugó con la palabra " . $partida['palabraWordix'] . " y obtuvo " . $partida['puntaje'] . " puntos.\n";
         }
-    
         break;
         case 2: 
             $jugador = solicitarJugador();
