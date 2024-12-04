@@ -306,43 +306,53 @@ do {
 
 switch ($opcion) {
     case 1:
-        // Solicitar el nombre del jugador
-        $nombreJugador = solicitarJugador();
+        $nombreJugador = solicitarJugador(); // Solicitar el nombre del jugador
+        $cantPlabras = count($coleccionPalabras); // Contar las palabras disponibles
         
-        // Cargar las partidas previas
-        $partidas = cargarPartidas();
+        // Verificar si el array para el jugador ya ha sido inicializado
+        if (!isset($partidasPorJugador)) {
+            $partidasPorJugador = [];
+        }
         
-        // Cargar las palabras disponibles
-        $coleccionPalabras = cargarColeccionPalabras();
+        // Asegurarse de que el jugador tenga un array de partidas vacío
+        if (!isset($partidasPorJugador[$nombreJugador])) {
+            $partidasPorJugador[$nombreJugador] = [];    
+        }
         
-        // Solicitar un número de palabra al jugador
-        echo "Elige un número de palabra (1 a " . count($coleccionPalabras) . "): ";
-        $numeroPalabra = solicitarNumeroEntre(1, count($coleccionPalabras));  // Validamos que el número esté dentro del rango
+        do {  
+            // Solicitar al jugador que elija un número de palabra
+            echo "Ingrese por favor el número de la palabra (1 a " . $cantPlabras . "): "; 
+            $eleccion = solicitarNumeroEntre(1, $cantPlabras);
         
-        // Verificar que el número de palabra no haya sido utilizado
-        $palabraSeleccionada = $coleccionPalabras[$numeroPalabra - 1];  // Restamos 1 porque el arreglo comienza desde 0
-        $palabraUsada = false;
+            // Verificar si la palabra ya fue elegida por este jugador
+            $indiceUtilizado = false;
+            $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);
         
-        foreach ($partidas as $partida) {
-            if ($partida['palabraWordix'] === $palabraSeleccionada && $partida['jugador'] === $nombreJugador) {
-                $palabraUsada = true;
-                break;
+            for ($i = 0; $i < $cantidadPartidas; $i++) {            
+                if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
+                    $indiceUtilizado = true; 
+                    break;
+                }
             }
-        }
         
-        // Si la palabra ya fue usada, pedir otra
-        if ($palabraUsada) {
-            echo "La palabra ya fue utilizada por ti. Elige otro número.\n";
-        } else {
-            // Si la palabra no ha sido utilizada, jugar
-            $partida = jugarWordix($palabraSeleccionada, $nombreJugador);
-            
-            // Agregar la nueva partida manualmente al array de partidas
-            $partidas[] = $partida;  // Agregamos la partida al final del array
-            
-            // Mostrar los resultados de la partida
-            echo "Partida terminada. El jugador " . $partida['jugador'] . " jugó con la palabra " . $partida['palabraWordix'] . " y obtuvo " . $partida['puntaje'] . " puntos.\n";
-        }
+            // Si ya se ha utilizado la palabra, solicitar otra elección
+            if ($indiceUtilizado) {
+                echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+            }
+        
+        } while($indiceUtilizado);
+        
+        // Si la palabra no fue utilizada, agregarla a las partidas del jugador
+        $partidasPorJugador[$nombreJugador][] = $eleccion;
+        
+        // Obtener la palabra elegida
+        $palabraElegida = $coleccionPalabras[$eleccion - 1];  // Recordar que el índice empieza desde 0
+        
+        // Jugar la partida con la palabra seleccionada
+        $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+        
+        // Mostrar los detalles de la partida
+        print_r($partida);
         break;
         case 2: 
             $jugador = solicitarJugador();
