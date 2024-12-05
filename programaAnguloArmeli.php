@@ -112,7 +112,7 @@ function cargarPartidas(){
  */
 function seleccionarOpcion(){
     //int $opcion
-    do {
+
         //este es el menu de ususario que se le mostrara al usuario
         echo "********** Menu de opciones, seleccione una opcion del 1 al 8 **********\n";
         echo "1. Jugar al wordix con una palabra elegida\n";
@@ -124,16 +124,9 @@ function seleccionarOpcion(){
         echo "7. Agregar una palabra de 5 letras a Wordix\n";
         echo "8. Salir del menu\n";
         
-        //leera la opcion ingresada por el usuario
-        $opcion = trim(fgets(STDIN));
-        //se verifica si la opcion que fue ingresada es un numero y si esta en el rango requerido
-        if (!is_numeric($opcion) || $opcion < 1 || $opcion > 8){
-            //se le mostrara este mensaje al usuario si la opcion ingresada no es valida
-            echo "Error al elegir un numero, por favor ingrese un numero valido que aparece en el menu\n";
-        }
-     //se le pedira al usuario que ingrese una opcion hasta que sea valida
-    } while (!is_numeric($opcion) || $opcion < 1 || $opcion > 8);
-    //devuelve la opcion seleccionada por el ususario
+        //llamamos a la funcion solicitarNumeroEntre para que nos de una opcion valida
+        $opcion = solicitarNumeroEntre(1,8);
+    
     return $opcion;
 }
 
