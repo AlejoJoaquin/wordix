@@ -168,7 +168,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     //boolean $existe
     //obtenemos la cantidad de palabras
     $cantPalabras = count($coleccionPalabras);
-    do {
+    while(true){
         //inicializamos una variable que indicara si la palabra ya existe
         $existe = false;
         //recorremos la coleccion de palabras para verificar si la nueva palabra ya existe
@@ -191,7 +191,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
             break; 
         }
         //continuara solicitandole al usuario hasta que agregue una palabra nueva
-    } while (true);
+    }
     return $coleccionPalabras;
 }
 
