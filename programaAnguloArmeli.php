@@ -168,26 +168,31 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     //boolean $existe
     //obtenemos la cantidad de palabras
     $cantPalabras = count($coleccionPalabras);
-    while(true){
-        //inicializamos una variable que indicara si la palabra ya existe
+    $palabraValida = false;//creamos esta nueva variable para controlar el bucle principal
+    
+    while(!true){
+       //verificamos aca si la palabra existe recorriendo to
         $existe = false;
-        //recorremos la coleccion de palabras para verificar si la nueva palabra ya existe
-        for ($i = 0; $i < $cantPalabras; $i++) {
+        $i = 0;
+        //recorre el arreglo hasta que encuentre la misma palabra en la coleccion
+        while (!$existe && $i < count($coleccionPalabras)){
             if ($coleccionPalabras[$i] === $nuevaPalabra) {
-                //si la palabra existe, se cumple la condicion y se sale del bucle
                 $existe = true;
             }
+            $i++;
         }
-        //si la palabra ya esta en la coleccion se le solicitara que agregue 
-        if ($existe) {
-            echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
-            //leera la nueva palabra que ingrese el usuario y la convertira a mayusculas
-            $nuevaPalabra = strtoupper(trim(fgets(STDIN)));
+
+        if (!$existe) {
+            $palabraValida = true;//si la palabra no esta repetida, se cambia a true
+        } else {
+            //si la palabra ya esta en la coleccion, 
+            echo "Esta palabra ya está en la colección. Intente con otra palabra:\n";
+            $nuevaPalabra = leerPalabra5Letras(); //le solicitara nueva palabra
         }
     }
-        //si la palabra no existe en la coleccion, se agrega la nueva palabra
-        $coleccionPalabras[] = $nuevaPalabra;
-        echo "La nueva palabra '" . $nuevaPalabra . "' fue agregada exitosamente.\n"; 
+    //agregara la nueva palabra a la coleccion
+    $coleccionPalabras[] = $nuevaPalabra;
+    echo "La palabra " . $nuevaPalabra . " fue agregada exitosamente a la colección.\n";
 
     return $coleccionPalabras;
 }
