@@ -332,38 +332,47 @@ function esIntentoGanado($estructuraPalabraIntento)
     return $ganado;
 }
 
+/**
+*Calcula el puntaje obtenido en el wordix
+*@param int $intentosUsados
+*@param bool $adivina
+*@param string $palabraAdivinada
+*@return int 
+*/
 function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) {
-    $puntaje = 0;
+    $puntaje = 1;
+
+    if (!$adivina || $intentosUsados > 6) {
+        $puntaje = 0;
+    }
 
     // Validación inicial: si no adivina o usa más de 6 intentos, puntaje es 0
     if ($adivina && $intentosUsados <= 6) {
         // Calcula el puntaje base por intentos
-        $puntajeBase = 6 - $intentosUsados;
+        $puntajeBase = 7 - $intentosUsados;
 
         // Convierte la palabra a mayúsculas para trabajar uniformemente
         $palabraAdivinada = strtoupper($palabraAdivinada);
 
-        // Inicializa puntaje por letras
-        $puntajeLetras = 0;
-
         // Recorre cada letra de la palabra
-        $i = 0;
-        while ($i < strlen($palabraAdivinada)) {
+        for ($i = 0; $i < strlen($palabraAdivinada); $i++) {
             $letra = $palabraAdivinada[$i];
+
+            // Calcula los puntos según las reglas
             if ($letra == 'A' || $letra == 'E' || $letra == 'I' || $letra == 'O' || $letra == 'U') {
-                $puntajeLetras += 1; // Vocales: 1 punto
+                $puntaje += 1; // Vocales: 1 punto
             } elseif ($letra >= 'A' && $letra <= 'M') {
-                $puntajeLetras += 2; // Consonantes A-M: 2 puntos
-            } elseif ($letra >= 'N' && $letra <= 'Z') {
-                $puntajeLetras += 3; // Consonantes N-Z: 3 puntos
+                $puntaje += 2; // Consonantes A-M: 2 puntos
+            } else {
+                $puntaje += 3; // Consonantes N-Z: 3 puntos
             }
-            $i++;
         }
 
-        // Suma el puntaje base y el puntaje por letras
-        $puntaje = $puntajeBase + $puntajeLetras;
+        // Suma el puntaje base al puntaje por letras
+        $puntaje += $puntajeBase;
     }
 
+    // Devuelve el puntaje final
     return $puntaje;
 }
 
