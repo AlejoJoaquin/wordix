@@ -176,7 +176,6 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
             if ($coleccionPalabras[$i] === $nuevaPalabra) {
                 //si la palabra existe, se cumple la condicion y se sale del bucle
                 $existe = true;
-                break;
             }
         }
         //si la palabra ya esta en la coleccion se le solicitara que agregue 
@@ -184,14 +183,12 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
             echo "Esta palabra ya está en la colección. Intente con otra palabra.\n";
             //leera la nueva palabra que ingrese el usuario y la convertira a mayusculas
             $nuevaPalabra = strtoupper(trim(fgets(STDIN)));
-        } else {
-            //si la palabra no existe en la coleccion, se agrega la nueva palabra
-            $coleccionPalabras[] = $nuevaPalabra;
-            echo "La nueva palabra '" . $nuevaPalabra . "' fue agregada exitosamente.\n";
-            break; 
         }
-        //continuara solicitandole al usuario hasta que agregue una palabra nueva
     }
+        //si la palabra no existe en la coleccion, se agrega la nueva palabra
+        $coleccionPalabras[] = $nuevaPalabra;
+        echo "La nueva palabra '" . $nuevaPalabra . "' fue agregada exitosamente.\n"; 
+
     return $coleccionPalabras;
 }
 
