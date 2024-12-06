@@ -168,12 +168,13 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     //boolean $existe
     //obtenemos la cantidad de palabras
     $cantPalabras = count($coleccionPalabras);
-    $palabraValida = false;
+    $palabraValida = false;//creamos esta nueva variable para controlar el bucle principal
     
     while(!true){
        //verificamos aca si la palabra existe recorriendo to
         $existe = false;
         $i = 0;
+        //recorre el arreglo hasta que encuentre la misma palabra en la coleccion
         while (!$existe && $i < count($coleccionPalabras)){
             if ($coleccionPalabras[$i] === $nuevaPalabra) {
                 $existe = true;
@@ -182,13 +183,14 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
         }
 
         if (!$existe) {
-            $palabraValida = true; 
+            $palabraValida = true;//si la palabra no esta repetida, se cambia a true
         } else {
+            //si la palabra ya esta en la coleccion, 
             echo "Esta palabra ya está en la colección. Intente con otra palabra:\n";
-            $nuevaPalabra = leerPalabra5Letras(); 
+            $nuevaPalabra = leerPalabra5Letras(); //le solicitara nueva palabra
         }
     }
-   
+    //agregara la nueva palabra a la coleccion
     $coleccionPalabras[] = $nuevaPalabra;
     echo "La palabra " . $nuevaPalabra . " fue agregada exitosamente a la colección.\n";
 
