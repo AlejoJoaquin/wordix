@@ -163,6 +163,7 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  * @return array
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
+    //boolean $existe 
     // Variable para verificar si la palabra ya existe si ponemos "true" es como que esta desde un principio desde los tiempos
     $existe = false;
 
@@ -198,6 +199,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
  */
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
     // Inicializamos el índice en -1, que indica que no se ha encontrado ninguna partida ganada
+    //int $indice
     $indice = -1;
 
     // Recorremos sobre cada partida
