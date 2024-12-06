@@ -274,7 +274,6 @@ function ordenarPartidas($coleccionPartidas){
 //array $PartidasPorJugador
 //array $coleccionPartidas
 
-
 //Inicialización de variables:
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
