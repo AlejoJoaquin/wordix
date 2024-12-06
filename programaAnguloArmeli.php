@@ -222,6 +222,7 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
 }
 
 
+
 /**
  * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
  * @return string
