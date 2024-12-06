@@ -273,7 +273,6 @@ function ordenarPartidas($coleccionPartidas){
 //array $coleccionPalabras
 //array $PartidasPorJugador
 //array $coleccionPartidas
-
 //Inicialización de variables:
 $coleccionPalabras = cargarColeccionPalabras();
 $coleccionPartidas = cargarPartidas();
@@ -331,54 +330,54 @@ $coleccionPartidas[] = [
 
         break;
         case 2: 
-// Se solicita al usuario que ingrese el nombre del jugador
-$jugador = solicitarJugador();
-// Obtenemos la cantidad de partidas
-$cantidadPartidas = count($coleccionPartidas);
-// Variable que verifica si la palabra que seleccionó el usuario ya ha sido jugada anteriormente
-$palabraJugada = true;
-
-// Bucle que funciona para seleccionar una palabra que no haya elegido el jugador
-while ($palabraJugada) {
-    // Se selecciona un índice aleatorio dentro del rango de palabras disponibles
-    $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
-    // Obtenemos la palabra seleccionada respecto al índice
-    $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
-    // Inicializamos la variable en falso, asumiendo que la palabra no ha sido jugada
-    $palabraJugada = false;
-
-    // Verificamos si la palabra seleccionada ya ha sido jugada por el jugador
-    $i = 0;
-    while ($i < count($coleccionPartidas) && !$palabraJugada) {
-        // Comparamos el nombre del jugador y la palabra jugada
-        if (
-            strtolower($coleccionPartidas[$i]["jugador"]) === strtolower($jugador) &&
-            $coleccionPartidas[$i]["palabraWordix"] === $palabraSeleccionada
-        ) {
-            // Si la palabra ya fue jugada, marcamos la variable como true para repetir el proceso
+            // Se solicita al usuario que ingrese el nombre del jugador
+            $jugador = solicitarJugador();
+            // Obtenemos la cantidad de partidas
+            $cantidadPartidas = count($coleccionPartidas);
+            // Variable que verifica si la palabra que seleccionó el usuario ya ha sido jugada anteriormente
             $palabraJugada = true;
-        }
-        $i++;
-    }
-}
 
-// Llamamos a la función jugarWordix
-$partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
-// Obtenemos el número de intentos y el puntaje de la partida
-$intentos = $partida["intentos"];
-$puntaje = $partida["puntaje"];
-// Guardamos los resultados de la partida en la colección
-$coleccionPartidas[] = [
-    "palabraWordix" => $partida["palabraWordix"],
-    "jugador" => $partida["jugador"],
-    "intentos" => $partida["intentos"],
-    "puntaje" => $partida["puntaje"],
-];
-// Mostramos un mensaje al usuario con los resultados de la partida
-echo "Partida guardada: Jugador: " . $jugador . "\n";
-echo "Palabra: " . $palabraSeleccionada . "\n";
-echo "Intentos: " . $intentos . "\n";
-echo "Puntaje: " . $puntaje . "\n";
+            // Bucle que funciona para seleccionar una palabra que no haya elegido el jugador
+            while ($palabraJugada) {
+                // Se selecciona un índice aleatorio dentro del rango de palabras disponibles
+                $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
+                // Obtenemos la palabra seleccionada respecto al índice
+                $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
+                // Inicializamos la variable en falso, asumiendo que la palabra no ha sido jugada
+                $palabraJugada = false;
+
+                // Verificamos si la palabra seleccionada ya ha sido jugada por el jugador
+                $i = 0;
+                while ($i < count($coleccionPartidas) && !$palabraJugada) {
+                // Comparamos el nombre del jugador y la palabra jugada
+                if (
+                strtolower($coleccionPartidas[$i]["jugador"]) === strtolower($jugador) &&
+                $coleccionPartidas[$i]["palabraWordix"] === $palabraSeleccionada
+                ) {
+                // Si la palabra ya fue jugada, marcamos la variable como true para repetir el proceso
+                $palabraJugada = true;
+                }   
+                $i++;
+            }   
+        }
+
+        // Llamamos a la función jugarWordix
+        $partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
+        // Obtenemos el número de intentos y el puntaje de la partida
+        $intentos = $partida["intentos"];
+        $puntaje = $partida["puntaje"];
+        // Guardamos los resultados de la partida en la colección
+        $coleccionPartidas[] = [
+            "palabraWordix" => $partida["palabraWordix"],
+            "jugador" => $partida["jugador"],
+            "intentos" => $partida["intentos"],
+            "puntaje" => $partida["puntaje"],
+        ];
+        // Mostramos un mensaje al usuario con los resultados de la partida
+        echo "Partida guardada: Jugador: " . $jugador . "\n";
+        echo "Palabra: " . $palabraSeleccionada . "\n";
+        echo "Intentos: " . $intentos . "\n";
+        echo "Puntaje: " . $puntaje . "\n";
 
             break;
         case 3: 
