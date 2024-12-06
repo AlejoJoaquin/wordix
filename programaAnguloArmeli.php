@@ -50,13 +50,13 @@ function cargarPartidas(){
 }
 
 /**
- * Muestra estadísticas de un jugador basado en las partidas jugadas.
- * @param string $nombreJugador Nombre del jugador
- * @param array $partidas Colección de partidas
+ * Función que muestra estadísticas de un jugador basado en las partidas jugadas.
+ * 
+ * @param string $nombreJugador Nombre del jugador.
+ * @param array $partidas Colección de partidas.
+ * @return array Estadísticas del jugador.
  */
-// Función para calcular estadísticas
-function obtenerEstadisticasJugador($nombreJugador, $partidas)
-{
+function obtenerEstadisticasJugador($nombreJugador, $partidas) {
     $estadisticas = [
         "nombre" => ucfirst($nombreJugador),
         "partidas" => 0,
@@ -67,20 +67,21 @@ function obtenerEstadisticasJugador($nombreJugador, $partidas)
     ];
 
     foreach ($partidas as $partida) {
+        // Verificamos si el jugador de la partida es el buscado
         if (strtolower($partida["jugador"]) === strtolower($nombreJugador)) {
+            // Actualizamos las estadísticas de partidas y puntaje total
             $estadisticas["partidas"]++;
             $estadisticas["puntajeTotal"] += $partida["puntaje"];
-            
-            if ($partida["puntaje"] > 0) {
+
+            // Condición combinada para victoria y conteo de intentos
+            if ($partida["puntaje"] > 0 && $partida["intentos"] <= 5) {
                 $estadisticas["victorias"]++;
-                $intentos = $partida["intentos"];
-                if ($intentos <= 5) {
-                    $estadisticas["adivinadas"][$intentos]++;
-                }
+                $estadisticas["adivinadas"][$partida["intentos"]]++;
             }
         }
     }
 
+    // Calculamos el porcentaje de victorias, si se han jugado partidas
     if ($estadisticas["partidas"] > 0) {
         $estadisticas["porcentajeVictorias"] = round(($estadisticas["victorias"] / $estadisticas["partidas"]) * 100);
     }
@@ -88,9 +89,12 @@ function obtenerEstadisticasJugador($nombreJugador, $partidas)
     return $estadisticas;
 }
 
-// Función para mostrar las estadísticas
-function mostrarEstadisticasJugador($estadisticas)
-{
+/**
+ * Función para mostrar las estadisticas de un jugador
+ * @param array $nombreJugador
+ */
+function mostrarEstadisticasJugador($estadisticas) {
+
     echo "*******************\n";
     echo "Jugador: " . $estadisticas["nombre"] . "\n";
     echo "Partidas: " . $estadisticas["partidas"] . "\n";
@@ -106,32 +110,29 @@ function mostrarEstadisticasJugador($estadisticas)
 }
 
 /**
- * MODULO que muestra al usuario el menu de opciones y le solicitara una opcion valida
+ * funcion que muestra al usuario el menu de opciones y le solicitara una opcion valida
  * @param string $usuario
  * @return int $opcion
  */
 function seleccionarOpcion(){
     //int $opcion
-
-        //este es el menu de ususario que se le mostrara al usuario
-        echo "********** Menu de opciones, seleccione una opcion del 1 al 8 **********\n";
-        echo "1. Jugar al wordix con una palabra elegida\n";
-        echo "2. Jugar al wordix con una palabra aleatoria\n";
-        echo "3. Mostrar partida\n";
-        echo "4. Mostrar la primer partida ganada\n";
-        echo "5. Mostrar resumen de Jugador\n";
-        echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
-        echo "7. Agregar una palabra de 5 letras a Wordix\n";
-        echo "8. Salir del menu\n";
+    echo "********** Menu de opciones, seleccione una opcion del 1 al 8 **********\n";
+    echo "1. Jugar al wordix con una palabra elegida\n";
+    echo "2. Jugar al wordix con una palabra aleatoria\n";
+    echo "3. Mostrar partida\n";
+    echo "4. Mostrar la primer partida ganada\n";
+    echo "5. Mostrar resumen de Jugador\n";
+    echo "6. Mostrar listado de partidas ordenadas por jugador y por palabra\n";
+    echo "7. Agregar una palabra de 5 letras a Wordix\n";
+    echo "8. Salir del menu\n";
         
-        //llamamos a la funcion solicitarNumeroEntre para que nos de una opcion valida
-        $opcion = solicitarNumeroEntre(1,8);
+    $opcion = solicitarNumeroEntre(1,8);
     
     return $opcion;
 }
 
 /**
- * MODULO que dado un numero de partidas, mostrara al usuario en pantalla los datos de la partida
+ * funcion que dado un numero de partidas, mostrara al usuario en pantalla los datos de la partida
  * @param int $numPartida
  * @param array $coleccionPartidas
  */
@@ -146,82 +147,71 @@ function mostrarPartida($numPartida, $coleccionPartidas){
         //se obtiene la partida correspondiente al indice calculado
         $partida = $coleccionPartidas[$indice];
 
-        //muestra el mensaje por pantalla al usuario
         echo "Palabra Wordix: " . $partida['palabraWordix'] . "\n";
         echo "Jugador: " . $partida['jugador'] . "\n";
         echo "Puntaje: " . $partida['puntaje'] . "\n";
         echo "Intentos: " . $partida['intentos'] . "\n";
     } else {
-        //este mensaje se le mostrara al usuario si el indice es invalido
         echo "El numero que ingreso es invalido. Por favor, ingrese un número entre 1 y " . count($coleccionPartidas) . ".\n";
     }
 }
 
 /**
- * Agregara la palabra que ingreso el usuario a la coleccion si es que no esta repetida
+ * Agrega la palabra que ingresó el usuario a la colección si no está repetida
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra
  * @return array
  */
-function agregarPalabra($coleccionPalabras, $nuevaPalabra){
-    //int $cantPalabras
-    //boolean $existe
-    //obtenemos la cantidad de palabras
-    $cantPalabras = count($coleccionPalabras);
-    $palabraValida = false;//creamos esta nueva variable para controlar el bucle principal
-    
-    while(!true){
-       //verificamos aca si la palabra existe recorriendo to
-        $existe = false;
-        $i = 0;
-        //recorre el arreglo hasta que encuentre la misma palabra en la coleccion
-        while (!$existe && $i < count($coleccionPalabras)){
-            if ($coleccionPalabras[$i] === $nuevaPalabra) {
-                $existe = true;
-            }
-            $i++;
-        }
+function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
+    // Variable para verificar si la palabra ya existe si ponemos "true" es como que esta desde un principio desde los tiempos
+    $existe = false;
 
-        if (!$existe) {
-            $palabraValida = true;//si la palabra no esta repetida, se cambia a true
-        } else {
-            //si la palabra ya esta en la coleccion, 
-            echo "Esta palabra ya está en la colección. Intente con otra palabra:\n";
-            $nuevaPalabra = leerPalabra5Letras(); //le solicitara nueva palabra
+    // Usamos un ciclo for para recorrer la colección
+    for ($i = 0; $i < count($coleccionPalabras); $i++) {
+        if ($coleccionPalabras[$i] === $nuevaPalabra) {
+            $existe = true;
+            // Si encontramos que la palabra existe, salimos del ciclo y no agregamos la palabra
         }
     }
-    //agregara la nueva palabra a la coleccion
-    $coleccionPalabras[] = $nuevaPalabra;
-    echo "La palabra " . $nuevaPalabra . " fue agregada exitosamente a la colección.\n";
+
+    // Si la palabra no existe en la colección
+    if (!$existe) {
+        // Agregar la nueva palabra a la colección
+        $coleccionPalabras[] = $nuevaPalabra;
+        echo "La palabra " . $nuevaPalabra . " fue agregada exitosamente a la colección.\n";
+    } else {
+        // Si la palabra ya existe, pedimos una nueva palabra
+        echo "Esta palabra ya está en la colección. Intente con otra palabra:\n";
+        $nuevaPalabra = leerPalabra5Letras(); // Le solicitamos una nueva palabra
+        // Volver a llamar a la función con la nueva palabra
+        $coleccionPalabras = agregarPalabra($coleccionPalabras, $nuevaPalabra);
+    }
 
     return $coleccionPalabras;
 }
 
-/** 
- *Retorna el indice de la primera partida ganada por el jugador o retornara -1 si no gano ninguna partida
- *@param array $coleccionPartidas
- *@param string $nombreJugador
- *@return int
-*/
-function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador){
-    //int $indice
-    //inicializamos el indice en -1, que indica que no se ha encontrado ninguna partida ganada
+/**
+ * Retorna el índice de la primera partida ganada por el jugador o retornará -1 si no ganó ninguna partida
+ * @param array $coleccionPartidas
+ * @param string $nombreJugador
+ * @return int
+ */
+function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
+    // Inicializamos el índice en -1, que indica que no se ha encontrado ninguna partida ganada
     $indice = -1;
 
-    //recorremos sobre cada partida
+    // Recorremos sobre cada partida
     for ($i = 0; $i < count($coleccionPartidas); $i++) {
-        //comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
+        // Comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
         if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
-            //se el jugador gano una partida, se guarda el indice y se sale del bucle
+            // Se ha encontrado una victoria del jugador, almacenamos el índice y salimos del bucle
             $indice = $i;
-            break; 
         }
     }
-    //retorna el indice si encontro una partida ganada, si no retornara en -1
+    
+    // Retorna el índice si encontró una partida ganada, si no retornará -1
     return $indice;
 }
-
-
 
 /**
  * Se le solicitara al usuario que ingrese el nombre de un jugador y que retorne el nombre en minuscula
@@ -426,10 +416,8 @@ do {
             }
             break;
         case 5:                  
-            $jugador = solicitarJugador();//se solicita el nombre del jugador 
-            // Se obtienen las estadísticas del jugador a partir de su nombre y la colección de partidas
+            $jugador = solicitarJugador();
             $estadisticas = obtenerEstadisticasJugador($jugador, $coleccionPartidas);
-            //muestra las estadiscticas del jugador
             mostrarEstadisticasJugador($estadisticas);
             break;
         case 6:
