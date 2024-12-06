@@ -333,47 +333,35 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
-*Calcula el puntaje obtenido en el wordix
-*@param int $intentosUsados
-*@param bool $adivina
-*@param string $palabraAdivinada
-*@return int 
-*/
-function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) {
-
-    if (!$adivina || $intentosUsados > 6) {
-        $puntaje = 0;
+ * Calcula el puntaje de una partida de Wordix.
+ * @var int $puntajeBase, $puntajeLetras
+ * @param int $nroIntento Número de intento en que se adivinó la palabra.
+ * @param string $palabraAdivinada Palabra adivinada por el jugador.
+ * @return int $puntajeTotal obtenido en la partida.
+ */
+function obtenerPuntajeWordix($nroIntento, $palabraAdivinada) {
+    // int $puntajeBase, $puntajeLetras
+    if ($nroIntento > 6 || $nroIntento < 1) {
+        $puntajeTotal = 0;
     }
 
-    // Validación inicial: si no adivina o usa más de 6 intentos, puntaje es 0
-    if ($adivina && $intentosUsados <= 6) {
-        
-        $puntajeBase = 7 - $intentosUsados;
-        $puntaje = 1;
+    $puntajeBase = 7 - $nroIntento; 
+    $puntajeLetras = 0;
 
-        // Convierte la palabra a mayúsculas para trabajar uniformemente
-        $palabraAdivinada = strtoupper($palabraAdivinada);
+    // Calculamos el puntaje para cada letra de la palabra:
+    for ($i = 0; $i < strlen($palabraAdivinada); $i++) {
+        $letra = strtoupper($palabraAdivinada[$i]);
 
-        // Recorre cada letra de la palabra
-        for ($i = 0; $i < strlen($palabraAdivinada); $i++) {
-            $letra = $palabraAdivinada[$i];
-
-            // Calcula los puntos según las reglas
-            if ($letra == 'A' || $letra == 'E' || $letra == 'I' || $letra == 'O' || $letra == 'U') {
-                $puntaje += 1; // Vocales: 1 punto
-            } elseif ($letra >= 'A' && $letra <= 'M') {
-                $puntaje += 2; // Consonantes A-M: 2 puntos
-            } else {
-                $puntaje += 3; // Consonantes N-Z: 3 puntos
-            }
+        if ($letra === 'A' || $letra === 'E' || $letra === 'I' || $letra === 'O' || $letra === 'U') {
+            $puntajeLetras += 1; // Vocales suman un punto
+        } elseif ($letra >= 'A' && $letra <= 'M') {
+            $puntajeLetras += 2; // Consonantes de A a M valen 2 puntos
+        } else {
+            $puntajeLetras += 3; // Consonantes de N a Z valen 3 puntos
         }
-
-        // Suma el puntaje base al puntaje por letras
-        $puntaje += $puntajeBase;
     }
-
-    // Devuelve el puntaje final
-    return $puntaje;
+    $puntajeTotal = $puntajeBase + $puntajeLetras;
+    return $puntajeTotal;
 }
 
 /**
