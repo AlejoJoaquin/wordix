@@ -144,14 +144,15 @@ function mostrarPartida($numPartida, $coleccionPartidas){
 
     //verifica si el indice esta dentro del rango valido
     if ($indice >= 0 && $indice < count($coleccionPartidas)) {
-        //se obtiene la partida correspondiente al indice calculado
+        //guardamos la partida que es corrspondiente con el indice
         $partida = $coleccionPartidas[$indice];
-
+        //se le mostrara en pantalla los datos al usuario
         echo "Palabra Wordix: " . $partida['palabraWordix'] . "\n";
         echo "Jugador: " . $partida['jugador'] . "\n";
         echo "Puntaje: " . $partida['puntaje'] . "\n";
         echo "Intentos: " . $partida['intentos'] . "\n";
     } else {
+        //si el indice no esta dentro del rango permitido, se le mostrara por pantalla el siguiente mensaje
         echo "El numero que ingreso es invalido. Por favor, ingrese un número entre 1 y " . count($coleccionPartidas) . ".\n";
     }
 }
@@ -166,15 +167,16 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
     //boolean $existe 
     // Variable para verificar si la palabra ya existe si ponemos "true" es como que esta desde un principio desde los tiempos
     $existe = false;
-    $i = 0;
+    $i = 0;//creamos esta nueva variable para que pueda recorrer el arreglo
 
     // Usamos un ciclo while para recorrer la coleccion
     while($i < count($coleccionPalabras)) {
+        //verificaremos si la palabra que ingreso el usuario existe en la coleccion
         if ($coleccionPalabras[$i] === $nuevaPalabra) {
             $existe = true;
             // Si encontramos que la palabra existe, salimos del ciclo y no agregamos la palabra
         }
-        $i++;//incrementamos la variable
+        $i++;//incrementamos la variable para el recorrido
     }
 
     // Si la palabra no existe en la colección
@@ -248,13 +250,13 @@ function solicitarJugador(){
 function ordenarPartidas($coleccionPartidas){
     //ordenamos la coleccion de partidas
     uasort($coleccionPartidas, function ($a, $b) {
-        // Ordenar por jugador alfabéticamente
+        //comparara los nombre de los jugadores pero de manera alfabeticamente 
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
         if ($comparacionJugador === 0) {
-            // Si los jugadores son iguales, ordenar por palabra
+            // Si los jugadores son iguales, comparara las palabras en orden 
             return strcmp($a['palabraWordix'], $b['palabraWordix']);
         }
-        //retorna el resultado de la comparacion de los jugadores
+        //retorna el resultado de la comparacion de los jugadores si los jugadores no son iguales
         return $comparacionJugador;
     });
 
