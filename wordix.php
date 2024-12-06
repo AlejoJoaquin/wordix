@@ -340,7 +340,6 @@ function esIntentoGanado($estructuraPalabraIntento)
 *@return int 
 */
 function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) {
-    $puntaje = 1;
 
     if (!$adivina || $intentosUsados > 6) {
         $puntaje = 0;
@@ -348,8 +347,9 @@ function obtenerPuntajeWordix($intentosUsados, $adivina, $palabraAdivinada) {
 
     // Validación inicial: si no adivina o usa más de 6 intentos, puntaje es 0
     if ($adivina && $intentosUsados <= 6) {
-        // Calcula el puntaje base por intentos
+        
         $puntajeBase = 7 - $intentosUsados;
+        $puntaje = 1;
 
         // Convierte la palabra a mayúsculas para trabajar uniformemente
         $palabraAdivinada = strtoupper($palabraAdivinada);
@@ -416,7 +416,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     if ($ganoElIntento) {
         $nroIntento--;
         $puntaje = obtenerPuntajeWordix($nroIntento, $palabraWordix, $nombreUsuario);
-        echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
+        echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!\n";
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;

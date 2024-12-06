@@ -220,12 +220,12 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
 function solicitarJugador(){
     //string $nombreJugador
     
-    do{
+    do {
     echo "ingrese un nombre de un jugador: ";
     $nombreJugador = trim(fgets(STDIN));
     
     //verificamos si el primer caracter del nombre del jugador es una letra
-      if (!ctype_alpha($nombreJugador[0])){
+        if (!ctype_alpha($nombreJugador[0])){
         //si no es un caracter, mostrara este mensaje a continuacion
         echo "Error. debe ingresar un nombre que empieze con una letra\n";
       }
@@ -292,97 +292,95 @@ do {
 
     switch ($opcion) {
         case 1:
-           //Jugar al wordix con una palabra elegida
-           $nombreJugador = solicitarJugador();//solicitara el nombre del jugador
-           $cantPlabras = count($coleccionPalabras);//nos da la cantidad de palabras diponibles
-          //inicializamos el arreglo de partidas de jugadoro si no existe
-          if (!isset($partidaJugador)) {
-           $partidaJugador = []; 
-          }
-          //inicializamos el arreglo de partidas por jugador si no existe
-          if (!isset($partidasPorJugador[$nombreJugador])) {
-           $partidasPorJugador[$nombreJugador] = [];    
-       }
-       
-       do{  
-           //le solicitamos al jugador que elija un numero de indice de la palabra
-           echo "Ingrese por favor el numero de la palabra (1 a " . $cantPlabras . "): "; 
-           $eleccion = solicitarNumeroEntre(1, $cantPlabras);//se valida la eleccion
+// Solicita al jugador que elija una palabra para jugar
+$nombreJugador = solicitarJugador(); // Solicitará el nombre del jugador
+$cantPlabras = count($coleccionPalabras); // Número total de palabras disponibles
 
-           $indiceUtilizado = false;//esta variable se verifica para saber si la palabra ya fue utilizada
-           $cantidadPartidas = count($partidasPorJugador[$nombreJugador]);//obtenemos la cantidad de partidas por el jugador
-            //se verifica si la palabra ya fue verificada por el jugador
-            for ($i = 0; $i < $cantidadPartidas; $i++){            
-                //comprobamos si la palabra elegida fue utilizada por el jugador
-               if ($partidasPorJugador[$nombreJugador][$i] === $eleccion) {
-                //si la palabra fue utilizada, se marca el indice utilizado como verdader
-                   $indiceUtilizado = true; 
-                   break;
-               }
-             }
-             //si la palabra fue utilizada, se le mostrara este mensaje al usuario
-             if ($indiceUtilizado) {
-                echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
-               }
-           } while($indiceUtilizado);
-           //registra la palabra elegida por el usuario y procedera a jugar la partida
-           $partidasPorJugador[$nombreJugador][] = $eleccion;
-           $palabraElegida = $coleccionPalabras[$eleccion - 1];
-           $partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-           //agrega los datos de la partida a la coleccion
-           $coleccionPartidas[] = [
-            "palabraWordix" => $partida["palabraWordix"],
-            "jugador" => $partida["jugador"],
-            "intentos" => $partida["intentos"],
-            "puntaje" => $partida["puntaje"]
-        ];
-           print_r($partida);//imprimira los resultados de la partida
+// Inicializamos un bucle para asegurarnos de que se elija una palabra no utilizada previamente
+do {
+    // Se solicita al jugador un número de índice válido para elegir la palabra
+    echo "Ingrese por favor el número de la palabra (1 a " . $cantPlabras . "): ";
+    $eleccion = solicitarNumeroEntre(1, $cantPlabras); // Validamos la elección
+
+    $indiceUtilizado = false; // Inicializamos la variable para verificar si la palabra fue usada
+
+    // Recorremos la colección de partidas para verificar si la palabra ya fue utilizada por el jugador
+    foreach ($coleccionPartidas as $partida) {
+        if (
+            strtolower($partida['jugador']) === strtolower($nombreJugador) && $partida['palabraWordix'] === $coleccionPalabras[$eleccion - 1]) {
+            $indiceUtilizado = true; // Marcamos como utilizada si coincide
+        }
+    }
+
+    // Si ya se usó la palabra, informamos al jugador
+    if ($indiceUtilizado) {
+        echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+    }
+} while ($indiceUtilizado); // Repetimos si la palabra ya fue usada
+
+// Una vez seleccionada una palabra válida, jugamos la partida
+$palabraElegida = $coleccionPalabras[$eleccion - 1];
+$partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
+
+// Agregamos los datos de la nueva partida a la colección
+$coleccionPartidas[] = [
+    "palabraWordix" => $partida["palabraWordix"],
+    "jugador" => $partida["jugador"],
+    "intentos" => $partida["intentos"],
+    "puntaje" => $partida["puntaje"]
+];
+
         break;
         case 2: 
-            //se le solicita al ususario que isngrese el nombre de jugador
-            $jugador = solicitarJugador();
-            //obtenemos la cantidad de partidas
-            $cantidadPartidas = count($coleccionPartidas);
-            //variable que verifica si la palabra que selecciono el ususario , ya haya sido juagda anteriormnte
+// Se solicita al usuario que ingrese el nombre del jugador
+$jugador = solicitarJugador();
+// Obtenemos la cantidad de partidas
+$cantidadPartidas = count($coleccionPartidas);
+// Variable que verifica si la palabra que seleccionó el usuario ya ha sido jugada anteriormente
+$palabraJugada = true;
+
+// Bucle que funciona para seleccionar una palabra que no haya elegido el jugador
+while ($palabraJugada) {
+    // Se selecciona un índice aleatorio dentro del rango de palabras disponibles
+    $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
+    // Obtenemos la palabra seleccionada respecto al índice
+    $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
+    // Inicializamos la variable en falso, asumiendo que la palabra no ha sido jugada
+    $palabraJugada = false;
+
+    // Verificamos si la palabra seleccionada ya ha sido jugada por el jugador
+    $i = 0;
+    while ($i < count($coleccionPartidas) && !$palabraJugada) {
+        // Comparamos el nombre del jugador y la palabra jugada
+        if (
+            strtolower($coleccionPartidas[$i]["jugador"]) === strtolower($jugador) &&
+            $coleccionPartidas[$i]["palabraWordix"] === $palabraSeleccionada
+        ) {
+            // Si la palabra ya fue jugada, marcamos la variable como true para repetir el proceso
             $palabraJugada = true;
+        }
+        $i++;
+    }
+}
 
-            //bucle que funciona para para seleccionar una palabra que no haya elegido el jugador
-            while($palabraJugada){
-                //se selecciona un indice aleatorio dentro del rango de palabras disponibles
-                $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
-                //obtenemos la palabra seleccionada respecto al indice
-                $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
-               //inicializamos la variable en falso, asumiendo que la palabra no ha sido jugada
-                $palabraJugada = false;
-                //verificamos si la palabra seleccionada ya ha sido jugada por el jugador
-                for ($i = 0; $i < count($coleccionPartidas); $i++){
-                    //comparamos el nombre del jugador y la palabra jugada
-                    if (strtolower($coleccionPartidas[$i]["jugador"]) === strtolower($jugador) && $coleccionPartidas[$i]["palabraWordix"] === $palabraSeleccionada){
-                        //si la palabra ya fue jugada , marcar la variable como true para repetir el proceso
-                        $palabraJugada = true;
-                        break;
-                    }
-                }
-            }
-            //llamamos a la funcion jugarWordix
-            $partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
-            //obtenemos el numero de intentos y el puntaje de la partida
-            $intentos = $partida["intentos"];
-            $puntaje = $partida["puntaje"];
-            //guarda los resultados de la partida en la coleecion
-            $coleccionPartidas[] = [
-                "palabraWordix" => $partida["palabraWordix"],
-                "jugador" => $partida["jugador"],
-                "intentos" => $partida["intentos"],
-                "puntaje" => $partida["puntaje"]
-            ];
-            //mostramos un mensaje al ususario con los resultados de la partida
+// Llamamos a la función jugarWordix
+$partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
+// Obtenemos el número de intentos y el puntaje de la partida
+$intentos = $partida["intentos"];
+$puntaje = $partida["puntaje"];
+// Guardamos los resultados de la partida en la colección
+$coleccionPartidas[] = [
+    "palabraWordix" => $partida["palabraWordix"],
+    "jugador" => $partida["jugador"],
+    "intentos" => $partida["intentos"],
+    "puntaje" => $partida["puntaje"],
+];
+// Mostramos un mensaje al usuario con los resultados de la partida
+echo "Partida guardada: Jugador: " . $jugador . "\n";
+echo "Palabra: " . $palabraSeleccionada . "\n";
+echo "Intentos: " . $intentos . "\n";
+echo "Puntaje: " . $puntaje . "\n";
 
-            echo "Partida guardada: Jugador: ". $jugador . "\n"; 
-            echo "Palabra: " . $palabraSeleccionada . "\n"; 
-            echo "Intentos: " . $intentos . "\n"; 
-            echo "Puntaje: " . $puntaje . "\n";
-            
             break;
         case 3: 
             do {
@@ -396,12 +394,11 @@ do {
                 $indice = $numPartida - 1;//ajusta el numero de partida para que coincida con l indice d arreglo
             } while ($indice < 0 || $indice >= count($coleccionPartidas));//se repetira si el numero esta fura de rango
             break;
-
         case 4:
             $nombreJugador = solicitarJugador();//se le solicita el nombre al usuario 
             $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);//obtenemos el indice de la partida ganada
-            //verifica si el jugador ha ganado al menos una ártida
-            if($indicePartidaGanada != -1){
+            
+            if ($indicePartidaGanada != -1) {
                 //si se encontro una partida ganada, se obtiene la informacion de esa partida
                 //muestra los datos de la partida ganada
                 $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
@@ -409,7 +406,7 @@ do {
                 echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'] . "\n";
                 echo "Jugador " . $nombreJugador . "\n";
                 echo "Puntaje " . $partidaGanada['puntaje'] . " puntos \n";
-                echo "Inento: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos\n";
+                echo "Intentos: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos\n";
             } else {
                 //se le mostrata este mensaje al usuario si el jugador no gano ninguna partida
                 echo "El jugador " . $nombreJugador . " no gano ninguna partida\n";
