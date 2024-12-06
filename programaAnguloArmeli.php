@@ -171,12 +171,14 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra){
     $palabraValida = false;
     
     while(!true){
-    
+       //verificamos aca si la palabra existe recorriendo to
         $existe = false;
-        for ($i = 0; $i < $cantPalabras; $i++) {
+        $i = 0;
+        while (!$existe && $i < count($coleccionPalabras)){
             if ($coleccionPalabras[$i] === $nuevaPalabra) {
                 $existe = true;
             }
+            $i++;
         }
 
         if (!$existe) {
