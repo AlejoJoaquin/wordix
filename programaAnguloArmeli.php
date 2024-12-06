@@ -166,13 +166,15 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
     //boolean $existe 
     // Variable para verificar si la palabra ya existe si ponemos "true" es como que esta desde un principio desde los tiempos
     $existe = false;
+    $i = 0;
 
-    // Usamos un ciclo for para recorrer la colección
-    for ($i = 0; $i < count($coleccionPalabras); $i++) {
+    // Usamos un ciclo while para recorrer la coleccion
+    while($i < count($coleccionPalabras)) {
         if ($coleccionPalabras[$i] === $nuevaPalabra) {
             $existe = true;
             // Si encontramos que la palabra existe, salimos del ciclo y no agregamos la palabra
         }
+        $i++;//incrementamos la variable
     }
 
     // Si la palabra no existe en la colección
