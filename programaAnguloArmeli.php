@@ -348,7 +348,7 @@ do {
            print_r($partida);//imprimira los resultados de la partida
         break;
         case 2: 
-            //se le solicita al ususario que ingrese el nombre de jugador
+            //se le solicita al ususario que isngrese el nombre de jugador
             $jugador = solicitarJugador();
             //obtenemos la cantidad de partidas
             $cantidadPartidas = count($coleccionPartidas);
