@@ -211,7 +211,7 @@ function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador)
     while ($i < count($coleccionPartidas) && $indice === -1) {
         // Comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
         if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
-            // Se ha encontrado una victoria del jugador, almacenamos el índice y salimos del bucle
+            // Si se encuentra una victoria del jugador, almacenamos el índice y salimos del bucle
             $indice = $i;
         }
     }
@@ -249,7 +249,7 @@ function solicitarJugador(){
  *@param array $coleccionPartidas 
 */
 function ordenarPartidas($coleccionPartidas){
-    //ordenamos la coleccion de partidas
+    //ordenamos la coleccion de partidas utilizando uasort
     uasort($coleccionPartidas, function ($a, $b) {
         //comparara los nombre de los jugadores pero de manera alfabeticamente 
         $comparacionJugador = strcmp($a['jugador'], $b['jugador']);
