@@ -203,11 +203,12 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
  */
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
     // Inicializamos el índice en -1, que indica que no se ha encontrado ninguna partida ganada
-    //int $indice
+    //int $indice, $i
     $indice = -1;
+    $i = 0;
 
-    // Recorremos sobre cada partida
-    for ($i = 0; $i < count($coleccionPartidas); $i++) {
+    // Recorremos la coleccion de partidas con un while
+    while ($i < count($coleccionPartidas) && $indice === -1) {
         // Comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
         if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
             // Se ha encontrado una victoria del jugador, almacenamos el índice y salimos del bucle
