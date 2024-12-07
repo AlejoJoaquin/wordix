@@ -265,6 +265,47 @@ function ordenarPartidas($coleccionPartidas){
     print_r($coleccionPartidas);     
 }
 
+// Función para seleccionar una palabra no utilizada previamente
+function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidas) {
+    $cantPalabras = count($coleccionPalabras); // Número total de palabras disponibles
+
+    do {
+        echo "Ingrese por favor el número de la palabra (1 a " . $cantPalabras . "): ";
+        $eleccion = solicitarNumeroEntre(1, $cantPalabras); // Solicita un número válido
+
+        $indiceUtilizado = verificarPalabraUtilizada($nombreJugador, $coleccionPalabras[$eleccion - 1], $coleccionPartidas);
+
+        if ($indiceUtilizado) {
+            echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
+        }
+    } while ($indiceUtilizado);
+
+    return $coleccionPalabras[$eleccion - 1];
+}
+
+// Función para verificar si una palabra ya fue utilizada
+function verificarPalabraUtilizada($nombreJugador, $palabra, $coleccionPartidas) {
+    foreach ($coleccionPartidas as $partida) {
+        if (
+            strtolower($partida['jugador']) === strtolower($nombreJugador) &&
+            $partida['palabraWordix'] === $palabra
+        ) {
+            return true; // La palabra ya fue utilizada
+        }
+    }
+    return false; // La palabra no fue utilizada
+}
+
+// Función para agregar una partida a la colección
+function agregarPartida(&$coleccionPartidas, $partida) {
+    $coleccionPartidas[] = [
+        "palabraWordix" => $partida["palabraWordix"],
+        "jugador" => $partida["jugador"],
+        "intentos" => $partida["intentos"],
+        "puntaje" => $partida["puntaje"]
+    ];
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -297,44 +338,12 @@ do {
 
     switch ($opcion) {
         case 1:
-// Solicita al jugador que elija una palabra para jugar
-$nombreJugador = solicitarJugador(); // Solicitará el nombre del jugador
-$cantPlabras = count($coleccionPalabras); // Número total de palabras disponibles
-
-// Inicializamos un bucle para asegurarnos de que se elija una palabra no utilizada previamente
-do {
-    // Se solicita al jugador un número de índice válido para elegir la palabra
-    echo "Ingrese por favor el número de la palabra (1 a " . $cantPlabras . "): ";
-    $eleccion = solicitarNumeroEntre(1, $cantPlabras); // Validamos la elección
-
-    $indiceUtilizado = false; // Inicializamos la variable para verificar si la palabra fue usada
-
-    // Recorremos la colección de partidas para verificar si la palabra ya fue utilizada por el jugador
-    foreach ($coleccionPartidas as $partida) {
-        if (
-            strtolower($partida['jugador']) === strtolower($nombreJugador) && $partida['palabraWordix'] === $coleccionPalabras[$eleccion - 1]) {
-            $indiceUtilizado = true; // Marcamos como utilizada si coincide
-        }
-    }
-
-    // Si ya se usó la palabra, informamos al jugador
-    if ($indiceUtilizado) {
-        echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
-    }
-} while ($indiceUtilizado); // Repetimos si la palabra ya fue usada
-
-// Una vez seleccionada una palabra válida, jugamos la partida
-$palabraElegida = $coleccionPalabras[$eleccion - 1];
-$partida = jugarWordix($palabraElegida, strtolower($nombreJugador));
-
-// Agregamos los datos de la nueva partida a la colección
-$coleccionPartidas[] = [
-    "palabraWordix" => $partida["palabraWordix"],
-    "jugador" => $partida["jugador"],
-    "intentos" => $partida["intentos"],
-    "puntaje" => $partida["puntaje"]
-];
-
+            $nombreJugador = solicitarJugador(); // Solicita el nombre del jugador
+            $palabraElegida = seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidas); // Selecciona una palabra válida
+            $partida = jugarWordix($palabraElegida, strtolower($nombreJugador)); // Juega la partida con la palabra seleccionada
+        
+            // Agrega los datos de la partida a la colección
+            agregarPartida($coleccionPartidas, $partida);
         break;
         case 2: 
             // Se solicita al usuario que ingrese el nombre del jugador
