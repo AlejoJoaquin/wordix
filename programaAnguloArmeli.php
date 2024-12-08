@@ -306,6 +306,18 @@ function agregarPartida(&$coleccionPartidas, $partida) {
     ];
 }
 
+function seleccionarPalabraAleatoria($jugador, $coleccionPalabras, $coleccionPartidas) {
+    $palabraJugada = true; // Inicializa la variable en `true` para entrar al bucle
+    $palabraSeleccionada = ""; // Inicializa la palabra seleccionada
+
+    while ($palabraJugada) {
+        $indiceAleatorio = rand(0, count($coleccionPalabras) - 1); // Selecciona un índice aleatorio
+        $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
+        $palabraJugada = verificarPalabraUtilizada($jugador, $palabraSeleccionada, $coleccionPartidas); // Reutiliza función compartida
+    }
+
+    return $palabraSeleccionada;
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -341,60 +353,13 @@ do {
             $nombreJugador = solicitarJugador(); // Solicita el nombre del jugador
             $palabraElegida = seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidas); // Selecciona una palabra válida
             $partida = jugarWordix($palabraElegida, strtolower($nombreJugador)); // Juega la partida con la palabra seleccionada
-        
-            // Agrega los datos de la partida a la colección
-            agregarPartida($coleccionPartidas, $partida);
+            agregarPartida($coleccionPartidas, $partida); // Agrega los datos de la partida a la colección
         break;
         case 2: 
-            // Se solicita al usuario que ingrese el nombre del jugador
-            $jugador = solicitarJugador();
-            // Obtenemos la cantidad de partidas
-            $cantidadPartidas = count($coleccionPartidas);
-            // Variable que verifica si la palabra que seleccionó el usuario ya ha sido jugada anteriormente
-            $palabraJugada = true;
-
-            // Bucle que funciona para seleccionar una palabra que no haya elegido el jugador
-            while ($palabraJugada) {
-                // Se selecciona un índice aleatorio dentro del rango de palabras disponibles
-                $indiceAleatorio = rand(0, count($coleccionPalabras) - 1);
-                // Obtenemos la palabra seleccionada respecto al índice
-                $palabraSeleccionada = $coleccionPalabras[$indiceAleatorio];
-                // Inicializamos la variable en falso, asumiendo que la palabra no ha sido jugada
-                $palabraJugada = false;
-
-                // Verificamos si la palabra seleccionada ya ha sido jugada por el jugador
-                $i = 0;
-                while ($i < count($coleccionPartidas) && !$palabraJugada) {
-                // Comparamos el nombre del jugador y la palabra jugada
-                if (
-                strtolower($coleccionPartidas[$i]["jugador"]) === strtolower($jugador) &&
-                $coleccionPartidas[$i]["palabraWordix"] === $palabraSeleccionada
-                ) {
-                // Si la palabra ya fue jugada, marcamos la variable como true para repetir el proceso
-                $palabraJugada = true;
-                }   
-                $i++;
-            }   
-        }
-
-        // Llamamos a la función jugarWordix
-        $partida = jugarWordix($palabraSeleccionada, strtolower($jugador));
-        // Obtenemos el número de intentos y el puntaje de la partida
-        $intentos = $partida["intentos"];
-        $puntaje = $partida["puntaje"];
-        // Guardamos los resultados de la partida en la colección
-        $coleccionPartidas[] = [
-            "palabraWordix" => $partida["palabraWordix"],
-            "jugador" => $partida["jugador"],
-            "intentos" => $partida["intentos"],
-            "puntaje" => $partida["puntaje"],
-        ];
-        // Mostramos un mensaje al usuario con los resultados de la partida
-        echo "Partida guardada: Jugador: " . $jugador . "\n";
-        echo "Palabra: " . $palabraSeleccionada . "\n";
-        echo "Intentos: " . $intentos . "\n";
-        echo "Puntaje: " . $puntaje . "\n";
-
+            $jugador = solicitarJugador(); // Solicita el nombre del jugador
+            $palabraSeleccionada = seleccionarPalabraAleatoria($jugador, $coleccionPalabras, $coleccionPartidas); // Selecciona una palabra aleatoria no jugada
+            $partida = jugarWordix($palabraSeleccionada, strtolower($jugador)); // Juega la partida con la palabra seleccionada
+            agregarPartida($coleccionPartidas, $partida);  // Agrega los datos de la partida a la colección
             break;
         case 3: 
             do {
