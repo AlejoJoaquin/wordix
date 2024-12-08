@@ -363,11 +363,9 @@ do {
             break;
         case 3: 
             do {
-                // Solicitar número de partida al usuario
-                echo "Ingrese el número de partida: ";
-                $numPartida = intval(trim(fgets(STDIN)));
-                //mostrara los datos correspondiente al numero ingresado
-                mostrarPartida($numPartida, $coleccionPartidas);
+                echo "Ingrese el número de partida: "; 
+                $numPartida = trim(fgets(STDIN)); // Solicitar número de partida al usuario
+                mostrarPartida($numPartida, $coleccionPartidas); //mostrara los datos correspondiente al numero ingresado
     
                 // Validar si existe la partida
                 $indice = $numPartida - 1;//ajusta el numero de partida para que coincida con l indice d arreglo
@@ -376,7 +374,7 @@ do {
         case 4:
             $nombreJugador = solicitarJugador();//se le solicita el nombre al usuario 
             $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);//obtenemos el indice de la partida ganada
-            
+        
             if ($indicePartidaGanada != -1) {
                 //si se encontro una partida ganada, se obtiene la informacion de esa partida
                 //muestra los datos de la partida ganada
@@ -390,6 +388,7 @@ do {
                 //se le mostrata este mensaje al usuario si el jugador no gano ninguna partida
                 echo "El jugador " . $nombreJugador . " no gano ninguna partida\n";
             }
+
             break;
         case 5:                  
             $jugador = solicitarJugador();
