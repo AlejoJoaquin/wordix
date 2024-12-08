@@ -203,17 +203,17 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
  */
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
     // Inicializamos el índice en -1, que indica que no se ha encontrado ninguna partida ganada
-    //int $indice, $i
     $indice = -1;
     $i = 0;
 
-    // Recorremos la coleccion de partidas con un while
+    // Recorremos la colección de partidas con un while
     while ($i < count($coleccionPartidas) && $indice === -1) {
         // Comprobamos si el jugador es el mismo que ingresamos y si su puntaje es mayor a 0
-        if (strtolower($coleccionPartidas[$i]['jugador']) == strtolower($nombreJugador) && $coleccionPartidas[$i]['puntaje'] > 0) {
+        if (strtolower($coleccionPartidas[$i]['jugador']) == $nombreJugador && $coleccionPartidas[$i]['puntaje'] > 0) {
             // Si se encuentra una victoria del jugador, almacenamos el índice y salimos del bucle
             $indice = $i;
         }
+        $i++; // Incrementamos $i para evitar un bucle infinito
     }
     
     // Retorna el índice si encontró una partida ganada, si no retornará -1
@@ -318,6 +318,22 @@ function seleccionarPalabraAleatoria($jugador, $coleccionPalabras, $coleccionPar
 
     return $palabraSeleccionada;
 }
+
+function mostrarPrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
+    $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
+
+    if ($indicePartidaGanada != -1) {
+        $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
+        echo "********** Primera Partida Ganada **********\n";
+        echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra: " . $partidaGanada['palabraWordix'] . "\n";
+        echo "Jugador: " . ucfirst($nombreJugador) . "\n";
+        echo "Puntaje: " . $partidaGanada['puntaje'] . " puntos \n";
+        echo "Intentos: Adivinó la palabra en " . $partidaGanada['intentos'] . " intentos\n";
+    } else {
+        echo "El jugador " . ucfirst($nombreJugador) . " no ganó ninguna partida\n";
+    }
+}
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -372,23 +388,8 @@ do {
             } while ($indice < 0 || $indice >= count($coleccionPartidas));//se repetira si el numero esta fura de rango
             break;
         case 4:
-            $nombreJugador = solicitarJugador();//se le solicita el nombre al usuario 
-            $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);//obtenemos el indice de la partida ganada
-        
-            if ($indicePartidaGanada != -1) {
-                //si se encontro una partida ganada, se obtiene la informacion de esa partida
-                //muestra los datos de la partida ganada
-                $partidaGanada = $coleccionPartidas[$indicePartidaGanada];
-                echo "********** Primera Partida Ganada **********\n";
-                echo "Partida Wordix " . ($indicePartidaGanada + 1) . " palabra " . $partidaGanada['palabraWordix'] . "\n";
-                echo "Jugador " . $nombreJugador . "\n";
-                echo "Puntaje " . $partidaGanada['puntaje'] . " puntos \n";
-                echo "Intentos: Adivino la palabra en " .$partidaGanada['intentos'] . " intentos\n";
-            } else {
-                //se le mostrata este mensaje al usuario si el jugador no gano ninguna partida
-                echo "El jugador " . $nombreJugador . " no gano ninguna partida\n";
-            }
-
+            $nombreJugador = solicitarJugador();
+            mostrarPrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
             break;
         case 5:                  
             $jugador = solicitarJugador();
@@ -399,8 +400,8 @@ do {
             ordenarPartidas($coleccionPartidas);
             break;
         case 7:
-             $nuevaPalabra = leerPalabra5Letras();
-             $coleccionPalabras = agregarPalabra($coleccionPalabras, $nuevaPalabra);
+            $nuevaPalabra = leerPalabra5Letras();
+            $coleccionPalabras = agregarPalabra($coleccionPalabras, $nuevaPalabra);
             break;
         case 8:
             echo "Saliendo del Programa...";
@@ -408,5 +409,4 @@ do {
     }
 
 } while ($opcion != 8);
-
 ?>
