@@ -16,8 +16,7 @@ include_once("wordix.php");
  * Obtiene una colección de palabras
  * @return array $coleccionPalabras
  */
-function cargarColeccionPalabras()
-{
+function cargarColeccionPalabras() {
     //inicializamos el arreglo que contendra las palabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",

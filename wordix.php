@@ -334,10 +334,9 @@ function esIntentoGanado($estructuraPalabraIntento)
 
 /**
  * Calcula el puntaje de una partida de Wordix.
- * @var int $puntajeBase, $puntajeLetras
- * @param int $nroIntento Número de intento en que se adivinó la palabra.
- * @param string $palabraAdivinada Palabra adivinada por el jugador.
- * @return int $puntajeTotal obtenido en la partida.
+ * @param int $nroIntento 
+ * @param string $palabraAdivinada 
+ * @return int $puntajeTotal 
  */
 function obtenerPuntajeWordix($nroIntento, $palabraAdivinada) {
     // int $puntajeBase, $puntajeLetras
@@ -349,7 +348,7 @@ function obtenerPuntajeWordix($nroIntento, $palabraAdivinada) {
     $puntajeBase = 7 - $nroIntento; 
     $puntajeLetras = 0;
 
-    // Calculamos el puntaje para cada letra de la palabra:
+    // calculamos el puntaje para cada letra de la palabra:
     for ($i = 0; $i < strlen($palabraAdivinada); $i++) {
         $letra = strtoupper($palabraAdivinada[$i]);
 
