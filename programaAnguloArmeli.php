@@ -267,7 +267,7 @@ function ordenarPartidas($coleccionPartidas){
  * @param string $nombreJugador 
  * @param array $coleccionPalabras 
  * @param array $coleccionPartidas 
- * @return array $coleccionPartidas
+ * @return array $coleccionPalabras
 */
 function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidas) {
     // int $cantPalabras, $eleccion
@@ -278,9 +278,9 @@ function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartid
     do {
         echo "Ingrese por favor el número de la palabra (1 a " . $cantPalabras . "): ";
         $eleccion = solicitarNumeroEntre(1, $cantPalabras); // Solicita un número válido
-
+       //verificamos si la palabra ya fue usada por el jugador
         $indiceUtilizado = verificarPalabraUtilizada($nombreJugador, $coleccionPalabras[$eleccion - 1], $coleccionPartidas);
-
+       //si la palabra ya fue usada anteriormente, le saltara un mensaje de error al usuario y pidiendole que vuelva a solicitar otro numero
         if ($indiceUtilizado) {
             echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
         }
