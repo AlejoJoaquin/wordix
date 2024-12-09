@@ -407,6 +407,5 @@ do {
             echo "Saliendo del Programa...";
             break; 
     }
-
 } while ($opcion != 8);
 ?>
