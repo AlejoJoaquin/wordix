@@ -285,7 +285,7 @@ function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartid
             echo "Ya has utilizado la palabra número " . $eleccion . ". Por favor, elige otro número.\n";
         }
     } while ($indiceUtilizado);
-
+    //retorna la palabra seleccionada
     return $coleccionPalabras[$eleccion - 1];
 }
 
