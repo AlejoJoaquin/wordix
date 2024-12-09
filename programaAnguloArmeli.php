@@ -291,8 +291,8 @@ function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartid
 
 /** 
  * función para verificar si una palabra ya fue utilizada
- * @param string $nombreJugador Nombre del jugador a verificar.
- * @param string $palabra Palabra que se desea comprobar.
+ * @param string $nombreJugador 
+ * @param string $palabra 
  * @param array $coleccionPartidas
  * @return bool 
  **/
