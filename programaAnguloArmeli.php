@@ -31,7 +31,7 @@ function cargarColeccionPalabras() {
  * Inicializara una coleccion de partidas con ejemplos de partidas y que retornara la coleccion de partidas
  * @return array $coleccionPartidas
  */
-function cargarPartidas(){
+function cargarPartidas() {
     //inicializamos el array que contendra las partidas 
     $coleccionPartidas = [
         ["palabraWordix" => "MUNDO", "jugador" => "Lautaro", "intentos" => 5, "puntaje" => 11],
@@ -50,12 +50,12 @@ function cargarPartidas(){
 
 /**
  * Función que muestra estadísticas de un jugador basado en las partidas jugadas.
- * 
- * @param string $nombreJugador Nombre del jugador.
- * @param array $partidas Colección de partidas.
- * @return array Estadísticas del jugador.
+ * @param string $nombreJugador 
+ * @param array $partidas 
+ * @return array $estadísticas
  */
 function obtenerEstadisticasJugador($nombreJugador, $partidas) {
+    // array $partidas
     $estadisticas = [
         "nombre" => ucfirst($nombreJugador),
         "partidas" => 0,
@@ -90,10 +90,10 @@ function obtenerEstadisticasJugador($nombreJugador, $partidas) {
 
 /**
  * Función para mostrar las estadisticas de un jugador
- * @param array $nombreJugador
+ * @param array $estadisticas
  */
 function mostrarEstadisticasJugador($estadisticas) {
-
+    // int $intento, $cantidad
     echo "*******************\n";
     echo "Jugador: " . $estadisticas["nombre"] . "\n";
     echo "Partidas: " . $estadisticas["partidas"] . "\n";
@@ -138,7 +138,6 @@ function seleccionarOpcion(){
 function mostrarPartida($numPartida, $coleccionPartidas){
     //int $indice
     //array $partida
-    //calcula el indice correspondiente al numero de partida ingresado
     $indice = $numPartida - 1;
 
     //verifica si el indice esta dentro del rango valido
@@ -160,11 +159,11 @@ function mostrarPartida($numPartida, $coleccionPartidas){
  * Agrega la palabra que ingresó el usuario a la colección si no está repetida
  * @param array $coleccionPalabras
  * @param string $nuevaPalabra
- * @return array
+ * @return array $coleccionPalabras
  */
 function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
     //boolean $existe 
-    // Variable para verificar si la palabra ya existe si ponemos "true" es como que esta desde un principio desde los tiempos
+    //variable para verificar si la palabra ya existe si ponemos "true" es como que esta desde un principio desde los tiempos
     $existe = false;
     $i = 0;//creamos esta nueva variable para que pueda recorrer el arreglo
 
@@ -173,7 +172,7 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
         //verificaremos si la palabra que ingreso el usuario existe en la coleccion
         if ($coleccionPalabras[$i] === $nuevaPalabra) {
             $existe = true;
-            // Si encontramos que la palabra existe, salimos del ciclo y no agregamos la palabra
+        // Si encontramos que la palabra existe, salimos del ciclo y no agregamos la palabra
         }
         $i++;//incrementamos la variable para el recorrido
     }
@@ -198,9 +197,10 @@ function agregarPalabra($coleccionPalabras, $nuevaPalabra) {
  * Retorna el índice de la primera partida ganada por el jugador o retornará -1 si no ganó ninguna partida
  * @param array $coleccionPartidas
  * @param string $nombreJugador
- * @return int
+ * @return int $indice
  */
 function obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
+    // int $i
     // Inicializamos el índice en -1, que indica que no se ha encontrado ninguna partida ganada
     $indice = -1;
     $i = 0;
@@ -241,10 +241,8 @@ function solicitarJugador(){
      return strtolower($nombreJugador);
 }
 
-
 /** 
- *Muestra un listado de partidas ordenadas por jugador y por palabra.
- *
+ * funcion que muestra un listado de partidas ordenadas por jugador y por palabra.
  *@param array $coleccionPartidas 
 */
 function ordenarPartidas($coleccionPartidas){
@@ -264,8 +262,17 @@ function ordenarPartidas($coleccionPartidas){
     print_r($coleccionPartidas);     
 }
 
-// Función para seleccionar una palabra no utilizada previamente
+/**
+ * función para seleccionar una palabra no utilizada previamente
+ * @param string $nombreJugador 
+ * @param array $coleccionPalabras 
+ * @param array $coleccionPartidas 
+ * @return array $coleccionPartidas
+*/
 function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartidas) {
+    // int $cantPalabras, $eleccion
+    // bool $indiceUtilizado
+
     $cantPalabras = count($coleccionPalabras); // Número total de palabras disponibles
 
     do {
@@ -282,7 +289,13 @@ function seleccionarPalabra($nombreJugador, $coleccionPalabras, $coleccionPartid
     return $coleccionPalabras[$eleccion - 1];
 }
 
-// Función para verificar si una palabra ya fue utilizada
+/** 
+ * función para verificar si una palabra ya fue utilizada
+ * @param string $nombreJugador Nombre del jugador a verificar.
+ * @param string $palabra Palabra que se desea comprobar.
+ * @param array $coleccionPartidas
+ * @return bool 
+ **/
 function verificarPalabraUtilizada($nombreJugador, $palabra, $coleccionPartidas) {
     foreach ($coleccionPartidas as $partida) {
         if (
@@ -295,7 +308,11 @@ function verificarPalabraUtilizada($nombreJugador, $palabra, $coleccionPartidas)
     return false; // La palabra no fue utilizada
 }
 
-// Función para agregar una partida a la colección
+/**
+ * función para agregar una partida a la colección
+ * @param array $coleccionPartidas
+ * @param array $partida
+ */
 function agregarPartida(&$coleccionPartidas, $partida) {
     $coleccionPartidas[] = [
         "palabraWordix" => $partida["palabraWordix"],
@@ -305,6 +322,13 @@ function agregarPartida(&$coleccionPartidas, $partida) {
     ];
 }
 
+/**
+ * funcion que selecciona una palabra aleatoria de la colección que el jugador no haya utilizado en partidas anteriores.
+ * @param string $jugador
+ * @param array $coleccionPalabras
+ * @param array $coleccionPartidas
+ * @return string $palabraSeleccionada
+ */
 function seleccionarPalabraAleatoria($jugador, $coleccionPalabras, $coleccionPartidas) {
     $palabraJugada = true; // Inicializa la variable en `true` para entrar al bucle
     $palabraSeleccionada = ""; // Inicializa la palabra seleccionada
@@ -318,6 +342,11 @@ function seleccionarPalabraAleatoria($jugador, $coleccionPalabras, $coleccionPar
     return $palabraSeleccionada;
 }
 
+/**
+ * Muestra los detalles de la primera partida ganada por un jugador.
+ * @param array $coleccionPartidas 
+ * @param string $nombreJugador
+ */
 function mostrarPrimeraPartidaGanada($coleccionPartidas, $nombreJugador) {
     $indicePartidaGanada = obtenerIndiceDePrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
 
@@ -387,11 +416,11 @@ do {
             } while ($indice < 0 || $indice >= count($coleccionPartidas));//se repetira si el numero esta fura de rango
             break;
         case 4:
-            $nombreJugador = solicitarJugador();
+            $nombreJugador = solicitarJugador(); // Solicita el nombre del jugador
             mostrarPrimeraPartidaGanada($coleccionPartidas, $nombreJugador);
             break;
         case 5:                  
-            $jugador = solicitarJugador();
+            $jugador = solicitarJugador(); // Solicita el nombre del jugador
             $estadisticas = obtenerEstadisticasJugador($jugador, $coleccionPartidas);
             mostrarEstadisticasJugador($estadisticas);
             break;
